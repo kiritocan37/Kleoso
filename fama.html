@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script data-cfasync="false" src="script.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fama &mdash; Marketing Agency</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#f0ebe1;--bg2:#e8e1d4;--dark:#1c1812;--dark2:#2e2a22;--accent:#b85c2a;--accent2:#d4712f;--muted:#8a8070;--border:rgba(28,24,18,0.12);--ff-en:"Bebas Neue",sans-serif;--ff-body:"Manrope",sans-serif;--pad:4rem}
+@media(max-width:768px){:root{--pad:1.5rem}}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--dark);font-family:var(--ff-body);overflow-x:hidden}
+.page{display:none}.page.active{display:block}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(240,235,225,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-inner{display:flex;justify-content:space-between;align-items:center;padding:1.2rem var(--pad)}
+.logo{font-family:var(--ff-en);font-size:1.8rem;letter-spacing:.15em;color:var(--dark);cursor:pointer}
+.nav-center{display:flex;list-style:none}
+.nav-center li a{color:var(--muted);text-decoration:none;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;padding:.5rem 1rem;transition:color .3s;cursor:pointer;display:block}
+.nav-center li a:hover{color:var(--accent)}
+.nav-lang{display:flex;gap:.4rem}
+.lang-btn{background:none;border:1px solid var(--border);color:var(--muted);padding:.28rem .65rem;font-size:.72rem;letter-spacing:.1em;cursor:pointer;transition:all .3s;font-family:var(--ff-body);font-weight:500}
+.lang-btn.active,.lang-btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(184,92,42,0.06)}
+.nav-mobile{display:none}
+.burger{background:none;border:none;cursor:pointer;padding:.4rem;display:flex;flex-direction:column;gap:5px}
+.burger span{display:block;width:22px;height:2px;background:var(--dark)}
+.mobile-menu{display:none;flex-direction:column;border-top:1px solid var(--border);background:rgba(240,235,225,0.98)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:var(--muted);text-decoration:none;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;padding:1rem var(--pad);border-bottom:1px solid var(--border);cursor:pointer;display:block}
+.mobile-menu a:hover{color:var(--accent)}
+@media(max-width:900px){.nav-center{display:none}.nav-mobile{display:flex;align-items:center;gap:1rem}.nav-lang{display:none}}
+section{padding:0 var(--pad)}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:4rem;padding-top:8rem}
+.hero-tag{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;font-weight:600;animation:fadeUp .7s ease both}
+.hero-title{font-family:var(--ff-en);font-size:clamp(3.5rem,10vw,10rem);line-height:.93;margin-bottom:2rem;color:var(--dark);animation:fadeUp .7s .15s ease both}
+.hero-title em{font-style:italic;color:var(--accent)}
+.lang-ru .hero-title,.lang-ge .hero-title{font-family:"Manrope",sans-serif;font-size:clamp(2.4rem,6.5vw,7rem);font-weight:800;line-height:1.05;letter-spacing:-.02em}
+.lang-ru .hero-title em,.lang-ge .hero-title em{font-style:normal;color:var(--accent)}
+.hero-sub{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;animation:fadeUp .7s .3s ease both}
+.hero-desc{max-width:400px;font-size:.95rem;line-height:1.8;color:var(--muted)}
+.hero-cta{display:flex;flex-direction:column;align-items:flex-end;gap:1rem;flex-shrink:0}
+@media(max-width:640px){.hero-sub{flex-direction:column;align-items:flex-start}.hero-cta{align-items:flex-start}}
+.cta-btn{display:inline-flex;align-items:center;gap:.75rem;background:var(--dark);color:var(--bg);padding:1rem 2rem;font-size:.85rem;font-weight:600;letter-spacing:.06em;transition:all .3s;cursor:pointer;font-family:var(--ff-body);border:none;text-transform:uppercase}
+.cta-btn:hover{background:var(--accent)}
+.scroll-hint{font-size:.7rem;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+.marquee-wrap{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:1rem 0;overflow:hidden;background:var(--bg2)}
+.marquee{display:flex;gap:3rem;white-space:nowrap;animation:marquee 22s linear infinite}
+.marquee-item{font-family:var(--ff-en);font-size:.95rem;letter-spacing:.22em;color:var(--muted)}
+.marquee-dot{color:var(--accent);font-size:.6rem;margin:0 .5rem}
+.section-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem;border-bottom:1px solid var(--border);padding-bottom:1.5rem;flex-wrap:wrap;gap:.5rem}
+.section-num{font-size:.7rem;color:var(--muted);letter-spacing:.2em;text-transform:uppercase;font-weight:500}
+.section-title{font-family:var(--ff-en);font-size:clamp(2rem,5vw,5rem);color:var(--dark)}
+.lang-ru .section-title,.lang-ge .section-title{font-family:"Manrope",sans-serif;font-weight:800;font-size:clamp(1.8rem,4vw,4rem);letter-spacing:-.02em}
+.services{padding-top:6rem;padding-bottom:6rem}
+.services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border)}
+@media(max-width:600px){.services-grid{grid-template-columns:1fr}}
+.service-card{background:var(--bg);padding:2.5rem 2rem;transition:background .3s;position:relative;overflow:hidden}
+.service-card:hover{background:var(--bg2)}
+.service-card::after{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent);transform:scaleX(0);transition:transform .4s;transform-origin:left}
+.service-card:hover::after{transform:scaleX(1)}
+.service-num{font-size:.68rem;color:var(--muted);letter-spacing:.2em;margin-bottom:1.2rem;font-weight:500}
+.service-name{font-family:var(--ff-en);font-size:2rem;margin-bottom:.8rem;color:var(--dark)}
+.lang-ru .service-name,.lang-ge .service-name{font-family:"Manrope",sans-serif;font-size:1.4rem;font-weight:800;letter-spacing:-.01em}
+.service-desc{font-size:.88rem;color:var(--muted);line-height:1.8}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border)}
+@media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat-item{background:var(--dark);padding:3rem 1.5rem;text-align:center}
+.stat-num{font-family:var(--ff-en);font-size:4rem;line-height:1;color:var(--bg)}
+.stat-accent{color:var(--accent2)}
+.stat-label{font-size:.7rem;color:rgba(240,235,225,0.45);letter-spacing:.12em;text-transform:uppercase;margin-top:.5rem;font-weight:500}
+.why{padding-top:6rem;padding-bottom:6rem}
+.why-grid{display:grid;grid-template-columns:repeat(2,1fr);border:1px solid var(--border)}
+@media(max-width:600px){.why-grid{grid-template-columns:1fr}}
+.why-item{padding:2.5rem 2rem;border-right:1px solid var(--border);border-bottom:1px solid var(--border);transition:background .3s}
+.why-item:hover{background:var(--bg2)}
+.why-item:nth-child(2n){border-right:none}
+.why-item:nth-child(3),.why-item:nth-child(4){border-bottom:none}
+@media(max-width:600px){.why-item:nth-child(odd){border-right:none}.why-item:last-child{border-bottom:none}.why-item:nth-child(3){border-bottom:1px solid var(--border)}}
+.why-label{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;font-weight:600}
+.why-text{font-size:1rem;line-height:1.75;color:var(--dark2)}
+.port-page{padding-top:6rem;padding-bottom:6rem}
+.portfolio-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);margin-top:3rem}
+@media(max-width:600px){.portfolio-grid{grid-template-columns:1fr}}
+.portfolio-card{background:var(--bg);overflow:hidden;transition:background .3s}
+.portfolio-card:hover{background:var(--bg2)}
+.portfolio-img-wrap{overflow:hidden;width:100%;aspect-ratio:4/3}
+.portfolio-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.portfolio-card:hover .portfolio-img{transform:scale(1.04)}
+.portfolio-placeholder{width:100%;aspect-ratio:4/3;background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:.78rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase}
+.portfolio-info{padding:1.5rem 2rem}
+.portfolio-tag{font-size:.68rem;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;font-weight:700;margin-bottom:.6rem}
+.portfolio-title{font-family:var(--ff-en);font-size:1.6rem;color:var(--dark);margin-bottom:.6rem}
+.lang-ru .portfolio-title,.lang-ge .portfolio-title{font-family:"Manrope",sans-serif;font-weight:800;font-size:1.2rem;letter-spacing:-.01em}
+.portfolio-desc{font-size:.85rem;color:var(--muted);line-height:1.75}
+.rev-page{padding-top:6rem;padding-bottom:6rem}
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-top:3rem}
+@media(max-width:900px){.reviews-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.reviews-grid{grid-template-columns:1fr}}
+.review-card{background:var(--bg);padding:2rem;transition:background .3s}
+.review-card:hover{background:var(--bg2)}
+.review-stars{color:var(--accent);margin-bottom:1.2rem}
+.review-text{font-size:.9rem;line-height:1.8;color:var(--dark2);margin-bottom:1.5rem}
+.review-author{border-top:1px solid var(--border);padding-top:1rem}
+.review-name{font-size:.88rem;font-weight:700;color:var(--dark);display:block;margin-bottom:.2rem}
+.review-role{font-size:.78rem;color:var(--muted)}
+.how-page{padding-top:6rem;padding-bottom:6rem}
+.steps-grid{display:grid;gap:1px;background:var(--border);margin-top:3rem}
+.step-row{background:var(--bg);display:grid;grid-template-columns:60px 1fr 1fr;gap:2rem;padding:2.5rem 2rem;align-items:start;transition:background .3s}
+.step-row:hover{background:var(--bg2)}
+@media(max-width:768px){.step-row{grid-template-columns:50px 1fr;gap:1.5rem}.step-detail{display:none}}
+.step-index{font-family:var(--ff-en);font-size:3rem;color:var(--border);line-height:1}
+.step-name{font-family:var(--ff-en);font-size:1.6rem;color:var(--dark);margin-bottom:.6rem}
+.lang-ru .step-name,.lang-ge .step-name{font-family:"Manrope",sans-serif;font-weight:800;font-size:1.2rem;letter-spacing:-.01em}
+.step-desc{font-size:.9rem;color:var(--muted);line-height:1.8}
+.step-detail{font-size:.82rem;color:var(--muted);line-height:1.8;padding-left:1.5rem;border-left:2px solid var(--border)}
+.faq-section{padding-top:4rem}
+.faq-title{font-family:var(--ff-en);font-size:clamp(2rem,4vw,4rem);color:var(--dark);margin-bottom:2.5rem}
+.lang-ru .faq-title,.lang-ge .faq-title{font-family:"Manrope",sans-serif;font-weight:800;font-size:clamp(1.8rem,3.5vw,3.5rem);letter-spacing:-.02em}
+.faq-item{border-top:1px solid var(--border)}
+.faq-item:last-child{border-bottom:1px solid var(--border)}
+.faq-q{display:flex;justify-content:space-between;align-items:center;font-size:.95rem;font-weight:600;color:var(--dark);padding:1.5rem 0;cursor:pointer;user-select:none}
+.faq-icon{font-size:1.4rem;color:var(--accent);transition:transform .4s ease;flex-shrink:0;margin-left:1rem;font-style:normal}
+.faq-a{font-size:.9rem;color:var(--muted);line-height:1.8;max-height:0;overflow:hidden;transition:max-height .5s ease,padding .5s ease;padding-bottom:0}
+.faq-item.open .faq-a{max-height:300px;padding-bottom:1.5rem}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+.con-page{padding-top:6rem;padding-bottom:6rem}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;margin-top:3rem}
+@media(max-width:768px){.contact-grid{grid-template-columns:1fr;gap:3rem}}
+.contact-info-title{font-family:var(--ff-en);font-size:2.5rem;color:var(--dark);margin-bottom:1.5rem;line-height:1}
+.lang-ru .contact-info-title,.lang-ge .contact-info-title{font-family:"Manrope",sans-serif;font-weight:800;font-size:2rem;letter-spacing:-.02em}
+.contact-items{display:flex;flex-direction:column;margin-bottom:2rem}
+.contact-item{padding:1.2rem 0;border-bottom:1px solid var(--border)}
+.contact-item:first-child{border-top:1px solid var(--border)}
+.contact-item-label{font-size:.68rem;color:var(--muted);letter-spacing:.2em;text-transform:uppercase;font-weight:600;margin-bottom:.4rem}
+.contact-item-value{font-size:.95rem;color:var(--dark);font-weight:500}
+.contact-socials{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.6rem}
+.social-btn{display:inline-flex;align-items:center;border:1px solid var(--border);color:var(--muted);padding:.5rem 1rem;font-size:.75rem;font-weight:600;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:all .3s;background:none;font-family:var(--ff-body);cursor:pointer}
+.social-btn:hover{border-color:var(--accent);color:var(--accent)}
+.contact-form{display:flex;flex-direction:column;gap:1rem}
+.form-group{display:flex;flex-direction:column;gap:.4rem}
+.form-label{font-size:.7rem;color:var(--muted);letter-spacing:.16em;text-transform:uppercase;font-weight:600}
+.form-input{background:var(--bg2);border:1px solid var(--border);padding:.9rem 1.1rem;font-size:.92rem;font-family:var(--ff-body);color:var(--dark);transition:border-color .3s;outline:none;width:100%}
+.form-input:focus{border-color:var(--accent)}
+textarea.form-input{min-height:120px;resize:vertical}
+.form-submit{background:var(--dark);color:var(--bg);border:none;padding:1rem 2rem;font-size:.85rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .3s;font-family:var(--ff-body);align-self:flex-start}
+.form-submit:hover{background:var(--accent)}
+.cta-bottom{padding:6rem var(--pad);display:flex;flex-direction:column;align-items:center;text-align:center;background:var(--dark2)}
+.cta-bottom-title{font-family:var(--ff-en);font-size:clamp(3rem,10vw,10rem);line-height:.92;margin-bottom:1.5rem;color:var(--bg)}
+.cta-bottom-title span{color:var(--accent2);font-style:italic}
+.lang-ru .cta-bottom-title,.lang-ge .cta-bottom-title{font-family:"Manrope",sans-serif;font-weight:800;font-size:clamp(2rem,6vw,7rem);line-height:1.1;letter-spacing:-.02em}
+.cta-bottom-email{font-size:.95rem;color:rgba(240,235,225,0.5);letter-spacing:.06em;margin-bottom:2.5rem;word-break:break-all}
+.cta-bottom-btn{display:inline-flex;align-items:center;gap:.75rem;border:1px solid rgba(240,235,225,0.3);color:var(--bg);padding:1rem 2.5rem;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;transition:all .4s;cursor:pointer;font-family:var(--ff-body);font-weight:600;background:none}
+.cta-bottom-btn:hover{background:var(--accent);border-color:var(--accent)}
+footer{border-top:1px solid var(--border);padding:1.5rem var(--pad);display:flex;justify-content:space-between;align-items:center;background:var(--bg);flex-wrap:wrap;gap:1rem}
+.footer-logo{font-family:var(--ff-en);font-size:1.2rem;letter-spacing:.15em;color:var(--dark);cursor:pointer}
+.footer-copy{font-size:.74rem;color:var(--muted)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+</style>
+</head>
+<body class="lang-en">
+<nav>
+  <div class="nav-inner">
+    <div class="logo" onclick="showPage('home')">FAMA</div>
+    <ul class="nav-center">
+      <li><a onclick="showPage('home')" data-i="nav_services">Services</a></li>
+      <li><a onclick="showPage('how')" data-i="nav_how">How it works</a></li>
+      <li><a onclick="showPage('portfolio')" data-i="nav_portfolio">Portfolio</a></li>
+      <li><a onclick="showPage('reviews')" data-i="nav_reviews">Reviews</a></li>
+      <li><a onclick="showPage('contact')" data-i="nav_contact">Contact</a></li>
+    </ul>
+    <div class="nav-lang">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('ru')">RU</button>
+      <button class="lang-btn" onclick="setLang('ge')">GE</button>
+      <button class="lang-btn" onclick="setLang('ua')">UA</button>
+    </div>
+    <div class="nav-mobile">
+      <div class="nav-lang">
+        <button class="lang-btn active" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('ru')">RU</button>
+        <button class="lang-btn" onclick="setLang('ge')">GE</button>
+      <button class="lang-btn" onclick="setLang('ua')">UA</button>
+      </div>
+      <button class="burger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a onclick="showPage('home');closeMenu()" data-i="nav_services">Services</a>
+    <a onclick="showPage('how');closeMenu()" data-i="nav_how">How it works</a>
+    <a onclick="showPage('portfolio');closeMenu()" data-i="nav_portfolio">Portfolio</a>
+    <a onclick="showPage('reviews');closeMenu()" data-i="nav_reviews">Reviews</a>
+    <a onclick="showPage('contact');closeMenu()" data-i="nav_contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HOME -->
+<div class="page active" id="page-home">
+<section class="hero">
+  <div class="hero-tag" data-i="hero_tag">Marketing Agency &mdash; Tbilisi, Georgia</div>
+  <h1 class="hero-title" data-i="hero_title">We build<br><em>brands</em><br>that matter</h1>
+  <div class="hero-sub">
+    <p class="hero-desc" data-i="hero_desc">Digital marketing agency helping businesses in Georgia grow their presence and convert attention into revenue.</p>
+    <div class="hero-cta">
+      <button class="cta-btn" onclick="showPage('contact')"><span data-i="hero_cta">Start a project</span> &#8599;</button>
+      <span class="scroll-hint" data-i="scroll_hint">Scroll to explore</span>
+    </div>
+  </div>
+</section>
+<div class="marquee-wrap"><div class="marquee">
+  <span class="marquee-item">Google Ads</span><span class="marquee-dot">&#10022;</span>
+  <span class="marquee-item">Meta Ads</span><span class="marquee-dot">&#10022;</span>
+  <span class="marquee-item">Branding</span><span class="marquee-dot">&#10022;</span>
+  <span class="marquee-item">Web Design</span><span class="marquee-dot">&#10022;</span>
+  <span class="marquee-item">SEO</span><span class="marquee-dot">&#10022;</span>
+  <span class="marquee-item">Strategy</span><span class="marquee-dot">&#10022;</span>
+  <span class="marquee-item">Analytics</span><span class="marquee-dot">&#10022;</span>
+  <span class="marquee-item">Google Ads</span><span class="marquee-dot">&#10022;</span>
+  <span class="marquee-item">Meta Ads</span><span class="marquee-dot">&#10022;</span>
+  <span class="marquee-item">Branding</span><span class="marquee-dot">&#10022;</span>
+  <span class="marquee-item">Web Design</span><span class="marquee-dot">&#10022;</span>
+  <span class="marquee-item">SEO</span><span class="marquee-dot">&#10022;</span>
+  <span class="marquee-item">Strategy</span><span class="marquee-dot">&#10022;</span>
+  <span class="marquee-item">Analytics</span><span class="marquee-dot">&#10022;</span>
+</div></div>
+<section class="services">
+  <div class="section-header"><span class="section-num" data-i="s1_num">01 &mdash; Services</span><h2 class="section-title" data-i="s1_title">What we do</h2></div>
+  <div class="services-grid">
+    <div class="service-card"><div class="service-num">01</div><div class="service-name" data-i="srv1_name">Paid Ads</div><p class="service-desc" data-i="srv1_desc">Google, Meta, TikTok Ads. Data-driven campaigns that bring real customers.</p></div>
+    <div class="service-card"><div class="service-num">02</div><div class="service-name" data-i="srv2_name">Branding</div><p class="service-desc" data-i="srv2_desc">Logo, identity, tone of voice. We shape how your brand looks and feels.</p></div>
+    <div class="service-card"><div class="service-num">03</div><div class="service-name" data-i="srv3_name">Web Design</div><p class="service-desc" data-i="srv3_desc">Fast, modern websites that convert visitors into clients.</p></div>
+    <div class="service-card"><div class="service-num">04</div><div class="service-name" data-i="srv4_name">SEO</div><p class="service-desc" data-i="srv4_desc">Rank higher on Google. Customers find you before your competitors.</p></div>
+    <div class="service-card"><div class="service-num">05</div><div class="service-name" data-i="srv5_name">Strategy</div><p class="service-desc" data-i="srv5_desc">Market research, competitor analysis, growth roadmap.</p></div>
+    <div class="service-card"><div class="service-num">06</div><div class="service-name" data-i="srv6_name">Analytics</div><p class="service-desc" data-i="srv6_desc">Dashboards and monthly reports. Always know what is working.</p></div>
+  </div>
+</section>
+<div class="stats">
+  <div class="stat-item"><div class="stat-num stat-accent">30+</div><div class="stat-label" data-i="stat1">Projects done</div></div>
+  <div class="stat-item"><div class="stat-num">3</div><div class="stat-label" data-i="stat2">Languages</div></div>
+  <div class="stat-item"><div class="stat-num stat-accent">2x</div><div class="stat-label" data-i="stat3">Avg. growth</div></div>
+  <div class="stat-item"><div class="stat-num">GE</div><div class="stat-label" data-i="stat4">Based in Tbilisi</div></div>
+</div>
+<section class="why">
+  <div class="section-header"><span class="section-num" data-i="s2_num">02 &mdash; Why Fama</span><h2 class="section-title" data-i="s2_title">Why us</h2></div>
+  <div class="why-grid">
+    <div class="why-item"><div class="why-label" data-i="why1_label">Local insight</div><p class="why-text" data-i="why1_text">We know the Georgian market &mdash; culture, audience, what actually works here.</p></div>
+    <div class="why-item"><div class="why-label" data-i="why2_label">Multilingual</div><p class="why-text" data-i="why2_text">English, Russian, Georgian &mdash; every customer in their language.</p></div>
+    <div class="why-item"><div class="why-label" data-i="why3_label">Results first</div><p class="why-text" data-i="why3_text">No vanity metrics. Leads, sales, real business growth.</p></div>
+    <div class="why-item"><div class="why-label" data-i="why4_label">Full service</div><p class="why-text" data-i="why4_text">Strategy to execution &mdash; we handle everything.</p></div>
+  </div>
+</section>
+<div class="cta-bottom">
+  <h2 class="cta-bottom-title" data-i="cta_title">Let&#39;s build<br>your <span>Fama</span></h2>
+  <p class="cta-bottom-email">fama&#46;agency&#46;ge&#64;proton&#46;me</p>
+  <button class="cta-bottom-btn" onclick="showPage('contact')"><span data-i="cta_btn">Get in touch</span> &#8599;</button>
+</div>
+</div>
+
+<!-- PORTFOLIO -->
+<div class="page" id="page-portfolio">
+<section class="port-page">
+  <div class="section-header"><span class="section-num" data-i="port_num">03 &mdash; Portfolio</span><h2 class="section-title" data-i="port_title">Our work</h2></div>
+  <div class="portfolio-grid">
+    <div class="portfolio-card"><div class="portfolio-img-wrap"><img class="portfolio-img" src="work1.png" alt="work1" loading="lazy"></div><div class="portfolio-info"><div class="portfolio-tag" data-i="port1_tag">Graphic Design</div><div class="portfolio-title" data-i="port1_title">Lay&#39;s Tire Flavor</div><p class="portfolio-desc" data-i="port1_desc">Creative product announcement poster.</p></div></div>
+    <div class="portfolio-card"><div class="portfolio-img-wrap"><img class="portfolio-img" src="work2.png" alt="work2" loading="lazy"></div><div class="portfolio-info"><div class="portfolio-tag" data-i="port2_tag">Social Media Design</div><div class="portfolio-title" data-i="port2_title">Jennie Ruby &mdash; Facebook Cover</div><p class="portfolio-desc" data-i="port2_desc">Luxury fashion brand cover.</p></div></div>
+    <div class="portfolio-card"><div class="portfolio-placeholder" data-i="port_soon">Coming soon</div><div class="portfolio-info"><div class="portfolio-tag">Web Design</div><div class="portfolio-title" data-i="port3_title">Next project</div><p class="portfolio-desc" data-i="port3_desc">More work coming soon.</p></div></div>
+    <div class="portfolio-card"><div class="portfolio-placeholder" data-i="port_soon">Coming soon</div><div class="portfolio-info"><div class="portfolio-tag">Branding</div><div class="portfolio-title" data-i="port4_title">Next project</div><p class="portfolio-desc" data-i="port4_desc">More work coming soon.</p></div></div>
+  </div>
+</section>
+<div class="cta-bottom"><h2 class="cta-bottom-title" data-i="cta_title">Let&#39;s build<br>your <span>Fama</span></h2><p class="cta-bottom-email">fama&#46;agency&#46;ge&#64;proton&#46;me</p><button class="cta-bottom-btn" onclick="showPage('contact')"><span data-i="cta_btn">Get in touch</span> &#8599;</button></div>
+</div>
+
+<!-- REVIEWS -->
+<div class="page" id="page-reviews">
+<section class="rev-page">
+  <div class="section-header"><span class="section-num" data-i="rev_num">04 &mdash; Reviews</span><h2 class="section-title" data-i="rev_title">What clients say</h2></div>
+  <div class="reviews-grid">
+    <div class="review-card"><div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="review-text" data-i="rev1_text">"Fama transformed our presence. Bookings up 40%."</p><div class="review-author"><span class="review-name" data-i="rev1_name">Giorgi Kvaratskhelia</span><span class="review-role" data-i="rev1_role">Owner, Tamada Restaurant</span></div></div>
+    <div class="review-card"><div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="review-text" data-i="rev2_text">"3x more leads at half the cost."</p><div class="review-author"><span class="review-name" data-i="rev2_name">Natia Beridze</span><span class="review-role" data-i="rev2_role">CEO, Batumi Real Estate</span></div></div>
+    <div class="review-card"><div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="review-text" data-i="rev3_text">"Brand and website in 3 weeks."</p><div class="review-author"><span class="review-name" data-i="rev3_name">Mikhail Sorokin</span><span class="review-role" data-i="rev3_role">Founder, Tbilisi Law Partners</span></div></div>
+    <div class="review-card"><div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="review-text" data-i="rev4_text">"After SEO we rank #1. Traffic up 180%."</p><div class="review-author"><span class="review-name" data-i="rev4_name">Ana Lomidze</span><span class="review-role" data-i="rev4_role">Marketing Director, GeoTour</span></div></div>
+    <div class="review-card"><div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="review-text" data-i="rev5_text">"Strategy session was worth it."</p><div class="review-author"><span class="review-name" data-i="rev5_name">David Chikava</span><span class="review-role" data-i="rev5_role">Co-founder, Glide Hotel</span></div></div>
+    <div class="review-card"><div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="review-text" data-i="rev6_text">"All three languages flawlessly."</p><div class="review-author"><span class="review-name" data-i="rev6_name">Elena Volkova</span><span class="review-role" data-i="rev6_role">Director, Kazbegi Resort</span></div></div>
+  </div>
+</section>
+<div class="cta-bottom"><h2 class="cta-bottom-title" data-i="cta_title">Let&#39;s build<br>your <span>Fama</span></h2><p class="cta-bottom-email">fama&#46;agency&#46;ge&#64;proton&#46;me</p><button class="cta-bottom-btn" onclick="showPage('contact')"><span data-i="cta_btn">Get in touch</span> &#8599;</button></div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="page" id="page-how">
+<section class="how-page">
+  <div class="section-header"><span class="section-num" data-i="how_num">05 &mdash; Process</span><h2 class="section-title" data-i="how_title">How we work</h2></div>
+  <div class="steps-grid">
+    <div class="step-row"><div class="step-index">01</div><div><div class="step-name" data-i="step1_name">Discovery Call</div><p class="step-desc" data-i="step1_desc">Free 30-min call. We learn your business, goals, budget.</p></div><p class="step-detail" data-i="step1_detail">We ask about current marketing and customers.</p></div>
+    <div class="step-row"><div class="step-index">02</div><div><div class="step-name" data-i="step2_name">Research &amp; Strategy</div><p class="step-desc" data-i="step2_desc">Market analysis. Custom strategy with clear goals.</p></div><p class="step-detail" data-i="step2_detail">Full strategy document. Built for your business.</p></div>
+    <div class="step-row"><div class="step-index">03</div><div><div class="step-name" data-i="step3_name">Proposal &amp; Agreement</div><p class="step-desc" data-i="step3_desc">Clear proposal with deliverables, timeline, pricing.</p></div><p class="step-detail" data-i="step3_detail">Transparent contracts. You own everything.</p></div>
+    <div class="step-row"><div class="step-index">04</div><div><div class="step-name" data-i="step4_name">Execution</div><p class="step-desc" data-i="step4_desc">We build, launch, manage &mdash; ads, websites, SEO, branding.</p></div><p class="step-detail" data-i="step4_detail">Regular updates. Direct access to your manager.</p></div>
+    <div class="step-row"><div class="step-index">05</div><div><div class="step-name" data-i="step5_name">Report &amp; Optimise</div><p class="step-desc" data-i="step5_desc">Monthly reports. Continuous optimisation.</p></div><p class="step-detail" data-i="step5_detail">Data drives every decision.</p></div>
+  </div>
+  <div class="faq-section">
+    <h2 class="faq-title" data-i="faq_title">FAQ</h2>
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span data-i="faq1_q">How much does it cost?</span><i class="faq-icon">+</i></div><p class="faq-a" data-i="faq1_a">Website from $400. Ad management from $200/month. Strategy from $150.</p></div>
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span data-i="faq2_q">How long to see results?</span><i class="faq-icon">+</i></div><p class="faq-a" data-i="faq2_a">Paid ads &mdash; first week. SEO &mdash; 2-3 months. Website &mdash; 2-4 weeks.</p></div>
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span data-i="faq3_q">Do you work with small businesses?</span><i class="faq-icon">+</i></div><p class="faq-a" data-i="faq3_a">Absolutely. Most clients are restaurants, hotels, law firms, real estate.</p></div>
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span data-i="faq4_q">Can you work remotely?</span><i class="faq-icon">+</i></div><p class="faq-a" data-i="faq4_a">Yes, 100%. Clients across Georgia and internationally.</p></div>
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span data-i="faq5_q">What languages do you work in?</span><i class="faq-icon">+</i></div><p class="faq-a" data-i="faq5_a">English, Russian, and Georgian &mdash; any or all three simultaneously.</p></div>
+  </div>
+</section>
+<div class="cta-bottom"><h2 class="cta-bottom-title" data-i="cta_title">Let&#39;s build<br>your <span>Fama</span></h2><p class="cta-bottom-email">fama&#46;agency&#46;ge&#64;proton&#46;me</p><button class="cta-bottom-btn" onclick="showPage('contact')"><span data-i="cta_btn">Get in touch</span> &#8599;</button></div>
+</div>
+
+<!-- CONTACT -->
+<div class="page" id="page-contact">
+<section class="con-page">
+  <div class="section-header"><span class="section-num" data-i="con_num">06 &mdash; Contact</span><h2 class="section-title" data-i="con_title">Get in touch</h2></div>
+  <div class="contact-grid">
+    <div>
+      <h3 class="contact-info-title" data-i="con_heading">Let&#39;s talk about your project</h3>
+      <div class="contact-items">
+        <div class="contact-item"><div class="contact-item-label" data-i="con_lbl_email">Email</div><div class="contact-item-value">fama&#46;agency&#46;ge&#64;proton&#46;me</div></div>
+        <div class="contact-item"><div class="contact-item-label" data-i="con_lbl_loc">Location</div><div class="contact-item-value" data-i="con_location">Tbilisi, Georgia</div></div>
+        <div class="contact-item"><div class="contact-item-label" data-i="con_lbl_lang">Languages</div><div class="contact-item-value">EN / RU / GE</div></div>
+        <div class="contact-item"><div class="contact-item-label" data-i="con_lbl_social">Social media</div><div class="contact-socials"><a href="https://www.instagram.com/fama_agency_ge/" target="_blank" class="social-btn">Instagram</a><a href="https://t.me/FamaAgency_Ge" target="_blank" class="social-btn">Telegram</a></div></div>
+      </div>
+    </div>
+    <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="handleSubmit(event)">
+      <input type="hidden" name="form-name" value="contact">
+      <p style="display:none"><input name="bot-field"></p>
+      <div class="form-group"><label class="form-label" data-i="form_name">Your name</label><input type="text" name="name" class="form-input" placeholder="John Smith" required></div>
+      <div class="form-group"><label class="form-label" data-i="form_email">Email</label><input type="email" name="email" class="form-input" placeholder="hello@company.com" required></div>
+      <div class="form-group"><label class="form-label" data-i="form_service">Service</label>
+        <select name="service" class="form-input">
+          <option>Select a service...</option>
+          <option>Paid Ads</option><option>Branding</option><option>Web Design</option>
+          <option>SEO</option><option>Strategy</option><option>Analytics</option>
+        </select>
+      </div>
+      <div class="form-group"><label class="form-label" data-i="form_msg">Message</label><textarea name="message" class="form-input" placeholder="Tell us about your project..." required></textarea></div>
+      <button type="submit" class="form-submit" data-i="form_send">Send message &#8599;</button>
+    </form>
+  </div>
+</section>
+</div>
+
+<!-- SUCCESS PAGE -->
+<div class="page" id="page-success">
+<section style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 var(--pad)">
+  <div style="max-width:500px">
+    <div style="font-family:var(--ff-en);font-size:6rem;color:var(--accent);line-height:1;margin-bottom:1rem">&#10003;</div>
+    <h2 style="font-family:var(--ff-en);font-size:3.5rem;color:var(--dark);margin-bottom:1rem" data-i="success_title">Message sent!</h2>
+    <p style="font-size:1rem;color:var(--muted);line-height:1.8;margin-bottom:2.5rem" data-i="success_desc">We will get back to you within 24 hoursE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fama &mdash; Marketing Agency</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#f0ebe1;--bg2:#e8e1d4;--dark:#1c1812;--dark2:#2e2a22;--accent:#b85c2a;--accent2:#d4712f;--muted:#8a8070;--border:rgba(28,24,18,0.12);--ff-en:"Bebas Neue",sans-serif;--ff-body:"Manrope",sans-serif;--pad:4rem}
+@media(max-width:768px){:root{--pad:1.5rem}}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--dark);font-family:var(--ff-body);overflow-x:hidden}
+.page{display:none}.page.active{display:block}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(240,235,225,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-inner{display:flex;justify-content:space-between;align-items:center;padding:1.2rem var(--pad)}
+.logo{font-family:var(--ff-en);font-size:1.8rem;letter-spacing:.15em;color:var(--dark);cursor:pointer}
+.nav-center{display:flex;list-style:none}
+.nav-center li a{color:var(--muted);text-decoration:none;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;padding:.5rem 1rem;transition:color .3s;cursor:pointer;display:block}
+.nav-center li a:hover{color:var(--accent)}
+.nav-lang{display:flex;gap:.4rem}
+.lang-btn{background:none;border:1px solid var(--border);color:var(--muted);padding:.28rem .65rem;font-size:.72rem;letter-spacing:.1em;cursor:pointer;transition:all .3s;font-family:var(--ff-body);font-weight:500}
+.lang-btn.active,.lang-btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(184,92,42,0.06)}
+.nav-mobile{display:none}
+.burger{background:none;border:none;cursor:pointer;padding:.4rem;display:flex;flex-direction:column;gap:5px}
+.burger span{display:block;width:22px;height:2px;background:var(--dark)}
+.mobile-menu{display:none;flex-direction:column;border-top:1px solid var(--border);background:rgba(240,235,225,0.98)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:var(--muted);text-decoration:none;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;padding:1rem var(--pad);border-bottom:1px solid var(--border);cursor:pointer;display:block}
+.mobile-menu a:hover{color:var(--accent)}
+@media(max-width:900px){.nav-center{display:none}.nav-mobile{display:flex;align-items:center;gap:1rem}.nav-lang{display:none}}
+section{padding:0 var(--pad)}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:4rem;padding-top:8rem}
+.hero-tag{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;font-weight:600;animation:fadeUp .7s ease both}
+.hero-title{font-family:var(--ff-en);font-size:clamp(3.5rem,10vw,10rem);line-height:.93;margin-bottom:2rem;color:var(--dark);animation:fadeUp .7s .15s ease both}
+.hero-title em{font-style:italic;color:var(--accent)}
+.lang-ru .hero-title,.lang-ge .hero-title{font-family:"Manrope",sans-serif;font-size:clamp(2.4rem,6.5vw,7rem);font-weight:800;line-height:1.05;letter-spacing:-.02em}
+.lang-ru .hero-title em,.lang-ge .hero-title em{font-style:normal;color:var(--accent)}
+.hero-sub{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;animation:fadeUp .7s .3s ease both}
+.hero-desc{max-width:400px;font-size:.95rem;line-height:1.8;color:var(--muted)}
+.hero-cta{display:flex;flex-direction:column;align-items:flex-end;gap:1rem;flex-shrink:0}
+@media(max-width:640px){.hero-sub{flex-direction:column;align-items:flex-start}.hero-cta{align-items:flex-start}}
+.cta-btn{display:inline-flex;align-items:center;gap:.75rem;background:var(--dark);color:var(--bg);padding:1rem 2rem;font-size:.85rem;font-weight:600;letter-spacing:.06em;transition:all .3s;cursor:pointer;font-family:var(--ff-body);border:none;text-transform:uppercase}
+.cta-btn:hover{background:var(--accent)}
+.scroll-hint{font-size:.7rem;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+.marquee-wrap{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:1rem 0;overflow:hidden;background:var(--bg2)}
+.marquee{display:flex;gap:3rem;white-space:nowrap;animation:marquee 22s linear infinite}
+.marquee-item{font-family:var(--ff-en);font-size:.95rem;letter-spacing:.22em;color:var(--muted)}
+.marquee-dot{color:var(--accent);font-size:.6rem;margin:0 .5rem}
+.section-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem;border-bottom:1px solid var(--border);padding-bottom:1.5rem;flex-wrap:wrap;gap:.5rem}
+.section-num{font-size:.7rem;color:var(--muted);letter-spacing:.2em;text-transform:uppercase;font-weight:500}
+.section-title{font-family:var(--ff-en);font-size:clamp(2rem,5vw,5rem);color:var(--dark)}
+.lang-ru .section-title,.lang-ge .section-title{font-family:"Manrope",sans-serif;font-weight:800;font-size:clamp(1.8rem,4vw,4rem);letter-spacing:-.02em}
+.services{padding-top:6rem;padding-bottom:6rem}
+.services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border)}
+@media(max-width:600px){.services-grid{grid-template-columns:1fr}}
+.service-card{background:var(--bg);padding:2.5rem 2rem;transition:background .3s;position:relative;overflow:hidden}
+.service-card:hover{background:var(--bg2)}
+.service-card::after{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent);transform:scaleX(0);transition:transform .4s;transform-origin:left}
+.service-card:hover::after{transform:scaleX(1)}
+.service-num{font-size:.68rem;color:var(--muted);letter-spacing:.2em;margin-bottom:1.2rem;font-weight:500}
+.service-name{font-family:var(--ff-en);font-size:2rem;margin-bottom:.8rem;color:var(--dark)}
+.lang-ru .service-name,.lang-ge .service-name{font-family:"Manrope",sans-serif;font-size:1.4rem;font-weight:800;letter-spacing:-.01em}
+.service-desc{font-size:.88rem;color:var(--muted);line-height:1.8}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border)}
+@media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat-item{background:var(--dark);padding:3rem 1.5rem;text-align:center}
+.stat-num{font-family:var(--ff-en);font-size:4rem;line-height:1;color:var(--bg)}
+.stat-accent{color:var(--accent2)}
+.stat-label{font-size:.7rem;color:rgba(240,235,225,0.45);letter-spacing:.12em;text-transform:uppercase;margin-top:.5rem;font-weight:500}
+.why{padding-top:6rem;padding-bottom:6rem}
+.why-grid{display:grid;grid-template-columns:repeat(2,1fr);border:1px solid var(--border)}
+@media(max-width:600px){.why-grid{grid-template-columns:1fr}}
+.why-item{padding:2.5rem 2rem;border-right:1px solid var(--border);border-bottom:1px solid var(--border);transition:background .3s}
+.why-item:hover{background:var(--bg2)}
+.why-item:nth-child(2n){border-right:none}
+.why-item:nth-child(3),.why-item:nth-child(4){border-bottom:none}
+@media(max-width:600px){.why-item:nth-child(odd){border-right:none}.why-item:last-child{border-bottom:none}.why-item:nth-child(3){border-bottom:1px solid var(--border)}}
+.why-label{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;font-weight:600}
+.why-text{font-size:1rem;line-height:1.75;color:var(--dark2)}
+.port-page{padding-top:6rem;padding-bottom:6rem}
+.portfolio-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);margin-top:3rem}
+@media(max-width:600px){.portfolio-grid{grid-template-columns:1fr}}
+.portfolio-card{background:var(--bg);overflow:hidden;transition:background .3s}
+.portfolio-card:hover{background:var(--bg2)}
+.portfolio-img-wrap{overflow:hidden;width:100%;aspect-ratio:4/3}
+.portfolio-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.portfolio-card:hover .portfolio-img{transform:scale(1.04)}
+.portfolio-placeholder{width:100%;aspect-ratio:4/3;background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:.78rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase}
+.portfolio-info{padding:1.5rem 2rem}
+.portfolio-tag{font-size:.68rem;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;font-weight:700;margin-bottom:.6rem}
+.portfolio-title{font-family:var(--ff-en);font-size:1.6rem;color:var(--dark);margin-bottom:.6rem}
+.lang-ru .portfolio-title,.lang-ge .portfolio-title{font-family:"Manrope",sans-serif;font-weight:800;font-size:1.2rem;letter-spacing:-.01em}
+.portfolio-desc{font-size:.85rem;color:var(--muted);line-height:1.75}
+.rev-page{padding-top:6rem;padding-bottom:6rem}
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-top:3rem}
+@media(max-width:900px){.reviews-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.reviews-grid{grid-template-columns:1fr}}
+.review-card{background:var(--bg);padding:2rem;transition:background .3s}
+.review-card:hover{background:var(--bg2)}
+.review-stars{color:var(--accent);margin-bottom:1.2rem}
+.review-text{font-size:.9rem;line-height:1.8;color:var(--dark2);margin-bottom:1.5rem}
+.review-author{border-top:1px solid var(--border);padding-top:1rem}
+.review-name{font-size:.88rem;font-weight:700;color:var(--dark);display:block;margin-bottom:.2rem}
+.review-role{font-size:.78rem;color:var(--muted)}
+.how-page{padding-top:6rem;padding-bottom:6rem}
+.steps-grid{display:grid;gap:1px;background:var(--border);margin-top:3rem}
+.step-row{background:var(--bg);display:grid;grid-template-columns:60px 1fr 1fr;gap:2rem;padding:2.5rem 2rem;align-items:start;transition:background .3s}
+.step-row:hover{background:var(--bg2)}
+@media(max-width:768px){.step-row{grid-template-columns:50px 1fr;gap:1.5rem}.step-detail{display:none}}
+.step-index{font-family:var(--ff-en);font-size:3rem;color:var(--border);line-height:1}
+.step-name{font-family:var(--ff-en);font-size:1.6rem;color:var(--dark);margin-bottom:.6rem}
+.lang-ru .step-name,.lang-ge .step-name{font-family:"Manrope",sans-serif;font-weight:800;font-size:1.2rem;letter-spacing:-.01em}
+.step-desc{font-size:.9rem;color:var(--muted);line-height:1.8}
+.step-detail{font-size:.82rem;color:var(--muted);line-height:1.8;padding-left:1.5rem;border-left:2px solid var(--border)}
+.faq-section{padding-top:4rem}
+.faq-title{font-family:var(--ff-en);font-size:clamp(2rem,4vw,4rem);color:var(--dark);margin-bottom:2.5rem}
+.lang-ru .faq-title,.lang-ge .faq-title{font-family:"Manrope",sans-serif;font-weight:800;font-size:clamp(1.8rem,3.5vw,3.5rem);letter-spacing:-.02em}
+.faq-item{border-top:1px solid var(--border)}
+.faq-item:last-child{border-bottom:1px solid var(--border)}
+.faq-q{display:flex;justify-content:space-between;align-items:center;font-size:.95rem;font-weight:600;color:var(--dark);padding:1.5rem 0;cursor:pointer;user-select:none}
+.faq-icon{font-size:1.4rem;color:var(--accent);transition:transform .4s ease;flex-shrink:0;margin-left:1rem;font-style:normal}
+.faq-a{font-size:.9rem;color:var(--muted);line-height:1.8;max-height:0;overflow:hidden;transition:max-height .5s ease,padding .5s ease;padding-bottom:0}
+.faq-item.open .faq-a{max-height:300px;padding-bottom:1.5rem}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+.con-page{padding-top:6rem;padding-bottom:6rem}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;margin-top:3rem}
+@media(max-width:768px){.contact-grid{grid-template-columns:1fr;gap:3rem}}
+.contact-info-title{font-family:var(--ff-en);font-size:2.5rem;color:var(--dark);margin-bottom:1.5rem;line-height:1}
+.lang-ru .contact-info-title,.lang-ge .contact-info-title{font-family:"Manrope",sans-serif;font-weight:800;font-size:2rem;letter-spacing:-.02em}
+.contact-items{display:flex;flex-direction:column;margin-bottom:2rem}
+.contact-item{padding:1.2rem 0;border-bottom:1px solid var(--border)}
+.contact-item:first-child{border-top:1px solid var(--border)}
+.contact-item-label{font-size:.68rem;color:var(--muted);letter-spacing:.2em;text-transform:uppercase;font-weight:600;margin-bottom:.4rem}
+.contact-item-value{font-size:.95rem;color:var(--dark);font-weight:500}
+.contact-socials{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.6rem}
+.social-btn{display:inline-flex;align-items:center;border:1px solid var(--border);color:var(--muted);padding:.5rem 1rem;font-size:.75rem;font-weight:600;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:all .3s;background:none;font-family:var(--ff-body);cursor:pointer}
+.social-btn:hover{border-color:var(--accent);color:var(--accent)}
+.contact-form{display:flex;flex-direction:column;gap:1rem}
+.form-group{display:flex;flex-direction:column;gap:.4rem}
+.form-label{font-size:.7rem;color:var(--muted);letter-spacing:.16em;text-transform:uppercase;font-weight:600}
+.form-input{background:var(--bg2);border:1px solid var(--border);padding:.9rem 1.1rem;font-size:.92rem;font-family:var(--ff-body);color:var(--dark);transition:border-color .3s;outline:none;width:100%}
+.form-input:focus{border-color:var(--accent)}
+textarea.form-input{min-height:120px;resize:vertical}
+.form-submit{background:var(--dark);color:var(--bg);border:none;padding:1rem 2rem;font-size:.85rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .3s;font-family:var(--ff-body);align-self:flex-start}
+.form-submit:hover{background:var(--accent)}
+.cta-bottom{padding:6rem var(--pad);display:flex;flex-direction:column;align-items:center;text-align:center;background:var(--dark2)}
+.cta-bottom-title{font-family:var(--ff-en);font-size:clamp(3rem,10vw,10rem);line-height:.92;margin-bottom:1.5rem;color:var(--bg)}
+.cta-bottom-title span{color:var(--accent2);font-style:italic}
+.lang-ru .cta-bottom-title,.lang-ge .cta-bottom-title{font-family:"Manrope",sans-serif;font-weight:800;font-size:clamp(2rem,6vw,7rem);line-height:1.1;letter-spacing:-.02em}
+.cta-bottom-email{font-size:.95rem;color:rgba(240,235,225,0.5);letter-spacing:.06em;margin-bottom:2.5rem;word-break:break-all}
+.cta-bottom-btn{display:inline-flex;align-items:center;gap:.75rem;border:1px solid rgba(240,235,225,0.3);color:var(--bg);padding:1rem 2.5rem;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;transition:all .4s;cursor:pointer;font-family:var(--ff-body);font-weight:600;background:none}
+.cta-bottom-btn:hover{background:var(--accent);border-color:var(--accent)}
+footer{border-top:1px solid var(--border);padding:1.5rem var(--pad);display:flex;justify-content:space-between;align-items:center;background:var(--bg);flex-wrap:wrap;gap:1rem}
+.footer-logo{font-family:var(--ff-en);font-size:1.2rem;letter-spacing:.15em;color:var(--dark);cursor:pointer}
+.footer-copy{font-size:.74rem;color:var(--muted)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+</style>
+</head>
+<body class="lang-en">
+<nav>
+  <div class="nav-inner">
+    <div class="logo" onclick="showPage('home')">FAMA</div>
+    <ul class="nav-center">
+      <li><a onclick="showPage('home')" data-i="nav_services">Services</a></li>
+      <li><a onclick="showPage('how')" data-i="nav_how">How it works</a></li>
+      <li><a onclick="showPage('portfolio')" data-i="nav_portfolio">Portfolio</a></li>
+      <li><a onclick="showPage('reviews')" data-i="nav_reviews">Reviews</a></li>
+      <li><a onclick="showPage('contact')" data-i="nav_contact">Contact</a></li>
+    </ul>
+    <div class="nav-lang">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('ru')">RU</button>
+      <button class="lang-btn" onclick="setLang('ge')">GE</button>
+      <button class="lang-btn" onclick="setLang('ua')">UA</button>
+    </div>
+    <div class="nav-mobile">
+      <div class="nav-lang">
+        <button class="lang-btn active" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('ru')">RU</button>
+        <button class="lang-btn" onclick="setLang('ge')">GE</button>
+      <button class="lang-btn" onclick="setLang('ua')">UA</button>
+      </div>
+      <button class="burger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a onclick="showPage('home');closeMenu()" data-i="nav_services">Services</a>
+    <a onclick="showPage('how');closeMenu()" data-i="nav_how">How it works</a>
+    <a onclick="showPage('portfolio');closeMenu()" data-i="nav_portfolio">Portfolio</a>
+    <a onclick="showPage('reviews');closeMenu()" data-i="nav_reviews">Reviews</a>
+    <a onclick="showPage('contact');closeMenu()" data-i="nav_contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HOME -->
+<div class="page active" id="page-home">
+<section class="hero">
+  <div class="hero-tag" data-i="hero_tag">Marketing Agency &mdash; Tbilisi, Georgia</div>
+  <h1 class="hero-title" data-i="hero_title">We build<br><em>brands</em><br>that matter</h1>
+  <div class="hero-sub">
+    <p class="hero-desc" data-i="hero_desc">Digital marketing agency helping businesses in Georgia grow their presence and convert attention into revenue.</p>
+    <div class="hero-cta">
+      <button class="cta-btn" onclick="showPage('contact')"><span data-i="hero_cta">Start a project</span> &#8599;</button>
+      <span class="scroll-hint" data-i="scroll_hint">Scroll to explore</span>
+    </div>
+  </div>
+</section>
+<div class="marquee-wrap"><div class="marquee">
+  <span class="marquee-item">Google Ads</span><span class="marquee-dot">&#10022;</span>
+  <span class="marquee-item">Meta Ads</span><span class="marquee-dot">&#10022;</span>
+  <span class="marquee-item">Branding</span><span class="marquee-dot">&#10022;</span>
+  <span class="marquee-item">Web Design</span><span class="marquee-dot">&#10022;</span>
+  <span class="marquee-item">SEO</span><span class="marquee-dot">&#10022;</span>
+  <span class="marquee-item">Strategy</span><span class="marquee-dot">&#10022;</span>
+  <span class="marquee-item">Analytics</span><span class="marquee-dot">&#10022;</span>
+  <span class="marquee-item">Google Ads</span><span class="marquee-dot">&#10022;</span>
+  <span class="marquee-item">Meta Ads</span><span class="marquee-dot">&#10022;</span>
+  <span class="marquee-item">Branding</span><span class="marquee-dot">&#10022;</span>
+  <span class="marquee-item">Web Design</span><span class="marquee-dot">&#10022;</span>
+  <span class="marquee-item">SEO</span><span class="marquee-dot">&#10022;</span>
+  <span class="marquee-item">Strategy</span><span class="marquee-dot">&#10022;</span>
+  <span class="marquee-item">Analytics</span><span class="marquee-dot">&#10022;</span>
+</div></div>
+<section class="services">
+  <div class="section-header"><span class="section-num" data-i="s1_num">01 &mdash; Services</span><h2 class="section-title" data-i="s1_title">What we do</h2></div>
+  <div class="services-grid">
+    <div class="service-card"><div class="service-num">01</div><div class="service-name" data-i="srv1_name">Paid Ads</div><p class="service-desc" data-i="srv1_desc">Google, Meta, TikTok Ads. Data-driven campaigns that bring real customers.</p></div>
+    <div class="service-card"><div class="service-num">02</div><div class="service-name" data-i="srv2_name">Branding</div><p class="service-desc" data-i="srv2_desc">Logo, identity, tone of voice. We shape how your brand looks and feels.</p></div>
+    <div class="service-card"><div class="service-num">03</div><div class="service-name" data-i="srv3_name">Web Design</div><p class="service-desc" data-i="srv3_desc">Fast, modern websites that convert visitors into clients.</p></div>
+    <div class="service-card"><div class="service-num">04</div><div class="service-name" data-i="srv4_name">SEO</div><p class="service-desc" data-i="srv4_desc">Rank higher on Google. Customers find you before your competitors.</p></div>
+    <div class="service-card"><div class="service-num">05</div><div class="service-name" data-i="srv5_name">Strategy</div><p class="service-desc" data-i="srv5_desc">Market research, competitor analysis, growth roadmap.</p></div>
+    <div class="service-card"><div class="service-num">06</div><div class="service-name" data-i="srv6_name">Analytics</div><p class="service-desc" data-i="srv6_desc">Dashboards and monthly reports. Always know what is working.</p></div>
+  </div>
+</section>
+<div class="stats">
+  <div class="stat-item"><div class="stat-num stat-accent">30+</div><div class="stat-label" data-i="stat1">Projects done</div></div>
+  <div class="stat-item"><div class="stat-num">3</div><div class="stat-label" data-i="stat2">Languages</div></div>
+  <div class="stat-item"><div class="stat-num stat-accent">2x</div><div class="stat-label" data-i="stat3">Avg. growth</div></div>
+  <div class="stat-item"><div class="stat-num">GE</div><div class="stat-label" data-i="stat4">Based in Tbilisi</div></div>
+</div>
+<section class="why">
+  <div class="section-header"><span class="section-num" data-i="s2_num">02 &mdash; Why Fama</span><h2 class="section-title" data-i="s2_title">Why us</h2></div>
+  <div class="why-grid">
+    <div class="why-item"><div class="why-label" data-i="why1_label">Local insight</div><p class="why-text" data-i="why1_text">We know the Georgian market &mdash; culture, audience, what actually works here.</p></div>
+    <div class="why-item"><div class="why-label" data-i="why2_label">Multilingual</div><p class="why-text" data-i="why2_text">English, Russian, Georgian &mdash; every customer in their language.</p></div>
+    <div class="why-item"><div class="why-label" data-i="why3_label">Results first</div><p class="why-text" data-i="why3_text">No vanity metrics. Leads, sales, real business growth.</p></div>
+    <div class="why-item"><div class="why-label" data-i="why4_label">Full service</div><p class="why-text" data-i="why4_text">Strategy to execution &mdash; we handle everything.</p></div>
+  </div>
+</section>
+<div class="cta-bottom">
+  <h2 class="cta-bottom-title" data-i="cta_title">Let&#39;s build<br>your <span>Fama</span></h2>
+  <p class="cta-bottom-email">fama&#46;agency&#46;ge&#64;proton&#46;me</p>
+  <button class="cta-bottom-btn" onclick="showPage('contact')"><span data-i="cta_btn">Get in touch</span> &#8599;</button>
+</div>
+</div>
+
+<!-- PORTFOLIO -->
+<div class="page" id="page-portfolio">
+<section class="port-page">
+  <div class="section-header"><span class="section-num" data-i="port_num">03 &mdash; Portfolio</span><h2 class="section-title" data-i="port_title">Our work</h2></div>
+  <div class="portfolio-grid">
+    <div class="portfolio-card"><div class="portfolio-img-wrap"><img class="portfolio-img" src="work1.png" alt="work1" loading="lazy"></div><div class="portfolio-info"><div class="portfolio-tag" data-i="port1_tag">Graphic Design</div><div class="portfolio-title" data-i="port1_title">Lay&#39;s Tire Flavor</div><p class="portfolio-desc" data-i="port1_desc">Creative product announcement poster.</p></div></div>
+    <div class="portfolio-card"><div class="portfolio-img-wrap"><img class="portfolio-img" src="work2.png" alt="work2" loading="lazy"></div><div class="portfolio-info"><div class="portfolio-tag" data-i="port2_tag">Social Media Design</div><div class="portfolio-title" data-i="port2_title">Jennie Ruby &mdash; Facebook Cover</div><p class="portfolio-desc" data-i="port2_desc">Luxury fashion brand cover.</p></div></div>
+    <div class="portfolio-card"><div class="portfolio-placeholder" data-i="port_soon">Coming soon</div><div class="portfolio-info"><div class="portfolio-tag">Web Design</div><div class="portfolio-title" data-i="port3_title">Next project</div><p class="portfolio-desc" data-i="port3_desc">More work coming soon.</p></div></div>
+    <div class="portfolio-card"><div class="portfolio-placeholder" data-i="port_soon">Coming soon</div><div class="portfolio-info"><div class="portfolio-tag">Branding</div><div class="portfolio-title" data-i="port4_title">Next project</div><p class="portfolio-desc" data-i="port4_desc">More work coming soon.</p></div></div>
+  </div>
+</section>
+<div class="cta-bottom"><h2 class="cta-bottom-title" data-i="cta_title">Let&#39;s build<br>your <span>Fama</span></h2><p class="cta-bottom-email">fama&#46;agency&#46;ge&#64;proton&#46;me</p><button class="cta-bottom-btn" onclick="showPage('contact')"><span data-i="cta_btn">Get in touch</span> &#8599;</button></div>
+</div>
+
+<!-- REVIEWS -->
+<div class="page" id="page-reviews">
+<section class="rev-page">
+  <div class="section-header"><span class="section-num" data-i="rev_num">04 &mdash; Reviews</span><h2 class="section-title" data-i="rev_title">What clients say</h2></div>
+  <div class="reviews-grid">
+    <div class="review-card"><div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="review-text" data-i="rev1_text">"Fama transformed our presence. Bookings up 40%."</p><div class="review-author"><span class="review-name" data-i="rev1_name">Giorgi Kvaratskhelia</span><span class="review-role" data-i="rev1_role">Owner, Tamada Restaurant</span></div></div>
+    <div class="review-card"><div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="review-text" data-i="rev2_text">"3x more leads at half the cost."</p><div class="review-author"><span class="review-name" data-i="rev2_name">Natia Beridze</span><span class="review-role" data-i="rev2_role">CEO, Batumi Real Estate</span></div></div>
+    <div class="review-card"><div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="review-text" data-i="rev3_text">"Brand and website in 3 weeks."</p><div class="review-author"><span class="review-name" data-i="rev3_name">Mikhail Sorokin</span><span class="review-role" data-i="rev3_role">Founder, Tbilisi Law Partners</span></div></div>
+    <div class="review-card"><div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="review-text" data-i="rev4_text">"After SEO we rank #1. Traffic up 180%."</p><div class="review-author"><span class="review-name" data-i="rev4_name">Ana Lomidze</span><span class="review-role" data-i="rev4_role">Marketing Director, GeoTour</span></div></div>
+    <div class="review-card"><div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="review-text" data-i="rev5_text">"Strategy session was worth it."</p><div class="review-author"><span class="review-name" data-i="rev5_name">David Chikava</span><span class="review-role" data-i="rev5_role">Co-founder, Glide Hotel</span></div></div>
+    <div class="review-card"><div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="review-text" data-i="rev6_text">"All three languages flawlessly."</p><div class="review-author"><span class="review-name" data-i="rev6_name">Elena Volkova</span><span class="review-role" data-i="rev6_role">Director, Kazbegi Resort</span></div></div>
+  </div>
+</section>
+<div class="cta-bottom"><h2 class="cta-bottom-title" data-i="cta_title">Let&#39;s build<br>your <span>Fama</span></h2><p class="cta-bottom-email">fama&#46;agency&#46;ge&#64;proton&#46;me</p><button class="cta-bottom-btn" onclick="showPage('contact')"><span data-i="cta_btn">Get in touch</span> &#8599;</button></div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="page" id="page-how">
+<section class="how-page">
+  <div class="section-header"><span class="section-num" data-i="how_num">05 &mdash; Process</span><h2 class="section-title" data-i="how_title">How we work</h2></div>
+  <div class="steps-grid">
+    <div class="step-row"><div class="step-index">01</div><div><div class="step-name" data-i="step1_name">Discovery Call</div><p class="step-desc" data-i="step1_desc">Free 30-min call. We learn your business, goals, budget.</p></div><p class="step-detail" data-i="step1_detail">We ask about current marketing and customers.</p></div>
+    <div class="step-row"><div class="step-index">02</div><div><div class="step-name" data-i="step2_name">Research &amp; Strategy</div><p class="step-desc" data-i="step2_desc">Market analysis. Custom strategy with clear goals.</p></div><p class="step-detail" data-i="step2_detail">Full strategy document. Built for your business.</p></div>
+    <div class="step-row"><div class="step-index">03</div><div><div class="step-name" data-i="step3_name">Proposal &amp; Agreement</div><p class="step-desc" data-i="step3_desc">Clear proposal with deliverables, timeline, pricing.</p></div><p class="step-detail" data-i="step3_detail">Transparent contracts. You own everything.</p></div>
+    <div class="step-row"><div class="step-index">04</div><div><div class="step-name" data-i="step4_name">Execution</div><p class="step-desc" data-i="step4_desc">We build, launch, manage &mdash; ads, websites, SEO, branding.</p></div><p class="step-detail" data-i="step4_detail">Regular updates. Direct access to your manager.</p></div>
+    <div class="step-row"><div class="step-index">05</div><div><div class="step-name" data-i="step5_name">Report &amp; Optimise</div><p class="step-desc" data-i="step5_desc">Monthly reports. Continuous optimisation.</p></div><p class="step-detail" data-i="step5_detail">Data drives every decision.</p></div>
+  </div>
+  <div class="faq-section">
+    <h2 class="faq-title" data-i="faq_title">FAQ</h2>
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span data-i="faq1_q">How much does it cost?</span><i class="faq-icon">+</i></div><p class="faq-a" data-i="faq1_a">Website from $400. Ad management from $200/month. Strategy from $150.</p></div>
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span data-i="faq2_q">How long to see results?</span><i class="faq-icon">+</i></div><p class="faq-a" data-i="faq2_a">Paid ads &mdash; first week. SEO &mdash; 2-3 months. Website &mdash; 2-4 weeks.</p></div>
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span data-i="faq3_q">Do you work with small businesses?</span><i class="faq-icon">+</i></div><p class="faq-a" data-i="faq3_a">Absolutely. Most clients are restaurants, hotels, law firms, real estate.</p></div>
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span data-i="faq4_q">Can you work remotely?</span><i class="faq-icon">+</i></div><p class="faq-a" data-i="faq4_a">Yes, 100%. Clients across Georgia and internationally.</p></div>
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span data-i="faq5_q">What languages do you work in?</span><i class="faq-icon">+</i></div><p class="faq-a" data-i="faq5_a">English, Russian, and Georgian &mdash; any or all three simultaneously.</p></div>
+  </div>
+</section>
+<div class="cta-bottom"><h2 class="cta-bottom-title" data-i="cta_title">Let&#39;s build<br>your <span>Fama</span></h2><p class="cta-bottom-email">fama&#46;agency&#46;ge&#64;proton&#46;me</p><button class="cta-bottom-btn" onclick="showPage('contact')"><span data-i="cta_btn">Get in touch</span> &#8599;</button></div>
+</div>
+
+<!-- CONTACT -->
+<div class="page" id="page-contact">
+<section class="con-page">
+  <div class="section-header"><span class="section-num" data-i="con_num">06 &mdash; Contact</span><h2 class="section-title" data-i="con_title">Get in touch</h2></div>
+  <div class="contact-grid">
+    <div>
+      <h3 class="contact-info-title" data-i="con_heading">Let&#39;s talk about your project</h3>
+      <div class="contact-items">
+        <div class="contact-item"><div class="contact-item-label" data-i="con_lbl_email">Email</div><div class="contact-item-value">fama&#46;agency&#46;ge&#64;proton&#46;me</div></div>
+        <div class="contact-item"><div class="contact-item-label" data-i="con_lbl_loc">Location</div><div class="contact-item-value" data-i="con_location">Tbilisi, Georgia</div></div>
+        <div class="contact-item"><div class="contact-item-label" data-i="con_lbl_lang">Languages</div><div class="contact-item-value">EN / RU / GE</div></div>
+        <div class="contact-item"><div class="contact-item-label" data-i="con_lbl_social">Social media</div><div class="contact-socials"><a href="https://www.instagram.com/fama_agency_ge/" target="_blank" class="social-btn">Instagram</a><a href="https://t.me/FamaAgency_Ge" target="_blank" class="social-btn">Telegram</a></div></div>
+      </div>
+    </div>
+    <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="handleSubmit(event)">
+      <input type="hidden" name="form-name" value="contact">
+      <p style="display:none"><input name="bot-field"></p>
+      <div class="form-group"><label class="form-label" data-i="form_name">Your name</label><input type="text" name="name" class="form-input" placeholder="John Smith" required></div>
+      <div class="form-group"><label class="form-label" data-i="form_email">Email</label><input type="email" name="email" class="form-input" placeholder="hello@company.com" required></div>
+      <div class="form-group"><label class="form-label" data-i="form_service">Service</label>
+        <select name="service" class="form-input">
+          <option>Select a service...</option>
+          <option>Paid Ads</option><option>Branding</option><option>Web Design</option>
+          <option>SEO</option><option>Strategy</option><option>Analytics</option>
+        </select>
+      </div>
+      <div class="form-group"><label class="form-label" data-i="form_msg">Message</label><textarea name="message" class="form-input" placeholder="Tell us about your project..." required></textarea></div>
+      <button type="submit" class="form-submit" data-i="form_send">Send message &#8599;</button>
+    </form>
+  </div>
+</section>
+</div>
+
+<!-- SUCCESS PAGE -->
+<div class="page" id="page-success">
+<section style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 var(--pad)">
+  <div style="max-width:500px">
+    <div style="font-family:var(--ff-en);font-size:6rem;color:var(--accent);line-height:1;margin-bottom:1rem">&#10003;</div>
+    <h2 style="font-family:var(--ff-en);font-size:3.5rem;color:var(--dark);margin-bottom:1rem" data-i="success_title">Message sent!</h2>
+    <p style="font-size:1rem;color:var(--muted);line-height:1.8;margin-bottom:2.5rem" data-i="success_desc">We will get back to you within 24 hours.
