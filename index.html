@@ -80,20 +80,24 @@ section{padding:0 var(--pad)}
 .why-label{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;font-weight:600}
 .why-text{font-size:1rem;line-height:1.75;color:var(--dark2)}
 .port-page{padding-top:6rem;padding-bottom:6rem}
-.portfolio-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);margin-top:2rem}
+
+/* ===== PORTFOLIO GRID FIX ===== */
+.portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2rem}
+@media(max-width:900px){.portfolio-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:600px){.portfolio-grid{grid-template-columns:1fr}}
-.portfolio-card{background:var(--bg);overflow:hidden;transition:background .3s;cursor:zoom-in}
-.portfolio-card:hover{background:var(--bg2)}
-.portfolio-img-wrap{overflow:hidden;width:100%;aspect-ratio:4/3;position:relative}
-.watermark{position:absolute;bottom:.8rem;right:.8rem;font-family:var(--ff-en);font-size:1rem;letter-spacing:.2em;color:rgba(255,255,255,0.55);pointer-events:none;text-shadow:0 1px 4px rgba(0,0,0,0.4);z-index:2}
-.portfolio-card{background:var(--bg);overflow:hidden;transition:background .3s;cursor:zoom-in}
-.portfolio-card:hover .portfolio-img{transform:scale(1.04)}
-.watermark{position:absolute;bottom:.8rem;right:.8rem;font-family:var(--ff-en);font-size:1rem;letter-spacing:.2em;color:rgba(255,255,255,0.5);pointer-events:none;text-shadow:0 1px 4px rgba(0,0,0,0.4);z-index:2}
-.portfolio-info{padding:1.5rem 2rem}
-.portfolio-tag{font-size:.68rem;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;font-weight:700;margin-bottom:.6rem}
-.portfolio-title{font-family:var(--ff-en);font-size:1.6rem;color:var(--dark);margin-bottom:.6rem}
-.lang-ru .portfolio-title,.lang-ge .portfolio-title{font-family:"Manrope",sans-serif;font-weight:800;font-size:1.2rem;letter-spacing:-.01em}
-.portfolio-desc{font-size:.85rem;color:var(--muted);line-height:1.75}
+.portfolio-card{background:var(--bg);overflow:hidden;transition:all .3s;cursor:zoom-in;border:1px solid var(--border)}
+.portfolio-card:hover{background:var(--bg2);border-color:var(--accent);transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.1)}
+.portfolio-img-wrap{overflow:hidden;width:100%;height:220px;position:relative;background:var(--bg2)}
+.portfolio-img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;transition:transform .5s ease}
+.portfolio-card:hover .portfolio-img{transform:scale(1.06)}
+.watermark{position:absolute;bottom:.6rem;right:.6rem;font-family:var(--ff-en);font-size:.75rem;letter-spacing:.2em;color:rgba(255,255,255,0.6);pointer-events:none;text-shadow:0 1px 4px rgba(0,0,0,0.5);z-index:2}
+.portfolio-info{padding:1.2rem 1.5rem}
+.portfolio-tag{font-size:.62rem;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;font-weight:700;margin-bottom:.4rem}
+.portfolio-title{font-family:var(--ff-en);font-size:1.3rem;color:var(--dark);margin-bottom:.4rem;line-height:1.2}
+.lang-ru .portfolio-title,.lang-ge .portfolio-title{font-family:"Manrope",sans-serif;font-weight:800;font-size:1rem;letter-spacing:-.01em}
+.portfolio-desc{font-size:.8rem;color:var(--muted);line-height:1.6}
+/* ============================= */
+
 .port-note{font-size:.82rem;color:var(--muted);letter-spacing:.04em;margin-bottom:2rem;font-style:italic}
 .rev-page{padding-top:6rem;padding-bottom:6rem}
 .reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-top:3rem}
@@ -166,6 +170,14 @@ footer{border-top:1px solid var(--border);padding:1.5rem var(--pad);display:flex
 .lang-ua .portfolio-title{font-family:"Manrope",sans-serif;font-weight:800;font-size:1.15rem;letter-spacing:-.01em}
 .lang-ua .contact-info-title{font-family:"Manrope",sans-serif;font-weight:800;font-size:1.9rem;letter-spacing:-.02em}
 .lang-ua .faq-title{font-family:"Manrope",sans-serif;font-weight:800;font-size:clamp(1.6rem,3.2vw,3.2rem);letter-spacing:-.02em}
+
+/* LIGHTBOX */
+.lightbox{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,0.92);align-items:center;justify-content:center;padding:2rem}
+.lightbox.open{display:flex}
+.lightbox-img{max-width:90vw;max-height:88vh;object-fit:contain;box-shadow:0 20px 60px rgba(0,0,0,0.6)}
+.lightbox-close{position:fixed;top:1.5rem;right:1.5rem;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer;line-height:1;opacity:.7;transition:opacity .2s}
+.lightbox-close:hover{opacity:1}
+
 @keyframes fadeUp{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
 @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 </style>
@@ -367,9 +379,33 @@ footer{border-top:1px solid var(--border);padding:1.5rem var(--pad);display:flex
 </section>
 </div>
 
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+  <img class="lightbox-img" id="lightbox-img" src="" alt="">
+</div>
+
 <footer>
   <div class="footer-logo" onclick="showPage('home')">FAMA</div>
   <div class="footer-copy" data-i="footer_copy">&copy; 2026 Fama Agency. Tbilisi, Georgia</div>
 </footer>
+
+<script>
+function openLightbox(src, alt) {
+  var lb = document.getElementById('lightbox');
+  var img = document.getElementById('lightbox-img');
+  img.src = src;
+  img.alt = alt || '';
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeLightbox();
+});
+</script>
 </body>
 </html>
