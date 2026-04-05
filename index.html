@@ -80,19 +80,21 @@ section{padding:0 var(--pad)}
 .why-label{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;font-weight:600}
 .why-text{font-size:1rem;line-height:1.75;color:var(--dark2)}
 .port-page{padding-top:6rem;padding-bottom:6rem}
-.portfolio-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);margin-top:3rem}
+.portfolio-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);margin-top:2rem}
 @media(max-width:600px){.portfolio-grid{grid-template-columns:1fr}}
-.portfolio-card{background:var(--bg);overflow:hidden;transition:background .3s}
+.portfolio-card{background:var(--bg);overflow:hidden;transition:background .3s;cursor:zoom-in}
 .portfolio-card:hover{background:var(--bg2)}
-.portfolio-img-wrap{overflow:hidden;width:100%;aspect-ratio:4/3}
-.portfolio-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.portfolio-img-wrap{overflow:hidden;width:100%;aspect-ratio:4/3;position:relative}
+.watermark{position:absolute;bottom:.8rem;right:.8rem;font-family:var(--ff-en);font-size:1rem;letter-spacing:.2em;color:rgba(255,255,255,0.55);pointer-events:none;text-shadow:0 1px 4px rgba(0,0,0,0.4);z-index:2}
+.portfolio-card{background:var(--bg);overflow:hidden;transition:background .3s;cursor:zoom-in}
 .portfolio-card:hover .portfolio-img{transform:scale(1.04)}
-.portfolio-placeholder{width:100%;aspect-ratio:4/3;background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:.78rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase}
+.watermark{position:absolute;bottom:.8rem;right:.8rem;font-family:var(--ff-en);font-size:1rem;letter-spacing:.2em;color:rgba(255,255,255,0.5);pointer-events:none;text-shadow:0 1px 4px rgba(0,0,0,0.4);z-index:2}
 .portfolio-info{padding:1.5rem 2rem}
 .portfolio-tag{font-size:.68rem;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;font-weight:700;margin-bottom:.6rem}
 .portfolio-title{font-family:var(--ff-en);font-size:1.6rem;color:var(--dark);margin-bottom:.6rem}
 .lang-ru .portfolio-title,.lang-ge .portfolio-title{font-family:"Manrope",sans-serif;font-weight:800;font-size:1.2rem;letter-spacing:-.01em}
 .portfolio-desc{font-size:.85rem;color:var(--muted);line-height:1.75}
+.port-note{font-size:.82rem;color:var(--muted);letter-spacing:.04em;margin-bottom:2rem;font-style:italic}
 .rev-page{padding-top:6rem;padding-bottom:6rem}
 .reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-top:3rem}
 @media(max-width:900px){.reviews-grid{grid-template-columns:repeat(2,1fr)}}
@@ -270,11 +272,14 @@ footer{border-top:1px solid var(--border);padding:1.5rem var(--pad);display:flex
 <div class="page" id="page-portfolio">
 <section class="port-page">
   <div class="section-header"><span class="section-num" data-i="port_num">03 &mdash; Portfolio</span><h2 class="section-title" data-i="port_title">Our work</h2></div>
+  <p class="port-note" data-i="port_note">Sample works &mdash; examples of what we create for our clients.</p>
   <div class="portfolio-grid">
-    <div class="portfolio-card"><div class="portfolio-img-wrap"><img class="portfolio-img" src="work1.png" alt="work1" loading="lazy"></div><div class="portfolio-info"><div class="portfolio-tag" data-i="port1_tag">Graphic Design</div><div class="portfolio-title" data-i="port1_title">Lay&#39;s Tire Flavor</div><p class="portfolio-desc" data-i="port1_desc">Creative product announcement poster.</p></div></div>
-    <div class="portfolio-card"><div class="portfolio-img-wrap"><img class="portfolio-img" src="work2.png" alt="work2" loading="lazy"></div><div class="portfolio-info"><div class="portfolio-tag" data-i="port2_tag">Social Media Design</div><div class="portfolio-title" data-i="port2_title">Jennie Ruby &mdash; Facebook Cover</div><p class="portfolio-desc" data-i="port2_desc">Luxury fashion brand cover.</p></div></div>
-    <div class="portfolio-card"><div class="portfolio-placeholder" data-i="port_soon">Coming soon</div><div class="portfolio-info"><div class="portfolio-tag">Web Design</div><div class="portfolio-title" data-i="port3_title">Next project</div><p class="portfolio-desc" data-i="port3_desc">More work coming soon.</p></div></div>
-    <div class="portfolio-card"><div class="portfolio-placeholder" data-i="port_soon">Coming soon</div><div class="portfolio-info"><div class="portfolio-tag">Branding</div><div class="portfolio-title" data-i="port4_title">Next project</div><p class="portfolio-desc" data-i="port4_desc">More work coming soon.</p></div></div>
+    <div class="portfolio-card" onclick="openLightbox('work1.png','Lay\'s Tire Flavor')"><div class="portfolio-img-wrap"><img class="portfolio-img" src="work1.png" alt="work1" loading="lazy"><div class="watermark">FAMA</div></div><div class="portfolio-info"><div class="portfolio-tag" data-i="port1_tag">Graphic Design</div><div class="portfolio-title" data-i="port1_title">Lay&#39;s Tire Flavor</div><p class="portfolio-desc" data-i="port1_desc">Creative product announcement poster.</p></div></div>
+    <div class="portfolio-card" onclick="openLightbox('work2.png','Jennie Ruby')"><div class="portfolio-img-wrap"><img class="portfolio-img" src="work2.png" alt="work2" loading="lazy"><div class="watermark">FAMA</div></div><div class="portfolio-info"><div class="portfolio-tag" data-i="port2_tag">Social Media Design</div><div class="portfolio-title" data-i="port2_title">Jennie Ruby &mdash; Brand Cover</div><p class="portfolio-desc" data-i="port2_desc">Luxury fashion brand social media design.</p></div></div>
+    <div class="portfolio-card" onclick="openLightbox('work3.png','Nevi Restaurant Menu')"><div class="portfolio-img-wrap"><img class="portfolio-img" src="work3.png" alt="Nevi menu" loading="lazy"><div class="watermark">FAMA</div></div><div class="portfolio-info"><div class="portfolio-tag" data-i="port3_tag">Menu Design</div><div class="portfolio-title" data-i="port3_title">Nevi &mdash; Georgian Restaurant</div><p class="portfolio-desc" data-i="port3_desc">Elegant menu design in 4 languages.</p></div></div>
+    <div class="portfolio-card" onclick="openLightbox('work4.png','Velour Beauty Studio')"><div class="portfolio-img-wrap"><img class="portfolio-img" src="work4.png" alt="Velour logo" loading="lazy"><div class="watermark">FAMA</div></div><div class="portfolio-info"><div class="portfolio-tag" data-i="port4_tag">Logo Design</div><div class="portfolio-title" data-i="port4_title">Velour &mdash; Beauty Studio</div><p class="portfolio-desc" data-i="port4_desc">Feminine minimalist logo for beauty salon.</p></div></div>
+    <div class="portfolio-card" onclick="openLightbox('work5.png','Stoa Boutique Hotel')"><div class="portfolio-img-wrap"><img class="portfolio-img" src="work5.png" alt="Stoa card" loading="lazy"><div class="watermark">FAMA</div></div><div class="portfolio-info"><div class="portfolio-tag" data-i="port5_tag">Business Card</div><div class="portfolio-title" data-i="port5_title">Stoa &mdash; Boutique Hotel</div><p class="portfolio-desc" data-i="port5_desc">Premium navy &amp; gold business card design.</p></div></div>
+    <div class="portfolio-card" onclick="openLightbox('work6.png','Raze Barbershop')"><div class="portfolio-img-wrap"><img class="portfolio-img" src="work6.png" alt="Raze certificate" loading="lazy"><div class="watermark">FAMA</div></div><div class="portfolio-info"><div class="portfolio-tag" data-i="port6_tag">Certificate Design</div><div class="portfolio-title" data-i="port6_title">Raze &mdash; Barbershop</div><p class="portfolio-desc" data-i="port6_desc">Luxury gift certificate for barbershop.</p></div></div>
   </div>
 </section>
 <div class="cta-bottom"><h2 class="cta-bottom-title" data-i="cta_title">Let&#39;s build<br>your <span>Fama</span></h2><p class="cta-bottom-email">fama&#46;agency&#46;ge&#64;proton&#46;me</p><button class="cta-bottom-btn" onclick="showPage('contact')"><span data-i="cta_btn">Get in touch</span> &#8599;</button></div>
