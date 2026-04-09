@@ -270,7 +270,7 @@
         <button class="cta-btn" onclick="showPage('contact')"><span data-i="free_btn">Claim your free first service</span> &#8599;</button>
       </div>
     </section>
-    <div class="cta-bottom"><h2 class="cta-bottom-title" data-i="cta_title">Let&#39;s build<br>your <span>Kleoso</span></h2><p class="cta-bottom-email">kleoso.agency.ge@proton.me</p><button class="cta-bottom-btn" onclick="showPage('contact')"><span data-i="cta_btn">Get in touch</span> &#8599;</button></div>
+    <div class="cta-bottom"><h2 class="cta-bottom-title" data-i="cta_title">Let&#39;s build<br>your <span>Kleoso</span></h2><p class="cta-bottom-email"><a href="mailto:Kleoso.agency@proton.me">Kleoso.agency@proton.me</a></p><button class="cta-bottom-btn" onclick="showPage('contact')"><span data-i="cta_btn">Get in touch</span> &#8599;</button></div>
   </div>
 
   <div class="page" id="page-portfolio">
@@ -320,10 +320,10 @@
       <div class="contact-grid">
         <div>
           <h3 class="contact-info-title" data-i="con_heading">Let's talk about your project</h3>
-          <div class="contact-item"><div class="contact-item-label" data-i="con_lbl_email">Email</div><div class="contact-item-value">kleoso.agency.ge@proton.me</div></div>
+          <div class="contact-item"><div class="contact-item-label" data-i="con_lbl_email">Email</div><div class="contact-item-value"><a href="mailto:Kleoso.agency@proton.me" style="color:inherit;text-decoration:none">Kleoso.agency@proton.me</a></div></div>
           <div class="contact-item"><div class="contact-item-label" data-i="con_lbl_loc">Location</div><div class="contact-item-value" data-i="con_location">Tbilisi, Georgia</div></div>
           <div class="contact-item"><div class="contact-item-label" data-i="con_lbl_lang">Languages</div><div class="contact-item-value">EN / RU / GE / UA</div></div>
-          <div class="contact-item"><div class="contact-item-label" data-i="con_lbl_social">Social media</div><div class="contact-socials"><a href="https://www.instagram.com/kleoso_agency_ge/" target="_blank" class="social-btn">Instagram</a><a href="https://t.me/KleosoAgency_Ge" target="_blank" class="social-btn">Telegram</a></div></div>
+          <div class="contact-item"><div class="contact-item-label" data-i="con_lbl_social">Social media</div><div class="contact-socials"><a href="https://www.instagram.com/kleoso_agency/" target="_blank" class="social-btn">Instagram</a><a href="https://t.me/Kleoso" target="_blank" class="social-btn">Telegram</a></div></div>
         </div>
         <form class="contact-form" action="https://formspree.io/f/xjgpplao" method="POST" onsubmit="handleSubmit(event)">
           <div><label class="form-label" data-i="form_name">Your name</label><input type="text" name="name" class="form-input" placeholder="John Smith" required></div>
@@ -389,9 +389,11 @@
         pre.classList.add('hide');
       }else{
         setTimeout(function(){pre.classList.add('hide');document.body.classList.add('hero-cine-ready');},800);
-         initMagneticButtons();
-    }
-  });
+      }
+      initMagneticButtons();
+      window.addEventListener('scroll',updateScrollProgress,{passive:true});
+      refreshReveals();
+    });
   </script>
 </body>
 </html>
