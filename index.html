@@ -8,7 +8,7 @@
   <script data-cfasync="false" src="script.js" defer></script>
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
-    :root{--bg:#f0ebe1;--bg2:#e8e1d4;--dark:#1c1812;--dark2:#2e2a22;--accent:#b85c2a;--accent2:#d4712f;--muted:#8a8070;--border:rgba(28,24,18,.12);--ff-en:"Bebas Neue",sans-serif;--ff-body:"Manrope",sans-serif;--pad:4rem}
+    :root{--bg:#f0ebe1;--bg2:#e8e1d4;--dark:#1c1812;--dark2:#3d342a;--accent:#b85c2a;--accent2:#d4712f;--muted:#6b6355;--border:rgba(28,24,18,.12);--ff-en:"Bebas Neue",sans-serif;--ff-body:"Manrope",sans-serif;--pad:4rem}
     @media(max-width:768px){:root{--pad:1.5rem}}
     html{scroll-behavior:smooth}
     body{background:var(--bg);color:var(--dark);font-family:var(--ff-body);overflow-x:hidden}
@@ -32,6 +32,8 @@
     .mobile-menu{display:none;flex-direction:column;border-top:1px solid var(--border);background:rgba(240,235,225,.98)}
     .mobile-menu.open{display:flex}
     .mobile-menu a{color:var(--muted);text-decoration:none;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;padding:1rem var(--pad);border-bottom:1px solid var(--border);cursor:pointer}
+    .mobile-lang{display:flex;gap:.5rem;padding:1rem var(--pad);flex-wrap:wrap;border-bottom:1px solid var(--border)}
+    .mobile-lang .lang-btn{padding:.4rem .9rem;font-size:.75rem}
     @media(max-width:900px){.nav-center{display:none}.nav-mobile{display:flex;align-items:center;gap:1rem}.nav-lang{display:none}}
     section{padding:0 var(--pad)}
     .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:8rem var(--pad) 4rem}
@@ -131,7 +133,7 @@
     .contact-item:first-child{border-top:1px solid var(--border)}
     .contact-item-label{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
     .contact-item-value{margin-top:.3rem;font-size:.95rem}
-    .contact-socials{display:flex;gap:.6rem;flex-wrap:wrap}
+    .contact-socials{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.6rem}
     .social-btn{display:inline-flex;border:1px solid var(--border);color:var(--muted);padding:.5rem .9rem;font-size:.74rem;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;font-weight:700;transition:all .25s}
     .social-btn:hover{color:var(--accent);border-color:var(--accent)}
     .contact-form{display:flex;flex-direction:column;gap:.9rem}
@@ -143,6 +145,8 @@
     .cta-bottom-title{font-family:var(--ff-en);font-size:clamp(2.8rem,9vw,9rem);line-height:.92;color:var(--bg)}
     .cta-bottom-title span{color:var(--accent2)}
     .cta-bottom-email{margin:1rem 0 2rem;color:rgba(240,235,225,.55)}
+    .cta-bottom-email a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(240,235,225,.25);transition:color .25s,border-color .25s;padding-bottom:2px}
+    .cta-bottom-email a:hover{color:var(--accent2);border-color:var(--accent2)}
     .cta-bottom-btn{border:1px solid rgba(240,235,225,.35);background:none;color:var(--bg);padding:1rem 2rem;font-size:.84rem;text-transform:uppercase;letter-spacing:.1em;cursor:pointer}
     footer{border-top:1px solid var(--border);padding:1.3rem var(--pad);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
     .footer-logo{font-family:var(--ff-en);letter-spacing:.15em}
@@ -199,6 +203,12 @@
       <a onclick="showPage('portfolio');closeMenu()" data-i="nav_portfolio">Portfolio</a>
       <a onclick="showPage('reviews');closeMenu()" data-i="nav_reviews">Reviews</a>
       <a onclick="showPage('contact');closeMenu()" data-i="nav_contact">Contact</a>
+      <div class="mobile-lang">
+        <button class="lang-btn active" onclick="setLang('en');closeMenu()">EN</button>
+        <button class="lang-btn" onclick="setLang('ru');closeMenu()">RU</button>
+        <button class="lang-btn" onclick="setLang('ge');closeMenu()">GE</button>
+        <button class="lang-btn" onclick="setLang('ua');closeMenu()">UA</button>
+      </div>
     </div>
   </nav>
 
@@ -226,7 +236,7 @@
       <div class="stat-item"><div class="stat-num">NEW</div><div class="stat-label" data-i="stat1">Early-stage team</div></div>
       <div class="stat-item"><div class="stat-num">4</div><div class="stat-label" data-i="stat2">Languages</div></div>
       <div class="stat-item"><div class="stat-num">CLEAR</div><div class="stat-label" data-i="stat3">Transparent process</div></div>
-      <div class="stat-item"><div class="stat-num">GE</div><div class="stat-label" data-i="stat4">Based in Tbilisi</div></div>
+      <div class="stat-item"><div class="stat-num">EU+GE</div><div class="stat-label" data-i="stat4">Remote-ready</div></div>
     </div>
     <section class="why">
       <div class="section-header reveal"><span class="section-num" data-i="s2_num">Why Kleoso</span><h2 class="section-title" data-i="s2_title">Why us</h2></div>
@@ -270,7 +280,7 @@
         <button class="cta-btn" onclick="showPage('contact')"><span data-i="free_btn">Claim your free first service</span> &#8599;</button>
       </div>
     </section>
-    <div class="cta-bottom"><h2 class="cta-bottom-title" data-i="cta_title">Let&#39;s build<br>your <span>Kleoso</span></h2><p class="cta-bottom-email"><a href="mailto:Kleoso.agency@proton.me">Kleoso.agency@proton.me</a></p><button class="cta-bottom-btn" onclick="showPage('contact')"><span data-i="cta_btn">Get in touch</span> &#8599;</button></div>
+    <div class="cta-bottom"><h2 class="cta-bottom-title" data-i="cta_title">Let&#39;s build<br>your <span>Kleoso</span></h2><p class="cta-bottom-email"><a href="/cdn-cgi/l/email-protection#c289aea7adb1adeca3a5a7aca1bb82b2b0adb6adacecafa7"><span class="__cf_email__" data-cfemail="9cd7f0f9f3eff3b2fdfbf9f2ffe5dceceef3e8f3f2b2f1f9">[email&#160;protected]</span></a></p><button class="cta-bottom-btn" onclick="showPage('contact')"><span data-i="cta_btn">Get in touch</span> &#8599;</button></div>
   </div>
 
   <div class="page" id="page-portfolio">
@@ -320,7 +330,7 @@
       <div class="contact-grid">
         <div>
           <h3 class="contact-info-title" data-i="con_heading">Let's talk about your project</h3>
-          <div class="contact-item"><div class="contact-item-label" data-i="con_lbl_email">Email</div><div class="contact-item-value"><a href="mailto:Kleoso.agency@proton.me" style="color:inherit;text-decoration:none">Kleoso.agency@proton.me</a></div></div>
+          <div class="contact-item"><div class="contact-item-label" data-i="con_lbl_email">Email</div><div class="contact-item-value"><a href="/cdn-cgi/l/email-protection#c289aea7adb1adeca3a5a7aca1bb82b2b0adb6adacecafa7" style="color:inherit;text-decoration:none"><span class="__cf_email__" data-cfemail="feb5929b918d91d09f999b909d87be8e8c918a9190d0939b">[email&#160;protected]</span></a></div></div>
           <div class="contact-item"><div class="contact-item-label" data-i="con_lbl_loc">Location</div><div class="contact-item-value" data-i="con_location">Tbilisi, Georgia</div></div>
           <div class="contact-item"><div class="contact-item-label" data-i="con_lbl_lang">Languages</div><div class="contact-item-value">EN / RU / GE / UA</div></div>
           <div class="contact-item"><div class="contact-item-label" data-i="con_lbl_social">Social media</div><div class="contact-socials"><a href="https://www.instagram.com/kleoso_agency/" target="_blank" class="social-btn">Instagram</a><a href="https://t.me/Kleoso" target="_blank" class="social-btn">Telegram</a></div></div>
@@ -346,7 +356,7 @@
 
   <footer><div class="footer-logo" onclick="showPage('home')">KLEOSO</div><div class="footer-copy" data-i="footer_copy">&copy; 2026 Kleoso Agency. Tbilisi, Georgia</div></footer>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     function openLightbox(src, alt){var lb=document.getElementById('lightbox');var img=document.getElementById('lightbox-img');img.src=src;img.alt=alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}
     function closeLightbox(){document.getElementById('lightbox').classList.remove('open');document.body.style.overflow='';}
     document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
@@ -385,15 +395,3 @@
     window.addEventListener('load',function(){
       if(shouldReduceMotion())document.body.classList.add('reduce-motion');
       var pre=document.getElementById('preloader');
-      if(document.body.classList.contains('reduce-motion')){
-        pre.classList.add('hide');
-      }else{
-        setTimeout(function(){pre.classList.add('hide');document.body.classList.add('hero-cine-ready');},800);
-      }
-      initMagneticButtons();
-      window.addEventListener('scroll',updateScrollProgress,{passive:true});
-      refreshReveals();
-    });
-  </script>
-</body>
-</html>
