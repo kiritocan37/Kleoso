@@ -392,6 +392,24 @@
       var lowCpu=navigator.hardwareConcurrency&&navigator.hardwareConcurrency<=4;
       return !!(prefersReduced||coarsePointer||lowRam||lowCpu);
     }
-    window.addEventListener('load',function(){
-      if(shouldReduceMotion())document.body.classList.add('reduce-motion');
+    function hidePreloader(){
       var pre=document.getElementById('preloader');
+      if(!pre||pre.classList.contains('hide'))return;
+      pre.classList.add('hide');
+      document.body.classList.add('hero-cine-ready');
+    }
+    // Fallback: force-hide preloader after 1.8s no matter what
+    setTimeout(hidePreloader,1800);
+    document.addEventListener('DOMContentLoaded',function(){
+      if(shouldReduceMotion())document.body.classList.add('reduce-motion');
+      initMagneticButtons();
+      window.addEventListener('scroll',updateScrollProgress,{passive:true});
+      refreshReveals();
+    });
+    window.addEventListener('load',function(){
+      hidePreloader();
+      refreshReveals();
+    });
+  </script>
+</body>
+</html>
