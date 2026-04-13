@@ -4,6 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kleoso - Marketing Agency</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <meta name="description" content="Kleoso — marketing agency. We build brands that matter. Remote, based in Tbilisi.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://kleoso.com">
+  <meta property="og:title" content="Kleoso — We build brands that matter">
+  <meta property="og:description" content="Marketing agency. Remote, based in Tbilisi. Web design, branding, strategy, paid ads.">
+  <meta property="og:image" content="https://kleoso.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Kleoso — We build brands that matter">
+  <meta name="twitter:description" content="Marketing agency. Remote, based in Tbilisi.">
+  <meta name="twitter:image" content="https://kleoso.com/og-image.png">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="script.js" defer></script>
   <style>
@@ -38,6 +53,7 @@
     section{padding:0 var(--pad)}
     .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:8rem var(--pad) 4rem}
     .hero-tag{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;font-weight:600}
+    .hero-subtag{font-size:.82rem;color:var(--muted);margin-bottom:1.4rem;font-weight:400;letter-spacing:.02em}
     .hero-title{font-family:var(--ff-en);font-size:clamp(3rem,7.5vw,8rem);line-height:.93;margin-bottom:2rem}
     .lang-ru .hero-title,.lang-ge .hero-title,.lang-ua .hero-title{font-family:var(--ff-body);font-size:clamp(2.2rem,6vw,6.5rem);font-weight:800;line-height:1.06;letter-spacing:-.02em}
     .hero-title em{color:var(--accent)}
@@ -56,9 +72,11 @@
     .section-num{font-size:.7rem;color:var(--muted);letter-spacing:.2em;text-transform:uppercase}
     .section-title{font-family:var(--ff-en);font-size:clamp(2rem,5vw,5rem)}
     .lang-ru .section-title,.lang-ge .section-title,.lang-ua .section-title{font-family:var(--ff-body);font-weight:800;font-size:clamp(1.6rem,3.6vw,3.7rem);letter-spacing:-.02em}
-    .services,.why,.founder,.free-offer,.port-page,.rev-page,.how-page,.con-page{padding-top:5.5rem;padding-bottom:5.5rem}
-    .services-grid,.stats{display:grid;gap:1px;background:var(--border)}
-    .services-grid{grid-template-columns:repeat(2,1fr)} .stats{grid-template-columns:repeat(4,1fr)}
+    .services,.why,.founder,.free-offer,.pricing,.port-page,.rev-page,.how-page,.con-page{padding-top:5.5rem;padding-bottom:5.5rem}
+    .services-grid,.stats,.principles{display:grid;gap:1px;background:var(--border)}
+    .services-grid{grid-template-columns:repeat(4,1fr)} .stats{grid-template-columns:repeat(4,1fr)}
+    .principles{grid-template-columns:repeat(3,1fr)}
+    @media(max-width:900px){.services-grid{grid-template-columns:repeat(2,1fr)}.principles{grid-template-columns:1fr}}
     @media(max-width:700px){.services-grid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}}
     .service-card{background:var(--bg);padding:2.2rem 1.8rem;position:relative;transition:transform .25s ease,background .25s ease}
     .service-card:hover{transform:translateY(-2px);background:var(--bg2)}
@@ -70,13 +88,27 @@
     .stat-item{background:var(--dark);padding:2.2rem 1.1rem;text-align:center}
     .stat-num{font-family:var(--ff-en);font-size:3.4rem;color:var(--bg)}
     .stat-label{font-size:.68rem;color:rgba(240,235,225,.56);letter-spacing:.11em;text-transform:uppercase}
+    .principle-item{background:var(--dark);padding:2.4rem 1.8rem;text-align:left;transition:background .25s ease}
+    .principle-item:hover{background:var(--dark2)}
+    .principle-label{font-family:var(--ff-en);font-size:.8rem;color:var(--accent2);letter-spacing:.2em;margin-bottom:.8rem}
+    .principle-text{font-size:1.05rem;line-height:1.5;color:var(--bg);font-weight:500}
     .why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border)}
     @media(max-width:700px){.why-grid{grid-template-columns:1fr}}
     .why-item{background:var(--bg);padding:2rem;transition:transform .25s ease,background .25s ease}
     .why-item:hover{transform:translateY(-2px);background:var(--bg2)}
     .why-label{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.9rem}
     .why-text{font-size:1rem;line-height:1.75;color:var(--dark2)}
-    .founder-card,.free-card{border:1px solid var(--border);background:var(--bg2);padding:2rem}
+    .founder-card,.free-card,.pricing-card{border:1px solid var(--border);background:var(--bg2);padding:2rem}
+    .free-spots{display:inline-block;background:var(--accent);color:var(--bg);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;padding:.45rem .85rem;margin-bottom:1rem}
+    .pricing{padding-top:5.5rem;padding-bottom:5.5rem}
+    .pricing-lead{font-size:.98rem;line-height:1.8;color:var(--dark2);max-width:780px;margin-bottom:1.4rem}
+    .pricing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin:1rem 0 1.7rem}
+    @media(max-width:900px){.pricing-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:500px){.pricing-grid{grid-template-columns:1fr}}
+    .pricing-item{background:var(--bg);padding:1.2rem;transition:background .25s ease}
+    .pricing-item:hover{background:var(--bg2)}
+    .pricing-label{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:.4rem}
+    .pricing-value{font-size:.9rem;color:var(--dark2);font-weight:500}
     .founder-grid{display:grid;grid-template-columns:120px 1fr;gap:1.4rem;align-items:start}
     @media(max-width:600px){.founder-grid{grid-template-columns:1fr}}
     .founder-photo{width:120px;height:120px;border-radius:50%;border:1px solid var(--border);object-fit:cover;background:var(--bg);transition:transform .35s ease,box-shadow .35s ease}
@@ -187,7 +219,6 @@
         <li><a onclick="showPage('home')" data-page="home" data-i="nav_services">Services</a></li>
         <li><a onclick="showPage('how')" data-page="how" data-i="nav_how">How it works</a></li>
         <li><a onclick="showPage('portfolio')" data-page="portfolio" data-i="nav_portfolio">Portfolio</a></li>
-        <li><a onclick="showPage('reviews')" data-page="reviews" data-i="nav_reviews">Reviews</a></li>
         <li><a onclick="showPage('contact')" data-page="contact" data-i="nav_contact">Contact</a></li>
       </ul>
       <div class="nav-lang">
@@ -201,7 +232,6 @@
       <a onclick="showPage('home');closeMenu()" data-i="nav_services">Services</a>
       <a onclick="showPage('how');closeMenu()" data-i="nav_how">How it works</a>
       <a onclick="showPage('portfolio');closeMenu()" data-i="nav_portfolio">Portfolio</a>
-      <a onclick="showPage('reviews');closeMenu()" data-i="nav_reviews">Reviews</a>
       <a onclick="showPage('contact');closeMenu()" data-i="nav_contact">Contact</a>
       <div class="mobile-lang">
         <button class="lang-btn active" onclick="setLang('en');closeMenu()">EN</button>
@@ -215,6 +245,7 @@
   <div class="page active" id="page-home">
     <section class="hero hero-cine">
       <div class="hero-tag reveal" data-i="hero_tag">Marketing Agency - Tbilisi, Georgia</div>
+      <div class="hero-subtag reveal" data-i="hero_subtag">Based in Tbilisi &mdash; working remote with clients worldwide</div>
       <h1 class="hero-title reveal" data-i="hero_title">We build<br><em>brands</em><br>that matter</h1>
       <div class="hero-sub reveal">
         <p class="hero-desc" data-i="hero_desc">Digital marketing agency helping businesses in Georgia grow their presence and convert attention into revenue.</p>
@@ -224,19 +255,16 @@
     <section class="services">
       <div class="section-header reveal"><span class="section-num" data-i="s1_num">Services</span><h2 class="section-title" data-i="s1_title">What we do</h2></div>
       <div class="services-grid reveal">
-        <div class="service-card"><div class="service-name" data-i="srv1_name">Paid Ads</div><p class="service-desc" data-i="srv1_desc"></p></div>
+        <div class="service-card"><div class="service-name" data-i="srv1_name">Web Design</div><p class="service-desc" data-i="srv1_desc"></p></div>
         <div class="service-card"><div class="service-name" data-i="srv2_name">Branding</div><p class="service-desc" data-i="srv2_desc"></p></div>
-        <div class="service-card"><div class="service-name" data-i="srv3_name">Web Design</div><p class="service-desc" data-i="srv3_desc"></p></div>
-        <div class="service-card"><div class="service-name" data-i="srv4_name">SEO</div><p class="service-desc" data-i="srv4_desc"></p></div>
-        <div class="service-card"><div class="service-name" data-i="srv5_name">Strategy</div><p class="service-desc" data-i="srv5_desc"></p></div>
-        <div class="service-card"><div class="service-name" data-i="srv6_name">Analytics</div><p class="service-desc" data-i="srv6_desc"></p></div>
+        <div class="service-card"><div class="service-name" data-i="srv3_name">Strategy</div><p class="service-desc" data-i="srv3_desc"></p></div>
+        <div class="service-card"><div class="service-name" data-i="srv4_name">Paid Ads</div><p class="service-desc" data-i="srv4_desc"></p></div>
       </div>
     </section>
-    <div class="stats reveal">
-      <div class="stat-item"><div class="stat-num">NEW</div><div class="stat-label" data-i="stat1">Early-stage team</div></div>
-      <div class="stat-item"><div class="stat-num">4</div><div class="stat-label" data-i="stat2">Languages</div></div>
-      <div class="stat-item"><div class="stat-num">CLEAR</div><div class="stat-label" data-i="stat3">Transparent process</div></div>
-      <div class="stat-item"><div class="stat-num">EU+GE</div><div class="stat-label" data-i="stat4">Remote-ready</div></div>
+    <div class="principles reveal">
+      <div class="principle-item"><div class="principle-label" data-i="pr1_label">Principle 01</div><div class="principle-text" data-i="pr1_text">Direct communication, no middle layers</div></div>
+      <div class="principle-item"><div class="principle-label" data-i="pr2_label">Principle 02</div><div class="principle-text" data-i="pr2_text">Fixed scope, no surprises</div></div>
+      <div class="principle-item"><div class="principle-label" data-i="pr3_label">Principle 03</div><div class="principle-text" data-i="pr3_text">Weekly progress updates</div></div>
     </div>
     <section class="why">
       <div class="section-header reveal"><span class="section-num" data-i="s2_num">Why Kleoso</span><h2 class="section-title" data-i="s2_title">Why us</h2></div>
@@ -254,7 +282,7 @@
         <div class="founder-grid">
           <img class="founder-photo" src="work7.png" alt="Founder photo">
           <div>
-            <div class="founder-name" data-i="founder_name">Daniel</div>
+            <div class="founder-name" data-i="founder_name">Danylo Sokur</div>
             <div class="founder-role" data-i="founder_role">Founder - Small team, Tbilisi</div>
             <p class="founder-desc" data-i="founder_desc">I am building Kleoso as a practical, honest studio focused on web and design.</p>
             <div class="founder-points">
@@ -271,6 +299,7 @@
     <section class="free-offer">
       <div class="section-header reveal"><span class="section-num" data-i="free_num">Launch offer</span><h2 class="section-title" data-i="free_title">First service is free</h2></div>
       <div class="free-card reveal">
+        <div class="free-spots" data-i="free_spots">Only 3 spots in April</div>
         <p class="free-desc" data-i="free_desc">For first partners, one selected service is free within a starter scope so you can test our process before scaling.</p>
         <div class="free-grid">
           <div class="free-item"><h4 data-i="free_h1">Who</h4><p data-i="free_t1">New partners who are ready to collaborate and provide quick feedback.</p></div>
@@ -280,16 +309,28 @@
         <button class="cta-btn" onclick="showPage('contact')"><span data-i="free_btn">Claim your free first service</span> &#8599;</button>
       </div>
     </section>
+
+    <section class="pricing">
+      <div class="section-header reveal"><span class="section-num" data-i="pricing_num">Investment</span><h2 class="section-title" data-i="pricing_title">Friendly pricing</h2></div>
+      <div class="pricing-card reveal">
+        <p class="pricing-lead" data-i="pricing_lead">Since we're just starting, our rates are kept low. We're building our portfolio together with first partners, so pricing is friendly &mdash; share your project and we'll propose a fair scope.</p>
+        <div class="pricing-grid">
+          <div class="pricing-item"><div class="pricing-label" data-i="pricing_l1">Web Design</div><div class="pricing-value" data-i="pricing_v1">Friendly starter rate</div></div>
+          <div class="pricing-item"><div class="pricing-label" data-i="pricing_l2">Branding</div><div class="pricing-value" data-i="pricing_v2">Friendly starter rate</div></div>
+          <div class="pricing-item"><div class="pricing-label" data-i="pricing_l3">Strategy</div><div class="pricing-value" data-i="pricing_v3">Friendly starter rate</div></div>
+          <div class="pricing-item"><div class="pricing-label" data-i="pricing_l4">Paid Ads</div><div class="pricing-value" data-i="pricing_v4">Friendly starter rate</div></div>
+        </div>
+        <button class="cta-btn" onclick="showPage('contact')"><span data-i="pricing_btn">Request a quote</span> &#8599;</button>
+      </div>
+    </section>
     <div class="cta-bottom"><h2 class="cta-bottom-title" data-i="cta_title">Let&#39;s build<br>your <span>Kleoso</span></h2><p class="cta-bottom-email"><a href="mailto:Kleoso.agency@proton.me">Kleoso.agency@proton.me</a></p><button class="cta-bottom-btn" onclick="showPage('contact')"><span data-i="cta_btn">Get in touch</span> &#8599;</button></div>
   </div>
 
   <div class="page" id="page-portfolio">
     <section class="port-page">
-      <div class="section-header"><span class="section-num" data-i="port_num">Portfolio</span><h2 class="section-title" data-i="port_title">Our work</h2></div>
-      <p class="service-desc" data-i="port_note" style="margin-bottom:1.5rem">Sample works and concepts.</p>
+      <div class="section-header"><span class="section-num" data-i="port_num">Portfolio</span><h2 class="section-title" data-i="port_title">Selected concepts</h2></div>
+      <p class="service-desc" data-i="port_note" style="margin-bottom:1.5rem">Sample works and concepts from our early practice.</p>
       <div class="portfolio-grid">
-        <div class="portfolio-card" onclick="openLightbox('work1.png','work1')"><div class="portfolio-img-wrap"><img class="portfolio-img" src="work1.png" alt="work1"></div><div class="portfolio-info"><div class="portfolio-tag" data-i="port1_tag">Graphic Design</div><div class="portfolio-title" data-i="port1_title">Lay's Tire Flavor</div><p class="portfolio-desc" data-i="port1_desc"></p></div></div>
-        <div class="portfolio-card" onclick="openLightbox('work2.png','work2')"><div class="portfolio-img-wrap"><img class="portfolio-img" src="work2.png" alt="work2"></div><div class="portfolio-info"><div class="portfolio-tag" data-i="port2_tag">Social Media Design</div><div class="portfolio-title" data-i="port2_title">Jennie Ruby</div><p class="portfolio-desc" data-i="port2_desc"></p></div></div>
         <div class="portfolio-card" onclick="openLightbox('work3.png','work3')"><div class="portfolio-img-wrap"><img class="portfolio-img" src="work3.png" alt="work3"></div><div class="portfolio-info"><div class="portfolio-tag" data-i="port3_tag">Menu Design</div><div class="portfolio-title" data-i="port3_title">Nevi Restaurant</div><p class="portfolio-desc" data-i="port3_desc"></p></div></div>
         <div class="portfolio-card" onclick="openLightbox('work4.png','work4')"><div class="portfolio-img-wrap"><img class="portfolio-img" src="work4.png" alt="work4"></div><div class="portfolio-info"><div class="portfolio-tag" data-i="port4_tag">Logo Design</div><div class="portfolio-title" data-i="port4_title">Velour Beauty</div><p class="portfolio-desc" data-i="port4_desc"></p></div></div>
         <div class="portfolio-card" onclick="openLightbox('work5.png','work5')"><div class="portfolio-img-wrap"><img class="portfolio-img" src="work5.png" alt="work5"></div><div class="portfolio-info"><div class="portfolio-tag" data-i="port5_tag">Business Card</div><div class="portfolio-title" data-i="port5_title">Stoa Boutique Hotel</div><p class="portfolio-desc" data-i="port5_desc"></p></div></div>
@@ -338,7 +379,7 @@
         <form class="contact-form" action="https://formspree.io/f/mpqogjpo" method="POST" onsubmit="handleSubmit(event)">
           <div><label class="form-label" data-i="form_name">Your name</label><input type="text" name="name" class="form-input" placeholder="John Smith" required></div>
           <div><label class="form-label" data-i="form_email">Email</label><input type="email" name="email" class="form-input" placeholder="hello@company.com" required></div>
-          <div><label class="form-label" data-i="form_service">Service</label><select name="service" class="form-input"><option>Select a service...</option><option>Paid Ads</option><option>Branding</option><option>Web Design</option><option>SEO</option><option>Strategy</option><option>Analytics</option></select></div>
+          <div><label class="form-label" data-i="form_service">Service</label><select name="service" class="form-input"><option data-i="form_service_ph">Select a service...</option><option>Web Design</option><option>Branding</option><option>Strategy</option><option>Paid Ads</option></select></div>
           <div><label class="form-label" data-i="form_msg">Message</label><textarea name="message" class="form-input" placeholder="Tell us about your project..." required></textarea></div>
           <button type="submit" class="form-submit" data-i="form_send">Send message &#8599;</button>
         </form>
