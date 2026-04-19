@@ -1,456 +1,1590 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kleoso - Marketing Agency</title>
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="shortcut icon" href="favicon.ico">
-  <link rel="apple-touch-icon" href="favicon.png">
-  <meta name="description" content="Kleoso — marketing agency. We build brands that matter. Remote, based in Tbilisi.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://kleoso.com">
-  <meta property="og:title" content="Kleoso — We build brands that matter">
-  <meta property="og:description" content="Marketing agency. Remote, based in Tbilisi. Web design, branding, strategy, paid ads.">
-  <meta property="og:image" content="https://kleoso.com/og-image.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Kleoso — We build brands that matter">
-  <meta name="twitter:description" content="Marketing agency. Remote, based in Tbilisi.">
-  <meta name="twitter:image" content="https://kleoso.com/og-image.png">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <script src="script.js" defer></script>
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    :root{--bg:#f0ebe1;--bg2:#e8e1d4;--dark:#1c1812;--dark2:#3d342a;--accent:#b85c2a;--accent2:#d4712f;--muted:#6b6355;--border:rgba(28,24,18,.12);--ff-en:"Bebas Neue",sans-serif;--ff-body:"Manrope",sans-serif;--pad:4rem}
-    @media(max-width:768px){:root{--pad:1.5rem}}
-    html{scroll-behavior:smooth}
-    body{background:var(--bg);color:var(--dark);font-family:var(--ff-body);overflow-x:hidden}
-    .page{display:none;opacity:1;transform:translateY(0);transition:opacity .28s ease,transform .28s ease}.page.active{display:block}
-    .page.page-enter{opacity:0;transform:translateY(12px)}
-    .page.page-exit{opacity:0;transform:translateY(-8px)}
-    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(240,235,225,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);transition:box-shadow .25s ease,background .25s ease}
-    nav.nav-scrolled{background:rgba(240,235,225,.98);box-shadow:0 8px 24px rgba(0,0,0,.06)}
-    .nav-inner{display:flex;justify-content:space-between;align-items:center;padding:1.1rem var(--pad)}
-    .logo{font-family:var(--ff-en);font-size:1.8rem;letter-spacing:.15em;cursor:pointer}
-    .nav-center{display:flex;list-style:none}
-    .nav-center a{color:var(--muted);text-decoration:none;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;padding:.5rem 1rem;transition:color .25s,background .25s;cursor:pointer;border-radius:999px}
-    .nav-center a:hover{color:var(--accent)}
-    .nav-center a.active-link{color:var(--accent);background:rgba(184,92,42,.1)}
-    .nav-lang{display:flex;gap:.4rem}
-    .lang-btn{background:none;border:1px solid var(--border);color:var(--muted);padding:.28rem .65rem;font-size:.72rem;letter-spacing:.1em;cursor:pointer;font-family:var(--ff-body);font-weight:500;transition:all .25s}
-    .lang-btn.active,.lang-btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(184,92,42,.06)}
-    .nav-mobile{display:none}
-    .burger{background:none;border:none;cursor:pointer;padding:.3rem;display:flex;flex-direction:column;gap:5px}
-    .burger span{display:block;width:22px;height:2px;background:var(--dark)}
-    .mobile-menu{display:none;flex-direction:column;border-top:1px solid var(--border);background:rgba(240,235,225,.98)}
-    .mobile-menu.open{display:flex}
-    .mobile-menu a{color:var(--muted);text-decoration:none;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;padding:1rem var(--pad);border-bottom:1px solid var(--border);cursor:pointer}
-    .mobile-lang{display:flex;gap:.5rem;padding:1rem var(--pad);flex-wrap:wrap;border-bottom:1px solid var(--border)}
-    .mobile-lang .lang-btn{padding:.4rem .9rem;font-size:.75rem}
-    @media(max-width:900px){.nav-center{display:none}.nav-mobile{display:flex;align-items:center;gap:1rem}.nav-lang{display:none}}
-    section{padding:0 var(--pad)}
-    .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:8rem var(--pad) 4rem}
-    .hero-tag{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;font-weight:600}
-    .hero-subtag{font-size:.82rem;color:var(--muted);margin-bottom:1.4rem;font-weight:400;letter-spacing:.02em}
-    .hero-title{font-family:var(--ff-en);font-size:clamp(3rem,7.5vw,8rem);line-height:.93;margin-bottom:2rem}
-    .lang-ru .hero-title,.lang-ge .hero-title,.lang-ua .hero-title{font-family:var(--ff-body);font-size:clamp(2.2rem,6vw,6.5rem);font-weight:800;line-height:1.06;letter-spacing:-.02em}
-    .hero-title em{color:var(--accent)}
-    .hero-sub{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem}
-    .hero-cine .hero-tag,.hero-cine .hero-title,.hero-cine .hero-sub{opacity:0;transform:translateY(22px)}
-    .hero-cine-ready .hero-tag{animation:heroRise .7s cubic-bezier(.2,.7,.2,1) .08s forwards}
-    .hero-cine-ready .hero-title{animation:heroRise .8s cubic-bezier(.2,.7,.2,1) .22s forwards}
-    .hero-cine-ready .hero-sub{animation:heroRise .85s cubic-bezier(.2,.7,.2,1) .38s forwards}
-    .hero-desc{max-width:520px;font-size:.95rem;line-height:1.8;color:var(--muted)}
-    .hero-cta{display:flex;flex-direction:column;align-items:flex-end;gap:1rem}
-    .cta-btn{display:inline-flex;align-items:center;gap:.65rem;background:var(--dark);color:var(--bg);padding:1rem 2rem;font-size:.84rem;font-weight:700;letter-spacing:.08em;cursor:pointer;border:none;text-transform:uppercase;transition:all .25s;will-change:transform}
-    .cta-btn:hover{background:var(--accent);transform:translateY(-1px)}
-    .scroll-hint{font-size:.7rem;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;font-weight:500}
-    @media(max-width:640px){.hero-sub{flex-direction:column;align-items:flex-start}.hero-cta{align-items:flex-start}}
-    .section-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2rem;border-bottom:1px solid var(--border);padding-bottom:1.1rem;gap:.6rem;flex-wrap:wrap}
-    .section-num{font-size:.7rem;color:var(--muted);letter-spacing:.2em;text-transform:uppercase}
-    .section-title{font-family:var(--ff-en);font-size:clamp(2rem,5vw,5rem)}
-    .lang-ru .section-title,.lang-ge .section-title,.lang-ua .section-title{font-family:var(--ff-body);font-weight:800;font-size:clamp(1.6rem,3.6vw,3.7rem);letter-spacing:-.02em}
-    .services,.why,.founder,.free-offer,.pricing,.port-page,.rev-page,.how-page,.con-page{padding-top:5.5rem;padding-bottom:5.5rem}
-    .services-grid,.stats,.principles{display:grid;gap:1px;background:var(--border)}
-    .services-grid{grid-template-columns:repeat(4,1fr)} .stats{grid-template-columns:repeat(4,1fr)}
-    .principles{grid-template-columns:repeat(3,1fr)}
-    @media(max-width:900px){.services-grid{grid-template-columns:repeat(2,1fr)}.principles{grid-template-columns:1fr}}
-    @media(max-width:700px){.services-grid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}}
-    .service-card{background:var(--bg);padding:2.2rem 1.8rem;position:relative;transition:transform .25s ease,background .25s ease}
-    .service-card:hover{transform:translateY(-2px);background:var(--bg2)}
-    .service-card:after{content:"";position:absolute;left:0;top:0;height:3px;width:100%;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .3s}
-    .service-card:hover:after{transform:scaleX(1)}
-    .service-name{font-family:var(--ff-en);font-size:1.9rem;margin:.4rem 0 .8rem}
-    .lang-ru .service-name,.lang-ge .service-name,.lang-ua .service-name{font-family:var(--ff-body);font-size:1.25rem;font-weight:800}
-    .service-desc{font-size:.88rem;line-height:1.8;color:var(--muted)}
-    .stat-item{background:var(--dark);padding:2.2rem 1.1rem;text-align:center}
-    .stat-num{font-family:var(--ff-en);font-size:3.4rem;color:var(--bg)}
-    .stat-label{font-size:.68rem;color:rgba(240,235,225,.56);letter-spacing:.11em;text-transform:uppercase}
-    .principle-item{background:var(--dark);padding:2.4rem 1.8rem;text-align:left;transition:background .25s ease}
-    .principle-item:hover{background:var(--dark2)}
-    .principle-label{font-family:var(--ff-en);font-size:.8rem;color:var(--accent2);letter-spacing:.2em;margin-bottom:.8rem}
-    .principle-text{font-size:1.05rem;line-height:1.5;color:var(--bg);font-weight:500}
-    .why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border)}
-    @media(max-width:700px){.why-grid{grid-template-columns:1fr}}
-    .why-item{background:var(--bg);padding:2rem;transition:transform .25s ease,background .25s ease}
-    .why-item:hover{transform:translateY(-2px);background:var(--bg2)}
-    .why-label{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.9rem}
-    .why-text{font-size:1rem;line-height:1.75;color:var(--dark2)}
-    .founder-card,.free-card,.pricing-card{border:1px solid var(--border);background:var(--bg2);padding:2rem}
-    .free-spots{display:inline-block;background:var(--accent);color:var(--bg);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;padding:.45rem .85rem;margin-bottom:1rem}
-    .pricing{padding-top:5.5rem;padding-bottom:5.5rem}
-    .pricing-lead{font-size:.98rem;line-height:1.8;color:var(--dark2);max-width:780px;margin-bottom:1.4rem}
-    .pricing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin:1rem 0 1.7rem}
-    @media(max-width:900px){.pricing-grid{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:500px){.pricing-grid{grid-template-columns:1fr}}
-    .pricing-item{background:var(--bg);padding:1.2rem;transition:background .25s ease}
-    .pricing-item:hover{background:var(--bg2)}
-    .pricing-label{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:.4rem}
-    .pricing-value{font-size:.9rem;color:var(--dark2);font-weight:500}
-    .founder-grid{display:grid;grid-template-columns:120px 1fr;gap:1.4rem;align-items:start}
-    @media(max-width:600px){.founder-grid{grid-template-columns:1fr}}
-    .founder-photo{width:120px;height:120px;border-radius:50%;border:1px solid var(--border);object-fit:cover;background:var(--bg);transition:transform .35s ease,box-shadow .35s ease}
-    .founder-photo:hover{transform:scale(1.04);box-shadow:0 8px 24px rgba(0,0,0,.12)}
-    .founder-name{font-family:var(--ff-en);font-size:2rem;line-height:1}
-    .lang-ru .founder-name,.lang-ge .founder-name,.lang-ua .founder-name{font-family:var(--ff-body);font-size:1.5rem;font-weight:800}
-    .founder-role{font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:.4rem 0 1rem;line-height:1.45;word-break:break-word}
-    .founder-desc{font-size:.93rem;line-height:1.8;color:var(--dark2)}
-    .founder-points{display:grid;grid-template-columns:repeat(2,1fr);gap:.6rem;margin-top:1rem}
-    @media(max-width:600px){.founder-points{grid-template-columns:1fr}.founder-name{font-size:1.7rem}.founder-role{font-size:.7rem;letter-spacing:.1em}.hero{padding-top:7.2rem}}
-    .founder-point{font-size:.82rem;color:var(--muted);padding:.55rem .75rem;border:1px solid var(--border);background:var(--bg)}
-    .free-desc{font-size:.95rem;color:var(--dark2);line-height:1.75;max-width:780px}
-    .free-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin:1.2rem 0 1.7rem}
-    @media(max-width:900px){.free-grid{grid-template-columns:1fr}}
-    .free-item{background:var(--bg);border:1px solid var(--border);padding:1rem;transition:border-color .25s ease,transform .25s ease}
-    .free-item:hover{border-color:var(--accent);transform:translateY(-2px)}
-    .free-item h4{font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem}
-    .free-item p{font-size:.85rem;color:var(--muted);line-height:1.7}
-    .portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem}
-    @media(max-width:900px){.portfolio-grid{grid-template-columns:repeat(2,1fr)}} @media(max-width:620px){.portfolio-grid{grid-template-columns:1fr}}
-    .portfolio-card{border:1px solid var(--border);background:var(--bg);overflow:hidden;transition:all .28s}
-    .portfolio-card:hover{transform:translateY(-3px);border-color:var(--accent)}
-    .portfolio-img-wrap{height:220px;background:var(--bg2);overflow:hidden}
-    .portfolio-img{width:100%;height:100%;object-fit:cover;transition:transform .45s}
-    .portfolio-card:hover .portfolio-img{transform:scale(1.05)}
-    .portfolio-info{padding:1.1rem 1.2rem}
-    .portfolio-tag{font-size:.62rem;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;font-weight:700}
-    .portfolio-title{font-family:var(--ff-en);font-size:1.25rem;margin:.4rem 0}
-    .lang-ru .portfolio-title,.lang-ge .portfolio-title,.lang-ua .portfolio-title{font-family:var(--ff-body);font-weight:800;font-size:1rem}
-    .portfolio-desc{font-size:.82rem;color:var(--muted);line-height:1.7}
-    .review-cta-box{border:1px solid var(--border);padding:4rem 2rem;text-align:center;background:var(--bg2)}
-    .review-cta-title{font-family:var(--ff-en);font-size:clamp(2rem,4vw,3.2rem);margin-bottom:1rem}
-    .lang-ru .review-cta-title,.lang-ge .review-cta-title,.lang-ua .review-cta-title{font-family:var(--ff-body);font-weight:800;font-size:clamp(1.5rem,3vw,2.5rem)}
-    .review-cta-desc{font-size:.95rem;color:var(--muted);line-height:1.9;max-width:620px;margin:0 auto 2rem}
-    .steps-grid{display:grid;gap:1px;background:var(--border)}
-    .step-row{background:var(--bg);display:grid;grid-template-columns:58px 1fr 1fr;gap:1.8rem;padding:2rem 1.8rem}
-    .step-index{font-family:var(--ff-en);font-size:2.6rem;color:rgba(28,24,18,.16)}
-    .step-name{font-family:var(--ff-en);font-size:1.5rem}
-    .lang-ru .step-name,.lang-ge .step-name,.lang-ua .step-name{font-family:var(--ff-body);font-size:1.15rem;font-weight:800}
-    .step-desc,.step-detail{font-size:.89rem;color:var(--muted);line-height:1.75}
-    .step-detail{padding-left:1.2rem;border-left:2px solid var(--border)}
-    @media(max-width:780px){.step-row{grid-template-columns:48px 1fr}.step-detail{display:none}}
-    .faq-title{font-family:var(--ff-en);font-size:clamp(2rem,4vw,4rem);margin:2.8rem 0 1.4rem}
-    .lang-ru .faq-title,.lang-ge .faq-title,.lang-ua .faq-title{font-family:var(--ff-body);font-weight:800}
-    .faq-item{border-top:1px solid var(--border)} .faq-item:last-child{border-bottom:1px solid var(--border)}
-    .faq-q{display:flex;justify-content:space-between;align-items:center;padding:1.2rem 0;cursor:pointer;font-weight:600}
-    .faq-a{max-height:0;overflow:hidden;transition:max-height .35s,padding .35s;font-size:.9rem;color:var(--muted);line-height:1.8}
-    .faq-item.open .faq-a{max-height:260px;padding:0 0 1.2rem}
-    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem}
-    @media(max-width:840px){.contact-grid{grid-template-columns:1fr}}
-    .contact-info-title{font-family:var(--ff-en);font-size:2.3rem}
-    .lang-ru .contact-info-title,.lang-ge .contact-info-title,.lang-ua .contact-info-title{font-family:var(--ff-body);font-weight:800;font-size:1.9rem}
-    .contact-item{padding:1rem 0;border-bottom:1px solid var(--border)}
-    .contact-item:first-child{border-top:1px solid var(--border)}
-    .contact-item-label{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
-    .contact-item-value{margin-top:.3rem;font-size:.95rem}
-    .contact-socials{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.6rem}
-    .social-btn{display:inline-flex;border:1px solid var(--border);color:var(--muted);padding:.5rem .9rem;font-size:.74rem;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;font-weight:700;transition:all .25s}
-    .social-btn:hover{color:var(--accent);border-color:var(--accent)}
-    .contact-form{display:flex;flex-direction:column;gap:.9rem}
-    .form-label{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:600}
-    .form-input{background:var(--bg2);border:1px solid var(--border);padding:.9rem 1rem;font-size:.92rem;color:var(--dark);font-family:var(--ff-body);width:100%;outline:none}
-    .form-input:focus{border-color:var(--accent)}
-    .form-submit{background:var(--dark);color:var(--bg);border:none;padding:1rem 1.8rem;font-size:.84rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;cursor:pointer}
-    .cta-bottom{padding:5rem var(--pad);text-align:center;background:var(--dark2)}
-    .cta-bottom-title{font-family:var(--ff-en);font-size:clamp(2.8rem,9vw,9rem);line-height:.92;color:var(--bg)}
-    .cta-bottom-title span{color:var(--accent2)}
-    .cta-bottom-email{margin:1rem 0 2rem;color:rgba(240,235,225,.55)}
-    .cta-bottom-email a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(240,235,225,.25);transition:color .25s,border-color .25s;padding-bottom:2px}
-    .cta-bottom-email a:hover{color:var(--accent2);border-color:var(--accent2)}
-    .cta-bottom-btn{border:1px solid rgba(240,235,225,.35);background:none;color:var(--bg);padding:1rem 2rem;font-size:.84rem;text-transform:uppercase;letter-spacing:.1em;cursor:pointer}
-    footer{border-top:1px solid var(--border);padding:1.3rem var(--pad);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
-    .footer-logo{font-family:var(--ff-en);letter-spacing:.15em}
-    .footer-copy{font-size:.74rem;color:var(--muted)}
-    .lightbox{display:flex;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.92);align-items:center;justify-content:center;padding:2rem;opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease}
-    .lightbox.open{opacity:1;visibility:visible}
-    .lightbox-img{max-width:90vw;max-height:88vh;object-fit:contain;transform:scale(.96);opacity:.85;transition:transform .3s ease,opacity .3s ease}
-    .lightbox.open .lightbox-img{transform:scale(1);opacity:1}
-    .lightbox-close{position:fixed;right:1.2rem;top:1rem;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer;opacity:.75;transition:opacity .2s}
-    .lightbox-close:hover{opacity:1}
-    .reveal{opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease}
-    .reveal.in{opacity:1;transform:none}
-    .preloader{position:fixed;inset:0;z-index:9999;background:var(--dark);color:var(--bg);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.9rem;transition:opacity .45s ease,visibility .45s ease}
-    .preloader-logo{font-family:var(--ff-en);font-size:3rem;letter-spacing:.16em}
-    .preloader-line{width:140px;height:2px;background:rgba(240,235,225,.25);position:relative;overflow:hidden}
-    .preloader-line:after{content:"";position:absolute;inset:0;background:var(--accent2);animation:loadLine 1.1s ease-in-out infinite}
-    .preloader.hide{opacity:0;visibility:hidden}
-    .scroll-progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));z-index:10001;transition:width .08s linear}
-    body.reduce-motion *,body.reduce-motion *::before,body.reduce-motion *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
-    body.reduce-motion .reveal{opacity:1!important;transform:none!important}
-    body.reduce-motion .preloader{display:none!important}
-    @media (prefers-reduced-motion: reduce){
-      *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
-      .reveal{opacity:1!important;transform:none!important}
-      .preloader{display:none!important}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WOT BOOSTED — Профессиональный буст World of Tanks</title>
+<meta name="description" content="WOT BOOSTED — профессиональный буст World of Tanks. ЛБЗ, Отметки, Мастер, бои на урон. Быстро, безопасно, честно.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://wotboosted.com/">
+<meta property="og:title" content="WOT BOOSTED — Профессиональный буст World of Tanks">
+<meta property="og:description" content="ЛБЗ, Отметки, Мастер, бои на урон. Быстро, безопасно, честно.">
+<!-- PWA -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#e12d3c">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="WOT BOOSTED">
+<!-- Фавикон -->
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="apple-touch-icon" href="logo.png">
+<!-- SEO -->
+<meta name="keywords" content="буст WoT, ЛБЗ, відмітки, Майстер, World of Tanks boosting, бої на урон, WN8">
+<!-- Canonical — замените на ваш реальный домен -->
+<link rel="canonical" href="https://wotboosted.com/">
+<!-- Preload hero image -->
+<link rel="preload" as="image" href="work1.jpg" fetchpriority="high">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Rajdhani:wght@500;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Палитра под баннер: глубокий красный + неон пурпур + циан */
+    --gold: #e12d3c;
+    --gold-light: #ff5a68;
+    --gold-dark: #9e1e2a;
+    --accent-neon: #d946ef;
+    --accent-cyan: #22d3ee;
+    --red: #b91c1c;
+    --dark: #0a0910;
+    --dark2: #12101a;
+    --dark3: #1a1624;
+    --dark4: #252030;
+    --text: #eceaf0;
+    --text-muted: #9390a8;
+    --border: rgba(225, 45, 60, 0.28);
+    --border-subtle: rgba(255,255,255,0.06);
+    --container: 1400px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  section { scroll-margin-top: 84px; }
+  body {
+    background: var(--dark);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+  .skip-link {
+    position: absolute;
+    left: 12px; top: 12px;
+    padding: 10px 14px;
+    background: rgba(10,11,13,0.95);
+    border: 1px solid var(--border);
+    color: var(--text);
+    text-decoration: none;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transform: translateY(-200%);
+    transition: transform .2s ease;
+    z-index: 10001;
+  }
+  .skip-link:focus { transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  }
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 9999; opacity: 0.4;
+  }
+  .scroll-progress {
+    position: fixed; top: 0; left: 0;
+    height: 2px; width: 0;
+    background: linear-gradient(90deg, var(--gold), var(--accent-neon));
+    z-index: 10000;
+    transition: width .08s linear;
+  }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(10,11,13,0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px; height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+    transition: box-shadow .25s ease, background .25s ease;
+  }
+  nav.nav-scrolled {
+    background: rgba(10,11,13,0.98);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  }
+  .nav-logo {
+    font-family: 'Oswald', sans-serif;
+    font-size: 22px; font-weight: 700;
+    letter-spacing: 3px; color: var(--gold);
+    text-decoration: none;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .nav-logo span { color: #fff; }
+  .nav-logo-img {
+    height: 36px;
+    width: auto;
+    max-width: min(160px, 38vw);
+    object-fit: contain;
+    object-position: left center;
+    display: block;
+    flex-shrink: 0;
+  }
+  .nav-right { display: flex; align-items: center; gap: 32px; }
+  .lang-switcher { display: flex; gap: 4px; }
+  .lang-btn {
+    background: none;
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--text-muted);
+    padding: 4px 10px; font-size: 11px;
+    letter-spacing: 1px;
+    font-family: 'Oswald', sans-serif;
+    cursor: pointer; transition: all 0.2s;
+    text-transform: uppercase;
+  }
+  .lang-btn.active, .lang-btn:hover {
+    border-color: var(--gold); color: var(--gold);
+    background: rgba(225,45,60,0.08);
+  }
+  .nav-tg {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--gold); color: #000;
+    text-decoration: none; padding: 8px 18px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    transition: all 0.2s;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  }
+  .nav-tg:hover {
+    background: var(--gold-light);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(225,45,60,0.3);
+  }
+  .hero {
+    position: relative; min-height: 100vh;
+    display: flex; align-items: center; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background-image: url('work1.jpg');
+    background-size: cover; background-position: center 30%;
+    filter: brightness(0.62) saturate(0.92) contrast(1.02);
+    transform: scale(1.05);
+    will-change: transform;
+    animation: heroZoom 20s ease-in-out infinite alternate;
+  }
+  @keyframes heroZoom {
+    from { transform: scale(1.05); }
+    to { transform: scale(1.12); }
+  }
+  .hero-bg::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(10,11,13,0.86) 0%, rgba(10,11,13,0.48) 52%, rgba(10,11,13,0.75) 100%);
+  }
+  .hero-scanline {
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    animation: scanline 4s ease-in-out infinite;
+    opacity: 0.6;
+  }
+  @keyframes scanline {
+    0% { top: 0; opacity: 0; }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.6; }
+    100% { top: 100%; opacity: 0; }
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: var(--container); margin: 0 auto;
+    padding: 120px 40px 80px; width: 100%;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid var(--gold); color: var(--gold);
+    padding: 6px 16px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase;
+    margin-bottom: 28px;
+    opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
+  }
+  .hero-badge::before { content: '▶'; font-size: 8px; }
+  .hero-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(52px, 8vw, 100px);
+    font-weight: 700; line-height: 0.9; letter-spacing: -1px;
+    text-transform: uppercase; margin-bottom: 24px;
+    opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
+  }
+  .hero-title .gold { color: var(--gold); }
+  .hero-title .outline { -webkit-text-stroke: 2px rgba(255,255,255,0.3); color: transparent; }
+  .hero-sub {
+    font-size: 16px; color: var(--text-muted);
+    max-width: 520px; line-height: 1.7;
+    margin-bottom: 48px; font-weight: 300;
+    opacity: 0; animation: fadeUp 0.8s 0.6s forwards;
+  }
+  .hero-sub { color: rgba(232,232,232,0.78); }
+  .hero-cta {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    opacity: 0; animation: fadeUp 0.8s 0.8s forwards;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--gold); color: #000;
+    text-decoration: none; padding: 16px 36px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 15px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    transition: all 0.25s;
+    clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+    border: none; cursor: pointer;
+  }
+  .btn-primary:hover {
+    background: var(--gold-light); transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(225,45,60,0.4);
+  }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 10px;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: var(--text); text-decoration: none;
+    padding: 16px 36px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 15px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    transition: all 0.25s;
+  }
+  .btn-secondary:hover {
+    border-color: var(--gold); color: var(--gold);
+    background: rgba(225,45,60,0.05);
+  }
+  .hero-stats {
+    position: absolute; bottom: 60px; right: 40px;
+    display: flex; gap: 40px;
+    opacity: 0; animation: fadeUp 0.8s 1s forwards;
+  }
+  .stat { text-align: right; }
+  .stat-num {
+    font-family: 'Oswald', sans-serif;
+    font-size: 36px; font-weight: 700;
+    color: var(--gold); line-height: 1;
+  }
+  .stat-label {
+    font-size: 11px; color: var(--text-muted);
+    letter-spacing: 2px; text-transform: uppercase;
+    margin-top: 4px;
+  }
+  .services {
+    padding: 96px 40px;
+    max-width: var(--container);
+    margin: 0 auto;
+  }
+  .section-header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 60px; gap: 40px; flex-wrap: wrap;
+  }
+  .section-label {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 11px; letter-spacing: 4px;
+    color: var(--gold); text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 700; text-transform: uppercase; line-height: 1;
+  }
+  .section-title span { color: var(--gold); }
+  .section-desc {
+    color: var(--text-muted); font-size: 14px;
+    line-height: 1.7; max-width: 520px; font-weight: 300;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
+  .service-card {
+    position: relative;
+    background: var(--dark2);
+    border: 1px solid var(--border-subtle);
+    text-decoration: none; color: inherit;
+    display: flex; flex-direction: column;
+    cursor: pointer;
+    transition: transform 0.28s cubic-bezier(.2,.7,.2,1), border-color 0.25s, box-shadow 0.25s, filter 0.25s;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    transform: translateZ(0);
+    --par-x: 0px;
+    --par-y: 0px;
+    height: 100%;
+  }
+  .service-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--border);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.45);
+  }
+  .service-img-wrap {
+    position: relative; width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden; background: var(--dark);
+  }
+  .service-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    --img-zoom: 1;
+    transform: scale(var(--img-zoom));
+    transform-origin: center center;
+    display: block;
+    transition: transform 0.6s ease, filter 0.4s;
+    filter: saturate(0.92) brightness(1.05);
+  }
+  /* Все карточки — центр, одинаковая яркость */
+  .service-card:nth-child(1) .service-img,
+  .service-card:nth-child(2) .service-img,
+  .service-card:nth-child(3) .service-img,
+  .service-card:nth-child(5) .service-img,
+  .service-card:nth-child(6) .service-img {
+    object-position: center center;
+    filter: saturate(1) brightness(1.08);
+  }
+  /* Бої на урон — сдвигаем левее чтобы WN8 был виден */
+  .service-card:nth-child(4) .service-img {
+    object-position: 15% center;
+    filter: saturate(1) brightness(1.08);
+  }
+  /* ЛБЗ 3.0 чуть посветлее — очень тёмная исходно */
+  .service-card:nth-child(3) .service-img {
+    filter: saturate(1) brightness(1.2) contrast(1.05);
+  }
+  .service-card:hover .service-img,
+  .service-card:focus-visible .service-img {
+    transform: translate3d(var(--par-x, 0px), var(--par-y, 0px), 0) scale(calc(var(--img-zoom, 1) * 1.06));
+    filter: saturate(1.05) brightness(1.1);
+  }
+  .service-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(600px 200px at 20% 0%, rgba(225,45,60,0.14), transparent 60%);
+    opacity: 0;
+    transition: opacity .35s ease;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .service-card:hover::before { opacity: 1; }
+  .service-img-wrap, .service-info { position: relative; z-index: 1; }
+  .service-info { transform: translate3d(calc(var(--par-x) * -0.25), calc(var(--par-y) * -0.25), 0); }
+  .service-card::after {
+    content: '';
+    position: absolute; inset: 0;
+    padding: 1px;
+    background: conic-gradient(from 180deg, rgba(225,45,60,0), rgba(225,45,60,0.65), rgba(225,45,60,0), rgba(255,255,255,0.10), rgba(225,45,60,0));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity .35s ease;
+    pointer-events: none;
+    z-index: 2;
+  }
+  .service-card:hover::after { opacity: 0.85; }
+  .service-card:focus-visible::after { opacity: 1; }
+
+  .service-floor {
+    position: absolute;
+    left: -20%; right: -20%;
+    bottom: -44px;
+    height: 90px;
+    background: radial-gradient(60% 90% at 50% 30%, rgba(225,45,60,0.22), transparent 70%);
+    filter: blur(10px);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity .35s ease, transform .35s ease;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .service-card:hover .service-floor,
+  .service-card:focus-visible .service-floor {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .service-info {
+    padding: 24px 24px 26px;
+    display: flex; flex-direction: column; gap: 10px;
+    background: var(--dark2); position: relative;
+    flex: 1;
+    justify-content: center;
+  }
+  .service-card:hover .service-name { color: var(--gold); }
+
+  .scan-sheen {
+    position: absolute;
+    inset: -40% -60%;
+    background: linear-gradient(120deg, transparent 35%, rgba(225,45,60,0.12) 46%, rgba(255,255,255,0.06) 50%, rgba(225,45,60,0.12) 54%, transparent 66%);
+    transform: translateX(-30%) translateY(10%) rotate(8deg);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .25s ease;
+    z-index: 1;
+  }
+  .service-card:hover .scan-sheen { opacity: 1; animation: sheen 1.2s ease-out both; }
+  @keyframes sheen {
+    from { transform: translateX(-35%) translateY(12%) rotate(8deg); }
+    to { transform: translateX(35%) translateY(-10%) rotate(8deg); }
+  }
+
+  @media (pointer: coarse) {
+    .service-card { -webkit-tap-highlight-color: transparent; }
+    .service-card::before { opacity: 0.55; }
+    .service-card::after { opacity: 0.35; }
+    .service-floor { opacity: 0.8; transform: translateY(0); }
+    .scan-sheen { display: none; }
+    .service-card:active {
+      transform: translateY(-2px) scale(0.99);
+      border-color: var(--border);
+      box-shadow: 0 12px 26px rgba(0,0,0,0.45);
     }
-    @keyframes loadLine{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
-    @keyframes heroRise{to{opacity:1;transform:none}}
-  </style>
+  }
+  .service-name {
+    font-family: 'Oswald', sans-serif;
+    font-size: 22px; font-weight: 600;
+    letter-spacing: 1px; text-transform: uppercase;
+    line-height: 1.15; color: #fff;
+    text-wrap: balance;
+    transition: color 0.25s ease;
+  }
+  .service-desc {
+    font-size: 13px; color: var(--text-muted);
+    line-height: 1.55; font-weight: 300;
+    text-wrap: pretty;
+    margin-top: auto;
+  }
+  .how {
+    background: var(--dark2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 80px 40px;
+  }
+  .how-inner { max-width: 1200px; margin: 0 auto; }
+  .steps {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 0; margin-top: 60px; position: relative;
+  }
+  .steps::before {
+    content: ''; position: absolute;
+    top: 28px; left: 12%; right: 12%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold), rgba(34,211,238,0.42));
+    z-index: 0;
+  }
+  .step { padding: 0 24px; position: relative; z-index: 1; }
+  .step-num {
+    width: 56px; height: 56px;
+    background: var(--dark);
+    border: 2px solid var(--gold);
+    font-family: 'Oswald', sans-serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 24px;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .step:hover .step-num {
+    transform: scale(1.08);
+    box-shadow: 0 0 24px rgba(225,45,60,0.3);
+  }
+  .step-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+  .step-text {
+    font-size: 13px; color: var(--text-muted);
+    line-height: 1.6; font-weight: 300;
+  }
+  .why { padding: 100px 40px; max-width: 1200px; margin: 0 auto; }
+  .why-grid {
+    display: grid; grid-template-columns: 1.25fr 0.95fr;
+    gap: 60px; align-items: center; margin-top: 60px;
+  }
+  .why-img-wrap { position: relative; }
+  .why-img {
+    width: 100%; height: 520px;
+    object-fit: cover; background: rgba(0,0,0,0.22);
+    filter: saturate(0.92) contrast(1.02);
+    display: block;
+  }
+  .why-img-wrap::before {
+    content: ''; position: absolute;
+    top: -12px; left: -12px; right: 12px; bottom: 12px;
+    border: 2px solid var(--gold);
+    z-index: -1; opacity: 0.4;
+  }
+  .why-img-wrap::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(225,45,60,0.1) 0%, transparent 60%);
+  }
+  .why-features { display: flex; flex-direction: column; gap: 20px; }
+  .feature {
+    display: flex; gap: 20px; padding: 22px;
+    background: var(--dark2);
+    border: 1px solid rgba(255,255,255,0.04);
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .feature:hover {
+    border-color: var(--border); transform: translateX(4px);
+  }
+  .feature-icon {
+    flex-shrink: 0; width: 44px; height: 44px;
+    background: rgba(225,45,60,0.1);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+  .feature-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 16px; font-weight: 600;
+    letter-spacing: 1px; text-transform: uppercase;
+    margin-bottom: 6px; color: var(--gold);
+  }
+  .feature-text {
+    font-size: 13px; color: rgba(232,232,232,0.72);
+    line-height: 1.6; font-weight: 300;
+  }
+  .contact-banner {
+    position: relative; overflow: hidden;
+    margin: 0 40px 80px;
+    background: var(--dark3);
+    border: 1px solid var(--border);
+  }
+  .contact-banner-bg {
+    position: absolute; inset: 0;
+    background-image: url('wot8.jpg');
+    background-size: cover; background-position: center;
+    filter: brightness(0.6) saturate(0.85) contrast(1.02);
+  }
+  .contact-banner::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(10,11,13,0.45) 0%, rgba(10,11,13,0.2) 55%, rgba(10,11,13,0.45) 100%);
+    pointer-events: none;
+  }
+  .contact-banner-content { position: relative; z-index: 1; }
+  .contact-banner-content {
+    position: relative; z-index: 1;
+    padding: 100px 60px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 40px; flex-wrap: wrap;
+  }
+  .contact-banner h2 {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 700; text-transform: uppercase; line-height: 1;
+  }
+  .contact-banner h2 span { color: var(--gold); }
+  .contact-banner p {
+    color: var(--text-muted); font-size: 14px;
+    margin-top: 12px; font-weight: 300;
+  }
+  .contact-links { display: flex; gap: 16px; flex-wrap: wrap; }
+  .contact-link {
+    display: flex; align-items: center; gap: 10px;
+    padding: 14px 28px; text-decoration: none;
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    transition: all 0.25s;
+  }
+  .contact-link.tg {
+    background: var(--gold); color: #000;
+    clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+  }
+  .contact-link.tg:hover {
+    background: var(--gold-light); transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(225,45,60,0.35);
+  }
+  footer {
+    background: var(--dark2);
+    border-top: 1px solid var(--border);
+    padding: 48px 40px 32px;
+  }
+  .footer-inner {
+    max-width: var(--container);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+  .footer-left { justify-self: start; }
+  .footer-center { justify-self: center; }
+  .footer-right { justify-self: end; text-align: right; }
+  .footer-logo {
+    font-family: 'Oswald', sans-serif;
+    font-size: 20px; font-weight: 700;
+    letter-spacing: 3px; color: var(--gold);
+    display: block;
+    margin-bottom: 8px;
+  }
+  .footer-logo span { color: #fff; }
+  .footer-tagline {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 11px; color: var(--text-muted);
+    letter-spacing: 2px; text-transform: uppercase;
+  }
+  .footer-copy {
+    font-size: 12px; color: var(--text-muted);
+    letter-spacing: 1px;
+    margin-top: 8px;
+    display: block;
+  }
+  .footer-socials-label {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 11px; color: var(--text-muted);
+    letter-spacing: 3px; text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 14px;
+  }
+  .footer-socials {
+    display: flex; gap: 14px; align-items: center;
+    justify-content: center;
+  }
+  .footer-social {
+    position: relative;
+    width: 52px; height: 52px;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.02);
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: all 0.25s cubic-bezier(.2,.7,.2,1);
+  }
+  .footer-social::before {
+    content: attr(data-name);
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    white-space: nowrap;
+    transition: color 0.25s;
+  }
+  .footer-social:hover {
+    border-color: var(--gold);
+    background: rgba(225,45,60,0.12);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(225,45,60,0.25);
+  }
+  .footer-social:hover::before {
+    color: var(--gold);
+  }
+  /* индивидуальные цвета hover */
+  .footer-social.tg:hover { color: #0088cc; border-color: #0088cc; background: rgba(0,136,204,0.12); box-shadow: 0 8px 24px rgba(0,136,204,0.25); }
+  .footer-social.tg:hover::before { color: #0088cc; }
+  .footer-social.tt:hover { color: #ff0050; border-color: #ff0050; background: rgba(255,0,80,0.12); box-shadow: 0 8px 24px rgba(255,0,80,0.25); }
+  .footer-social.tt:hover::before { color: #ff0050; }
+  .footer-social.dc:hover { color: #5865f2; border-color: #5865f2; background: rgba(88,101,242,0.12); box-shadow: 0 8px 24px rgba(88,101,242,0.25); }
+  .footer-social.dc:hover::before { color: #5865f2; }
+  .footer-social svg {
+    width: 22px; height: 22px;
+    fill: currentColor;
+    transition: transform 0.25s;
+  }
+  .footer-social:hover svg {
+    transform: scale(1.12);
+  }
+  .modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 2000;
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+  .modal {
+    background: var(--dark2);
+    border: 1px solid var(--border);
+    max-width: 600px; width: 100%;
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.3s;
+    max-height: 92vh; overflow-y: auto;
+  }
+  .modal-overlay.open .modal { transform: translateY(0); }
+  .modal-img {
+    width: 100%; height: 220px;
+    object-fit: cover;
+    background: rgba(0,0,0,0.28);
+    filter: saturate(0.92) brightness(0.92);
+    display: block;
+    transition: opacity 0.25s ease;
+  }
+  .modal-img.loading { opacity: 0; }
+  .modal-body { padding: 36px; }
+  .modal-tag {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 11px; color: var(--gold);
+    letter-spacing: 3px; text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .modal-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 30px; font-weight: 700;
+    text-transform: uppercase; margin-bottom: 16px;
+  }
+  .modal-desc {
+    color: var(--text-muted); font-size: 14px;
+    line-height: 1.7; margin-bottom: 32px; font-weight: 300;
+  }
+  .modal-close {
+    position: absolute; top: 16px; right: 16px;
+    background: rgba(10,11,13,0.8);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--text-muted);
+    width: 36px; height: 36px;
+    cursor: pointer; font-size: 16px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    z-index: 10;
+  }
+  .modal-close:hover { border-color: var(--gold); color: var(--gold); }
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(.2,.7,.2,1), transform 0.7s cubic-bezier(.2,.7,.2,1);
+  }
+  .reveal.in { opacity: 1; transform: none; }
+  .services-grid .service-card.reveal:nth-child(1) { transition-delay: 0s; }
+  .services-grid .service-card.reveal:nth-child(2) { transition-delay: .08s; }
+  .services-grid .service-card.reveal:nth-child(3) { transition-delay: .16s; }
+  .services-grid .service-card.reveal:nth-child(4) { transition-delay: 0s; }
+  .services-grid .service-card.reveal:nth-child(5) { transition-delay: .08s; }
+  .services-grid .service-card.reveal:nth-child(6) { transition-delay: .16s; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (max-width: 900px) {
+    nav { padding: 0 20px; }
+    .hero-content { padding: 100px 20px 80px; }
+    .hero-stats { right: 20px; gap: 20px; }
+    .stat-num { font-size: 28px; }
+    .stat-label { font-size: 10px; }
+    .services { padding: 60px 20px; }
+    .services-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .how { padding: 60px 20px; }
+    .steps { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .steps::before { display: none; }
+    .why { padding: 60px 20px; }
+    .why-grid { grid-template-columns: 1fr; gap: 40px; }
+    .why-img { height: 360px; }
+    .contact-banner { margin: 0 20px 60px; }
+    .contact-banner-content { padding: 70px 30px; flex-direction: column; align-items: flex-start; }
+    footer { padding: 30px 20px; }
+    .service-name { font-size: 19px; }
+  }
+  @media (max-width: 600px) {
+    nav { padding: 0 14px; height: 56px; }
+    .nav-logo { font-size: 16px; letter-spacing: 2px; }
+    .nav-logo-img { height: 28px; max-width: 110px; }
+    .nav-tg { padding: 7px 14px; font-size: 12px; }
+    .nav-tg span { display: none; }
+    .lang-btn { padding: 3px 8px; font-size: 10px; }
+
+    /* Сервисы — одна колонка, карточки на всю ширину экрана */
+    .services { padding: 72px 10px 48px; }
+    .services-grid { grid-template-columns: 1fr; gap: 18px; }
+    /* Широкая картинка 16:9 — всё видно, ничего не съедается */
+    .service-img-wrap { aspect-ratio: 16 / 9; }
+    .service-name { font-size: 22px; letter-spacing: 0.5px; }
+    .service-desc { font-size: 14px; line-height: 1.6; }
+    .service-info { padding: 20px 20px 24px; gap: 10px; }
+
+    /* На мобиле все картинки по центру — шире кадр, не режется */
+    .service-card:nth-child(1) .service-img,
+    .service-card:nth-child(2) .service-img,
+    .service-card:nth-child(3) .service-img,
+    .service-card:nth-child(5) .service-img,
+    .service-card:nth-child(6) .service-img {
+      object-position: center center;
+    }
+    /* Бої на урон — сдвигаем сильно влево чтобы WN8 точно был виден */
+    .service-card:nth-child(4) .service-img {
+      object-position: 5% center;
+    }
+
+    .hero-content { padding: 80px 14px 60px; }
+    .hero-title { font-size: clamp(44px, 14vw, 72px); }
+    .hero-sub { font-size: 14px; margin-bottom: 32px; }
+    .hero-cta { gap: 10px; }
+    .btn-primary, .btn-secondary { padding: 13px 22px; font-size: 13px; }
+
+    .hero-stats {
+      position: static;
+      margin-top: 36px;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 18px 28px;
+    }
+    .stat { text-align: left; }
+    .stat-num { font-size: 26px; }
+    .stat-label { font-size: 9px; }
+
+    .steps { grid-template-columns: 1fr; gap: 32px; }
+    .step { padding: 0 0 0 16px; }
+
+    .why { padding: 48px 14px; }
+    .why-img { height: 240px; }
+    .feature { padding: 16px; gap: 14px; }
+
+    .contact-banner { margin: 0 14px 48px; }
+    .contact-banner-content { padding: 48px 24px; gap: 24px; }
+    .contact-banner h2 { font-size: clamp(22px, 7vw, 32px); }
+
+    footer { padding: 32px 14px 24px; }
+    .footer-inner {
+      grid-template-columns: 1fr;
+      gap: 28px;
+      text-align: center;
+    }
+    .footer-left, .footer-center, .footer-right {
+      justify-self: center;
+      text-align: center;
+    }
+    .footer-social {
+      width: 48px; height: 48px;
+    }
+    .footer-social svg { width: 20px; height: 20px; }
+
+    .modal { max-height: 96vh; }
+    .modal-body { padding: 24px; }
+    .modal-title { font-size: 22px; }
+  }
+  @media (hover: hover) {
+    .service-card:hover { will-change: transform; }
+  }
+  @media (max-width: 1200px) {
+    .service-card {
+      transform-style: flat;
+    }
+  }
+
+  .back-to-top {
+    position: fixed;
+    right: 18px; bottom: 18px;
+    width: 44px; height: 44px;
+    border: 1px solid rgba(255,255,255,0.14);
+    background: rgba(10,11,13,0.78);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: var(--text);
+    display: grid; place-items: center;
+    cursor: pointer;
+    opacity: 0; pointer-events: none;
+    transform: translateY(10px);
+    transition: opacity .25s ease, transform .25s ease, border-color .25s ease, color .25s ease;
+    z-index: 1500;
+  }
+  .back-to-top.show {
+    opacity: 1; pointer-events: all;
+    transform: translateY(0);
+  }
+  .back-to-top:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+</style>
 </head>
-<body class="lang-en">
-  <div class="scroll-progress" id="scrollProgress"></div>
-  <div class="preloader" id="preloader"><div class="preloader-logo">KLEOSO</div><div class="preloader-line"></div></div>
-  <nav>
-    <div class="nav-inner">
-      <div class="logo" onclick="showPage('home')">KLEOSO</div>
-      <ul class="nav-center">
-        <li><a onclick="showPage('home')" data-page="home" data-i="nav_services">Services</a></li>
-        <li><a onclick="showPage('how')" data-page="how" data-i="nav_how">How it works</a></li>
-        <li><a onclick="showPage('portfolio')" data-page="portfolio" data-i="nav_portfolio">Portfolio</a></li>
-        <li><a onclick="showPage('contact')" data-page="contact" data-i="nav_contact">Contact</a></li>
-      </ul>
-      <div class="nav-lang">
-        <button class="lang-btn active" onclick="setLang('en')">EN</button><button class="lang-btn" onclick="setLang('ru')">RU</button><button class="lang-btn" onclick="setLang('ge')">GE</button><button class="lang-btn" onclick="setLang('ua')">UA</button>
+<body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<a class="skip-link" href="#services">Skip to services</a>
+
+<nav id="navbar">
+  <a href="#home" class="nav-logo" aria-label="Go to home section">
+    <img src="logo.png" alt="" class="nav-logo-img" width="160" height="36" loading="eager" decoding="async">
+    WOT <span>BOOSTED</span>
+  </a>
+  <div class="nav-right">
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLang('uk')">UA</button>
+      <button class="lang-btn" onclick="setLang('ru')">RU</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+    <a href="https://t.me/wot_boosted_news" target="_blank" class="nav-tg">
+      ✈ <span data-t="nav_tg">Telegram</span>
+    </a>
+  </div>
+</nav>
+
+<section class="services" id="services">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-label" data-t="services_label">Послуги</div>
+      <h2 class="section-title" data-t="services_title">НАШІ <span>ПОСЛУГИ</span></h2>
+    </div>
+    <p class="section-desc" data-t="services_desc">
+      Натисніть на послугу щоб дізнатись деталі і зв'язатись з нами
+    </p>
+  </div>
+
+  <div class="services-grid">
+    <a href="#" class="service-card reveal" onclick="openModal(0); return false;">
+      <div class="scan-sheen" aria-hidden="true"></div>
+      <div class="service-floor" aria-hidden="true"></div>
+      <div class="service-img-wrap">
+        <picture><source srcset="work11.webp" type="image/webp"><img src="work11.jpg" alt="ЛБЗ 1.0" class="service-img" loading="lazy" decoding="async" fetchpriority="low"></picture>
       </div>
-      <div class="nav-mobile">
-        <button class="burger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+      <div class="service-info">
+        <div class="service-name" data-t="s1_name">ЛБЗ 1.0</div>
+        <div class="service-desc" data-t="s1_short">Кампанія з топовими нагородами</div>
+      </div>
+    </a>
+
+    <a href="#" class="service-card reveal" onclick="openModal(1); return false;">
+      <div class="scan-sheen" aria-hidden="true"></div>
+      <div class="service-floor" aria-hidden="true"></div>
+      <div class="service-img-wrap">
+        <picture><source srcset="work22.webp" type="image/webp"><img src="work22.jpg" alt="ЛБЗ 2.0" class="service-img" loading="lazy" decoding="async" fetchpriority="low"></picture>
+      </div>
+      <div class="service-info">
+        <div class="service-name" data-t="s2_name">ЛБЗ 2.0</div>
+        <div class="service-desc" data-t="s2_short">Другий фронт — Об'єкт 279</div>
+      </div>
+    </a>
+
+    <a href="#" class="service-card reveal" onclick="openModal(2); return false;">
+      <div class="scan-sheen" aria-hidden="true"></div>
+      <div class="service-floor" aria-hidden="true"></div>
+      <div class="service-img-wrap">
+        <picture><source srcset="work33.webp" type="image/webp"><img src="work33.jpg" alt="ЛБЗ 3.0" class="service-img" loading="lazy" decoding="async" fetchpriority="low"></picture>
+      </div>
+      <div class="service-info">
+        <div class="service-name" data-t="s3_name">ЛБЗ 3.0</div>
+        <div class="service-desc" data-t="s3_short">Сектор 9 — найскладніша кампанія</div>
+      </div>
+    </a>
+
+    <a href="#" class="service-card reveal" onclick="openModal(3); return false;">
+      <div class="scan-sheen" aria-hidden="true"></div>
+      <div class="service-floor" aria-hidden="true"></div>
+      <div class="service-img-wrap">
+        <picture><source srcset="work44.webp" type="image/webp"><img src="work44.jpg" alt="Бої на урон" class="service-img" loading="lazy" decoding="async" fetchpriority="low"></picture>
+      </div>
+      <div class="service-info">
+        <div class="service-name" data-t="s4_name">Бої на урон</div>
+        <div class="service-desc" data-t="s4_short">Підвищення середнього урону</div>
+      </div>
+    </a>
+
+    <a href="#" class="service-card reveal" onclick="openModal(4); return false;">
+      <div class="scan-sheen" aria-hidden="true"></div>
+      <div class="service-floor" aria-hidden="true"></div>
+      <div class="service-img-wrap">
+        <picture><source srcset="work55.webp" type="image/webp"><img src="work55.png" alt="Відмітки" class="service-img" loading="lazy" decoding="async" fetchpriority="low"></picture>
+      </div>
+      <div class="service-info">
+        <div class="service-name" data-t="s5_name">Відмітки</div>
+        <div class="service-desc" data-t="s5_short">1, 2 та 3 відмітки на будь-яку техніку</div>
+      </div>
+    </a>
+
+    <a href="#" class="service-card reveal" onclick="openModal(5); return false;">
+      <div class="scan-sheen" aria-hidden="true"></div>
+      <div class="service-floor" aria-hidden="true"></div>
+      <div class="service-img-wrap">
+        <picture><source srcset="work66.webp" type="image/webp"><img src="work66.jpg" alt="Майстер" class="service-img" loading="lazy" decoding="async" fetchpriority="low"></picture>
+      </div>
+      <div class="service-info">
+        <div class="service-name" data-t="s6_name">Майстер</div>
+        <div class="service-desc" data-t="s6_short">Знак класності «Майстер» на техніку</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-scanline"></div>
+  <div class="hero-content">
+    <div class="hero-badge" data-t="hero_badge">Професійний буст WoT</div>
+    <h1 class="hero-title">
+      <span class="gold">WOT</span><br>
+      <span class="outline">BOOSTED</span>
+    </h1>
+    <p class="hero-sub" data-t="hero_sub">
+      Професійний бустинг World of Tanks. Відмітки, ЛБЗ, Майстер — виконуємо швидко і чесно.
+    </p>
+    <div class="hero-cta">
+      <a href="https://t.me/wot_boosted_news" target="_blank" class="btn-primary">
+        ✈ <span data-t="hero_btn1">Замовити зараз</span>
+      </a>
+      <a href="#services" class="btn-secondary">
+        <span data-t="hero_btn2">Наші послуги</span> →
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">500+</div>
+        <div class="stat-label" data-t="stat1">Замовлень</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">100%</div>
+        <div class="stat-label" data-t="stat2">Виконання</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">24/7</div>
+        <div class="stat-label" data-t="stat3">Підтримка</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">8+</div>
+        <div class="stat-label" data-t="stat4">Років досвіду</div>
       </div>
     </div>
-    <div class="mobile-menu" id="mobileMenu">
-      <a onclick="showPage('home');closeMenu()" data-i="nav_services">Services</a>
-      <a onclick="showPage('how');closeMenu()" data-i="nav_how">How it works</a>
-      <a onclick="showPage('portfolio');closeMenu()" data-i="nav_portfolio">Portfolio</a>
-      <a onclick="showPage('contact');closeMenu()" data-i="nav_contact">Contact</a>
-      <div class="mobile-lang">
-        <button class="lang-btn active" onclick="setLang('en');closeMenu()">EN</button>
-        <button class="lang-btn" onclick="setLang('ru');closeMenu()">RU</button>
-        <button class="lang-btn" onclick="setLang('ge');closeMenu()">GE</button>
-        <button class="lang-btn" onclick="setLang('ua');closeMenu()">UA</button>
+  </div>
+</section>
+
+<section class="how">
+  <div class="how-inner">
+    <div class="reveal">
+      <div class="section-label" data-t="how_label">Процес</div>
+      <h2 class="section-title" data-t="how_title">ЯК ЦЕ <span>ПРАЦЮЄ</span></h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num">1</div>
+        <div class="step-title" data-t="step1_title">Обери послугу</div>
+        <p class="step-text" data-t="step1_text">Вибери потрібну послугу зі списку і натисни кнопку замовити</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">2</div>
+        <div class="step-title" data-t="step2_title">Напиши в Telegram</div>
+        <p class="step-text" data-t="step2_text">Перейди в наш Telegram і опиши що потрібно</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">3</div>
+        <div class="step-title" data-t="step3_title">Узгодь деталі</div>
+        <p class="step-text" data-t="step3_text">Обговоримо терміни, умови і вартість</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">4</div>
+        <div class="step-title" data-t="step4_title">Отримай результат</div>
+        <p class="step-text" data-t="step4_text">Наш бустер виконає завдання швидко і якісно</p>
       </div>
     </div>
-  </nav>
+  </div>
+</section>
 
-  <div class="page active" id="page-home">
-    <section class="hero hero-cine">
-      <div class="hero-tag reveal" data-i="hero_tag">Marketing Agency - Tbilisi, Georgia</div>
-      <div class="hero-subtag reveal" data-i="hero_subtag">Based in Tbilisi &mdash; working remote with clients worldwide</div>
-      <h1 class="hero-title reveal" data-i="hero_title">We build<br><em>brands</em><br>that matter</h1>
-      <div class="hero-sub reveal">
-        <p class="hero-desc" data-i="hero_desc">Digital marketing agency helping businesses in Georgia grow their presence and convert attention into revenue.</p>
-        <div class="hero-cta"><button class="cta-btn" onclick="showPage('contact')"><span data-i="hero_cta">Start a project</span> &#8599;</button><span class="scroll-hint" data-i="scroll_hint">Scroll to explore</span></div>
-      </div>
-    </section>
-    <section class="services">
-      <div class="section-header reveal"><span class="section-num" data-i="s1_num">Services</span><h2 class="section-title" data-i="s1_title">What we do</h2></div>
-      <div class="services-grid reveal">
-        <div class="service-card"><div class="service-name" data-i="srv1_name">Web Design</div><p class="service-desc" data-i="srv1_desc"></p></div>
-        <div class="service-card"><div class="service-name" data-i="srv2_name">Branding</div><p class="service-desc" data-i="srv2_desc"></p></div>
-        <div class="service-card"><div class="service-name" data-i="srv3_name">Strategy</div><p class="service-desc" data-i="srv3_desc"></p></div>
-        <div class="service-card"><div class="service-name" data-i="srv4_name">Paid Ads</div><p class="service-desc" data-i="srv4_desc"></p></div>
-      </div>
-    </section>
-    <div class="principles reveal">
-      <div class="principle-item"><div class="principle-label" data-i="pr1_label">Principle 01</div><div class="principle-text" data-i="pr1_text">Direct communication, no middle layers</div></div>
-      <div class="principle-item"><div class="principle-label" data-i="pr2_label">Principle 02</div><div class="principle-text" data-i="pr2_text">Fixed scope, no surprises</div></div>
-      <div class="principle-item"><div class="principle-label" data-i="pr3_label">Principle 03</div><div class="principle-text" data-i="pr3_text">Weekly progress updates</div></div>
+<section class="why">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-label" data-t="why_label">Переваги</div>
+      <h2 class="section-title" data-t="why_title">ЧОМУ <span>МИ</span></h2>
     </div>
-    <section class="why">
-      <div class="section-header reveal"><span class="section-num" data-i="s2_num">Why Kleoso</span><h2 class="section-title" data-i="s2_title">Why us</h2></div>
-      <div class="why-grid reveal">
-        <div class="why-item"><div class="why-label" data-i="why1_label">Local insight</div><p class="why-text" data-i="why1_text"></p></div>
-        <div class="why-item"><div class="why-label" data-i="why2_label">Multilingual</div><p class="why-text" data-i="why2_text"></p></div>
-        <div class="why-item"><div class="why-label" data-i="why3_label">Practical focus</div><p class="why-text" data-i="why3_text"></p></div>
-        <div class="why-item"><div class="why-label" data-i="why4_label">Flexible support</div><p class="why-text" data-i="why4_text"></p></div>
-      </div>
-    </section>
-
-    <section class="founder">
-      <div class="section-header reveal"><span class="section-num" data-i="founder_num">Founder</span><h2 class="section-title" data-i="founder_title">Who is behind Kleoso</h2></div>
-      <div class="founder-card reveal">
-        <div class="founder-grid">
-          <img class="founder-photo" src="work7.png" alt="Founder photo">
-          <div>
-            <div class="founder-name" data-i="founder_name">Danylo Sokur</div>
-            <div class="founder-role" data-i="founder_role">Founder - Small team, Tbilisi</div>
-            <p class="founder-desc" data-i="founder_desc">I am building Kleoso as a practical, honest studio focused on web and design.</p>
-            <div class="founder-points">
-              <div class="founder-point" data-i="founder_p1">Direct communication without middle layers</div>
-              <div class="founder-point" data-i="founder_p2">Clear scope and transparent process</div>
-              <div class="founder-point" data-i="founder_p3">Fast iterations with weekly updates</div>
-              <div class="founder-point" data-i="founder_p4">Focus on quality over empty promises</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="free-offer">
-      <div class="section-header reveal"><span class="section-num" data-i="free_num">Launch offer</span><h2 class="section-title" data-i="free_title">First service is free</h2></div>
-      <div class="free-card reveal">
-        <div class="free-spots" data-i="free_spots">Only 3 spots in April</div>
-        <p class="free-desc" data-i="free_desc">For first partners, one selected service is free within a starter scope so you can test our process before scaling.</p>
-        <div class="free-grid">
-          <div class="free-item"><h4 data-i="free_h1">Who</h4><p data-i="free_t1">New partners who are ready to collaborate and provide quick feedback.</p></div>
-          <div class="free-item"><h4 data-i="free_h2">What</h4><p data-i="free_t2">One service: landing draft, design concept, mini-branding set, or audit.</p></div>
-          <div class="free-item"><h4 data-i="free_h3">How</h4><p data-i="free_t3">After free stage, we send a clear paid roadmap with fixed deliverables.</p></div>
-        </div>
-        <button class="cta-btn" onclick="showPage('contact')"><span data-i="free_btn">Claim your free first service</span> &#8599;</button>
-      </div>
-    </section>
-
-    <section class="pricing">
-      <div class="section-header reveal"><span class="section-num" data-i="pricing_num">Investment</span><h2 class="section-title" data-i="pricing_title">Friendly pricing</h2></div>
-      <div class="pricing-card reveal">
-        <p class="pricing-lead" data-i="pricing_lead">Since we're just starting, our rates are kept low. We're building our portfolio together with first partners, so pricing is friendly &mdash; share your project and we'll propose a fair scope.</p>
-        <div class="pricing-grid">
-          <div class="pricing-item"><div class="pricing-label" data-i="pricing_l1">Web Design</div><div class="pricing-value" data-i="pricing_v1">Friendly starter rate</div></div>
-          <div class="pricing-item"><div class="pricing-label" data-i="pricing_l2">Branding</div><div class="pricing-value" data-i="pricing_v2">Friendly starter rate</div></div>
-          <div class="pricing-item"><div class="pricing-label" data-i="pricing_l3">Strategy</div><div class="pricing-value" data-i="pricing_v3">Friendly starter rate</div></div>
-          <div class="pricing-item"><div class="pricing-label" data-i="pricing_l4">Paid Ads</div><div class="pricing-value" data-i="pricing_v4">Friendly starter rate</div></div>
-        </div>
-        <button class="cta-btn" onclick="showPage('contact')"><span data-i="pricing_btn">Request a quote</span> &#8599;</button>
-      </div>
-    </section>
-    <div class="cta-bottom"><h2 class="cta-bottom-title" data-i="cta_title">Let&#39;s build<br>your <span>Kleoso</span></h2><p class="cta-bottom-email"><a href="mailto:Kleoso.agency@proton.me">Kleoso.agency@proton.me</a></p><button class="cta-bottom-btn" onclick="showPage('contact')"><span data-i="cta_btn">Get in touch</span> &#8599;</button></div>
   </div>
-
-  <div class="page" id="page-portfolio">
-    <section class="port-page">
-      <div class="section-header"><span class="section-num" data-i="port_num">Portfolio</span><h2 class="section-title" data-i="port_title">Selected concepts</h2></div>
-      <p class="service-desc" data-i="port_note" style="margin-bottom:1.5rem">Sample works and concepts from our early practice.</p>
-      <div class="portfolio-grid">
-        <div class="portfolio-card" onclick="openLightbox('work3.png','work3')"><div class="portfolio-img-wrap"><img class="portfolio-img" src="work3.png" alt="work3"></div><div class="portfolio-info"><div class="portfolio-tag" data-i="port3_tag">Menu Design</div><div class="portfolio-title" data-i="port3_title">Nevi Restaurant</div><p class="portfolio-desc" data-i="port3_desc"></p></div></div>
-        <div class="portfolio-card" onclick="openLightbox('work4.png','work4')"><div class="portfolio-img-wrap"><img class="portfolio-img" src="work4.png" alt="work4"></div><div class="portfolio-info"><div class="portfolio-tag" data-i="port4_tag">Logo Design</div><div class="portfolio-title" data-i="port4_title">Velour Beauty</div><p class="portfolio-desc" data-i="port4_desc"></p></div></div>
-        <div class="portfolio-card" onclick="openLightbox('work5.png','work5')"><div class="portfolio-img-wrap"><img class="portfolio-img" src="work5.png" alt="work5"></div><div class="portfolio-info"><div class="portfolio-tag" data-i="port5_tag">Business Card</div><div class="portfolio-title" data-i="port5_title">Stoa Boutique Hotel</div><p class="portfolio-desc" data-i="port5_desc"></p></div></div>
-        <div class="portfolio-card" onclick="openLightbox('work6.png','work6')"><div class="portfolio-img-wrap"><img class="portfolio-img" src="work6.png" alt="work6"></div><div class="portfolio-info"><div class="portfolio-tag" data-i="port6_tag">Certificate Design</div><div class="portfolio-title" data-i="port6_title">Raze Barbershop</div><p class="portfolio-desc" data-i="port6_desc"></p></div></div>
-      </div>
-    </section>
-  </div>
-
-  <div class="page" id="page-reviews">
-    <section class="rev-page">
-      <div class="section-header"><span class="section-num" data-i="rev_num">Reviews</span><h2 class="section-title" data-i="rev_title">Early partners</h2></div>
-      <div class="review-cta-box"><h3 class="review-cta-title" data-i="rev_cta_title">Looking for first partners</h3><p class="review-cta-desc" data-i="rev_cta_desc"></p><button class="cta-btn" onclick="showPage('contact')"><span data-i="rev_cta_btn">Get your free first service</span> &#8599;</button></div>
-    </section>
-  </div>
-
-  <div class="page" id="page-how">
-    <section class="how-page">
-      <div class="section-header"><span class="section-num" data-i="how_num">Process</span><h2 class="section-title" data-i="how_title">How we work</h2></div>
-      <div class="steps-grid">
-        <div class="step-row"><div class="step-index">01</div><div><div class="step-name" data-i="step1_name">Discovery Call</div><p class="step-desc" data-i="step1_desc"></p></div><p class="step-detail" data-i="step1_detail"></p></div>
-        <div class="step-row"><div class="step-index">02</div><div><div class="step-name" data-i="step2_name">Research &amp; Strategy</div><p class="step-desc" data-i="step2_desc"></p></div><p class="step-detail" data-i="step2_detail"></p></div>
-        <div class="step-row"><div class="step-index">03</div><div><div class="step-name" data-i="step3_name">Proposal &amp; Agreement</div><p class="step-desc" data-i="step3_desc"></p></div><p class="step-detail" data-i="step3_detail"></p></div>
-        <div class="step-row"><div class="step-index">04</div><div><div class="step-name" data-i="step4_name">Execution</div><p class="step-desc" data-i="step4_desc"></p></div><p class="step-detail" data-i="step4_detail"></p></div>
-        <div class="step-row"><div class="step-index">05</div><div><div class="step-name" data-i="step5_name">Report &amp; Optimise</div><p class="step-desc" data-i="step5_desc"></p></div><p class="step-detail" data-i="step5_detail"></p></div>
-      </div>
-      <h2 class="faq-title" data-i="faq_title">FAQ</h2>
-      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span data-i="faq1_q">How much does it cost?</span><span>+</span></div><p class="faq-a" data-i="faq1_a"></p></div>
-      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span data-i="faq2_q">How long to see results?</span><span>+</span></div><p class="faq-a" data-i="faq2_a"></p></div>
-      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span data-i="faq3_q">Do you work with small businesses?</span><span>+</span></div><p class="faq-a" data-i="faq3_a"></p></div>
-      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span data-i="faq4_q">Can you work remotely?</span><span>+</span></div><p class="faq-a" data-i="faq4_a"></p></div>
-      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span data-i="faq5_q">What languages do you work in?</span><span>+</span></div><p class="faq-a" data-i="faq5_a"></p></div>
-    </section>
-  </div>
-
-  <div class="page" id="page-contact">
-    <section class="con-page">
-      <div class="section-header"><span class="section-num" data-i="con_num">Contact</span><h2 class="section-title" data-i="con_title">Get in touch</h2></div>
-      <div class="contact-grid">
+  <div class="why-grid">
+    <div class="why-img-wrap reveal">
+      <picture><source srcset="work5.webp" type="image/webp"><img src="work5.png" alt="WoT" class="why-img" loading="lazy" decoding="async" fetchpriority="low"></picture>
+    </div>
+    <div class="why-features">
+      <div class="feature reveal">
+        <div class="feature-icon">⚡</div>
         <div>
-          <h3 class="contact-info-title" data-i="con_heading">Let's talk about your project</h3>
-          <div class="contact-item"><div class="contact-item-label" data-i="con_lbl_email">Email</div><div class="contact-item-value"><a href="mailto:Kleoso.agency@proton.me" style="color:inherit;text-decoration:none">Kleoso.agency@proton.me</a></div></div>
-          <div class="contact-item"><div class="contact-item-label" data-i="con_lbl_loc">Location</div><div class="contact-item-value" data-i="con_location">Tbilisi, Georgia</div></div>
-          <div class="contact-item"><div class="contact-item-label" data-i="con_lbl_lang">Languages</div><div class="contact-item-value">EN / RU / GE / UA</div></div>
-          <div class="contact-item"><div class="contact-item-label" data-i="con_lbl_social">Social media</div><div class="contact-socials"><a href="https://www.instagram.com/kleoso_agency/" target="_blank" class="social-btn">Instagram</a><a href="https://t.me/Kleoso" target="_blank" class="social-btn">Telegram</a></div></div>
+          <div class="feature-title" data-t="f1_title">Швидко</div>
+          <p class="feature-text" data-t="f1_text">Виконуємо замовлення в стислі терміни. Без затримок і порожніх обіцянок.</p>
         </div>
-        <form class="contact-form" action="https://formspree.io/f/mpqogjpo" method="POST" onsubmit="handleSubmit(event)">
-          <div><label class="form-label" data-i="form_name">Your name</label><input type="text" name="name" class="form-input" placeholder="John Smith" required></div>
-          <div><label class="form-label" data-i="form_email">Email</label><input type="email" name="email" class="form-input" placeholder="hello@company.com" required></div>
-          <div><label class="form-label" data-i="form_service">Service</label><select name="service" class="form-input"><option data-i="form_service_ph">Select a service...</option><option>Web Design</option><option>Branding</option><option>Strategy</option><option>Paid Ads</option></select></div>
-          <div><label class="form-label" data-i="form_msg">Message</label><textarea name="message" class="form-input" placeholder="Tell us about your project..." required></textarea></div>
-          <button type="submit" class="form-submit" data-i="form_send">Send message &#8599;</button>
-        </form>
       </div>
-    </section>
+      <div class="feature reveal">
+        <div class="feature-icon">🛡</div>
+        <div>
+          <div class="feature-title" data-t="f2_title">Безпечно</div>
+          <p class="feature-text" data-t="f2_text">Працюємо акуратно, мінімальний ризик для акаунту. Досвід 3+ роки.</p>
+        </div>
+      </div>
+      <div class="feature reveal">
+        <div class="feature-icon">✅</div>
+        <div>
+          <div class="feature-title" data-t="f3_title">Гарантія</div>
+          <p class="feature-text" data-t="f3_text">Беремось тільки за те, що можемо виконати. Якщо щось пішло не так — повернемо кошти.</p>
+        </div>
+      </div>
+      <div class="feature reveal">
+        <div class="feature-icon">💬</div>
+        <div>
+          <div class="feature-title" data-t="f4_title">На зв'язку</div>
+          <p class="feature-text" data-t="f4_text">Завжди онлайн у Telegram. Відповідаємо швидко, тримаємо в курсі процесу.</p>
+        </div>
+      </div>
+    </div>
   </div>
+</section>
 
-  <div class="page" id="page-success">
-    <section style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 var(--pad)">
-      <div style="max-width:560px"><div style="font-size:4rem;color:var(--accent)">&#10003;</div><h2 class="section-title" data-i="success_title" style="margin:.6rem 0 1rem">Message sent!</h2><p class="service-desc" data-i="success_desc" style="margin-bottom:1.8rem"></p><button class="cta-btn" onclick="showPage('home')" data-i="success_btn">Back to home</button></div>
-    </section>
+<div class="contact-banner reveal">
+  <div class="contact-banner-bg"></div>
+  <div class="contact-banner-content">
+    <div>
+      <h2 data-t="cta_title">ГОТОВИЙ <span>ЗАМОВИТИ?</span></h2>
+      <p data-t="cta_sub">Напиши нам у Telegram — відповімо швидко</p>
+    </div>
+    <div class="contact-links">
+      <a href="https://t.me/wot_boosted_news" target="_blank" class="contact-link tg">
+        ✈ Telegram
+      </a>
+    </div>
   </div>
+</div>
 
-  <div class="lightbox" id="lightbox" onclick="closeLightbox()"><button class="lightbox-close" onclick="closeLightbox()">&times;</button><img class="lightbox-img" id="lightbox-img" src="" alt=""></div>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-left">
+      <div class="footer-logo">WOT <span>BOOSTED</span></div>
+      <div class="footer-tagline" data-t="footer_tagline">Професійний буст WoT</div>
+    </div>
+    <div class="footer-center">
+      <div class="footer-socials-label" data-t="footer_follow">Слідкуйте за нами</div>
+      <div class="footer-socials">
+        <a href="https://t.me/wot_boosted_news" target="_blank" class="footer-social tg" aria-label="Telegram" data-name="Telegram">
+          <svg viewBox="0 0 24 24"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+        </a>
+        <a href="https://tiktok.com/@wot_boosted" target="_blank" class="footer-social tt" aria-label="TikTok" data-name="TikTok">
+          <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.84-.1z"/></svg>
+        </a>
+        <a href="https://discord.gg/cxxyWuGJjq" target="_blank" class="footer-social dc" aria-label="Discord" data-name="Discord">
+          <svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-right">
+      <div class="footer-copy" data-t="footer_copy">© 2025 WOT BOOSTED. Всі права захищені.</div>
+    </div>
+  </div>
+</footer>
 
-  <footer><div class="footer-logo" onclick="showPage('home')">KLEOSO</div><div class="footer-copy" data-i="footer_copy">&copy; 2026 Kleoso Agency &mdash; Remote, based in Tbilisi</div></footer>
+<div class="modal-overlay" id="modal" onclick="closeModal(event)" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-desc">
+  <div class="modal" role="document">
+    <button class="modal-close" onclick="closeModalDirect()" aria-label="Close">✕</button>
+    <img id="modal-img" src="" alt="" class="modal-img">
+    <div class="modal-body">
+      <div class="modal-tag" id="modal-tag"></div>
+      <div class="modal-title" id="modal-title"></div>
+      <div class="modal-desc" id="modal-desc"></div>
+      <a href="https://t.me/wot_boosted_news" target="_blank" class="btn-primary" style="display:inline-flex; text-decoration:none;">
+        ✈ <span data-t="modal_btn">Замовити в Telegram</span>
+      </a>
+    </div>
+  </div>
+</div>
 
-  <script>
-    function openLightbox(src, alt){var lb=document.getElementById('lightbox');var img=document.getElementById('lightbox-img');img.src=src;img.alt=alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}
-    function closeLightbox(){document.getElementById('lightbox').classList.remove('open');document.body.style.overflow='';}
-    document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
-    var io=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){entry.target.classList.add('in');io.unobserve(entry.target);}})},{threshold:.14});
-    function refreshReveals(){
-      document.querySelectorAll('.page.active .reveal:not(.in)').forEach(function(el){io.observe(el);});
+<button class="back-to-top" id="backToTop" type="button" aria-label="Back to top" title="Back to top">↑</button>
+
+<script>
+const translations = {
+  uk: {
+    nav_tg: 'Telegram',
+    hero_badge: 'Професійний буст WoT',
+    hero_sub: 'Професійний бустинг World of Tanks. Відмітки, ЛБЗ, Майстер — виконуємо швидко і чесно.',
+    hero_btn1: 'Замовити зараз', hero_btn2: 'Наші послуги',
+    stat1: 'Замовлень', stat2: 'Виконання', stat3: 'Підтримка', stat4: 'Років досвіду',
+    services_label: 'Послуги', services_title: 'НАШІ ПОСЛУГИ',
+    services_desc: 'Натисніть на послугу щоб дізнатись деталі і зв\'язатись з нами',
+    s1_name: 'ЛБЗ 1.0', s1_short: 'Кампанія з топовими нагородами',
+    s2_name: 'ЛБЗ 2.0', s2_short: 'Другий фронт — Об\'єкт 279',
+    s3_name: 'ЛБЗ 3.0', s3_short: 'Сектор 9: Black Rock XI',
+    s4_name: 'Бої на урон', s4_short: 'Підвищення середнього урону',
+    s5_name: 'Відмітки', s5_short: '1, 2 та 3 відмітки на будь-яку техніку',
+    s6_name: 'Майстер', s6_short: 'Знак класності «Майстер» на техніку',
+    how_label: 'Процес', how_title: 'ЯК ЦЕ ПРАЦЮЄ',
+    step1_title: 'Обери послугу', step1_text: 'Вибери потрібну послугу зі списку і натисни кнопку замовити',
+    step2_title: 'Напиши в Telegram', step2_text: 'Перейди в наш Telegram і опиши що потрібно',
+    step3_title: 'Узгодь деталі', step3_text: 'Обговоримо терміни, умови і вартість',
+    step4_title: 'Отримай результат', step4_text: 'Наш бустер виконає завдання швидко і якісно',
+    why_label: 'Переваги', why_title: 'ЧОМУ МИ',
+    f1_title: 'Швидко', f1_text: 'Виконуємо замовлення в стислі терміни. Без затримок і порожніх обіцянок.',
+    f2_title: 'Безпечно', f2_text: 'Працюємо акуратно, мінімальний ризик для акаунту. Досвід 3+ роки.',
+    f3_title: 'Гарантія', f3_text: 'Беремось тільки за те, що можемо виконати. Якщо щось пішло не так — повернемо кошти.',
+    f4_title: 'На зв\'язку', f4_text: 'Завжди онлайн у Telegram. Відповідаємо швидко, тримаємо в курсі процесу.',
+    cta_title: 'ГОТОВИЙ ЗАМОВИТИ?', cta_sub: 'Напиши нам у Telegram — відповімо швидко',
+    footer_copy: '© 2025 WOT BOOSTED. Всі права захищені.',
+    footer_tagline: 'Професійний буст WoT',
+    footer_follow: 'Слідкуйте за нами',
+    modal_btn: 'Замовити в Telegram'
+  },
+  ru: {
+    nav_tg: 'Telegram',
+    hero_badge: 'Профессиональный буст WoT',
+    hero_sub: 'Профессиональный бустинг World of Tanks. Отметки, ЛБЗ, Мастер — выполняем быстро и честно.',
+    hero_btn1: 'Заказать сейчас', hero_btn2: 'Наши услуги',
+    stat1: 'Заказов', stat2: 'Выполнение', stat3: 'Поддержка', stat4: 'Лет опыта',
+    services_label: 'Услуги', services_title: 'НАШИ УСЛУГИ',
+    services_desc: 'Нажмите на услугу, чтобы узнать детали и связаться с нами',
+    s1_name: 'ЛБЗ 1.0', s1_short: 'Кампания с топовыми наградами',
+    s2_name: 'ЛБЗ 2.0', s2_short: 'Второй фронт — Объект 279',
+    s3_name: 'ЛБЗ 3.0', s3_short: 'Сектор 9: Black Rock XI',
+    s4_name: 'Бои на урон', s4_short: 'Повышение среднего урона',
+    s5_name: 'Отметки', s5_short: '1, 2 и 3 отметки на любую технику',
+    s6_name: 'Мастер', s6_short: 'Знак классности «Мастер» на технику',
+    how_label: 'Процесс', how_title: 'КАК ЭТО РАБОТАЕТ',
+    step1_title: 'Выбери услугу', step1_text: 'Выбери нужную услугу из списка и нажми заказать',
+    step2_title: 'Напиши в Telegram', step2_text: 'Перейди в наш Telegram и опиши что нужно',
+    step3_title: 'Согласуй детали', step3_text: 'Обсудим сроки, условия и стоимость',
+    step4_title: 'Получи результат', step4_text: 'Наш бустер выполнит задачу быстро и качественно',
+    why_label: 'Преимущества', why_title: 'ПОЧЕМУ МЫ',
+    f1_title: 'Быстро', f1_text: 'Выполняем заказы в кратчайшие сроки. Без задержек и пустых обещаний.',
+    f2_title: 'Безопасно', f2_text: 'Работаем аккуратно, минимальный риск для аккаунта. Опыт 3+ года.',
+    f3_title: 'Гарантия', f3_text: 'Берёмся только за то, что можем выполнить. Если что-то пошло не так — вернём деньги.',
+    f4_title: 'На связи', f4_text: 'Всегда онлайн в Telegram. Отвечаем быстро, держим в курсе процесса.',
+    cta_title: 'ГОТОВ ЗАКАЗАТЬ?', cta_sub: 'Напиши нам в Telegram — ответим быстро',
+    footer_copy: '© 2025 WOT BOOSTED. Все права защищены.',
+    footer_tagline: 'Профессиональный буст WoT',
+    footer_follow: 'Следите за нами',
+    modal_btn: 'Заказать в Telegram'
+  },
+  en: {
+    nav_tg: 'Telegram',
+    hero_badge: 'Professional WoT Boosting',
+    hero_sub: 'Professional World of Tanks boosting. Marks, LBZ, Master — fast and reliable.',
+    hero_btn1: 'Order Now', hero_btn2: 'Our Services',
+    stat1: 'Orders', stat2: 'Completion', stat3: 'Support', stat4: 'Years Experience',
+    services_label: 'Services', services_title: 'OUR SERVICES',
+    services_desc: 'Click on a service to learn details and contact us',
+    s1_name: 'LBZ 1.0', s1_short: 'Campaign with top rewards',
+    s2_name: 'LBZ 2.0', s2_short: 'Second Front — Object 279',
+    s3_name: 'LBZ 3.0', s3_short: 'Sector 9: Black Rock XI',
+    s4_name: 'Damage Battles', s4_short: 'Increase average damage stats',
+    s5_name: 'Marks', s5_short: '1, 2 and 3 marks on any tank',
+    s6_name: 'Ace Tanker', s6_short: 'Ace Tanker mastery badge',
+    how_label: 'Process', how_title: 'HOW IT WORKS',
+    step1_title: 'Choose Service', step1_text: 'Pick the service you need and hit order',
+    step2_title: 'Message us', step2_text: 'Go to our Telegram and describe what you need',
+    step3_title: 'Agree on details', step3_text: 'We will discuss deadlines, terms and price',
+    step4_title: 'Get results', step4_text: 'Our booster completes the task fast and clean',
+    why_label: 'Benefits', why_title: 'WHY US',
+    f1_title: 'Fast', f1_text: 'We complete orders in the shortest time. No delays or empty promises.',
+    f2_title: 'Safe', f2_text: 'We work carefully, minimal risk to your account. 3+ years experience.',
+    f3_title: 'Guaranteed', f3_text: 'We only take what we can deliver. If something goes wrong — full refund.',
+    f4_title: 'Always Online', f4_text: 'Always available on Telegram. Fast replies, we keep you informed.',
+    cta_title: 'READY TO ORDER?', cta_sub: 'Message us on Telegram — we reply fast',
+    footer_copy: '© 2025 WOT BOOSTED. All rights reserved.',
+    footer_tagline: 'Professional WoT Boosting',
+    footer_follow: 'Follow us',
+    modal_btn: 'Order on Telegram'
+  }
+};
+
+let currentLang = 'uk';
+const fallbackImageSvg = encodeURIComponent(
+  "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 675'>" +
+  "<defs><linearGradient id='g' x1='0' x2='1' y1='0' y2='1'>" +
+  "<stop offset='0%' stop-color='#12101a'/>" +
+  "<stop offset='100%' stop-color='#252030'/></linearGradient></defs>" +
+  "<rect width='1200' height='675' fill='url(#g)'/>" +
+  "<rect x='30' y='30' width='1140' height='615' fill='none' stroke='#e12d3c' stroke-opacity='0.5' stroke-width='3'/>" +
+  "<text x='50%' y='48%' text-anchor='middle' fill='#e12d3c' font-family='Arial, sans-serif' font-size='54' font-weight='700'>WOT BOOSTED</text>" +
+  "<text x='50%' y='58%' text-anchor='middle' fill='#e8e8e8' fill-opacity='0.78' font-family='Arial, sans-serif' font-size='28'>Image Placeholder</text>" +
+  "</svg>"
+);
+const fallbackImageDataUrl = "data:image/svg+xml;charset=UTF-8," + fallbackImageSvg;
+
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  const btn = document.querySelector('.lang-btn[onclick="setLang(\'' + lang + '\')"]');
+  if (btn) btn.classList.add('active');
+  const t = translations[lang];
+  document.querySelectorAll('[data-t]').forEach(el => {
+    const key = el.getAttribute('data-t');
+    if (t[key]) {
+      if (key === 'services_title') {
+        el.innerHTML = lang === 'en' ? 'OUR <span>SERVICES</span>' : lang === 'ru' ? 'НАШИ <span>УСЛУГИ</span>' : 'НАШІ <span>ПОСЛУГИ</span>';
+      } else if (key === 'how_title') {
+        el.innerHTML = lang === 'en' ? 'HOW IT <span>WORKS</span>' : lang === 'ru' ? 'КАК ЭТО <span>РАБОТАЕТ</span>' : 'ЯК ЦЕ <span>ПРАЦЮЄ</span>';
+      } else if (key === 'why_title') {
+        el.innerHTML = lang === 'en' ? 'WHY <span>US</span>' : lang === 'ru' ? 'ПОЧЕМУ <span>МЫ</span>' : 'ЧОМУ <span>МИ</span>';
+      } else if (key === 'cta_title') {
+        el.innerHTML = lang === 'en' ? 'READY TO <span>ORDER?</span>' : lang === 'ru' ? 'ГОТОВ <span>ЗАКАЗАТЬ?</span>' : 'ГОТОВИЙ <span>ЗАМОВИТИ?</span>';
+      } else {
+        el.textContent = t[key];
+      }
     }
-    window.refreshReveals=refreshReveals;
-    refreshReveals();
-    function updateScrollProgress(){
-      var el=document.getElementById('scrollProgress');
-      var h=document.documentElement;
-      var max=(h.scrollHeight-h.clientHeight)||1;
-      var pct=Math.min(100,Math.max(0,(window.scrollY/max)*100));
-      el.style.width=pct+'%';
+  });
+  updateModalLang();
+}
+
+function setSafeBackground(selector) {
+  const element = document.querySelector(selector);
+  if (!element) return;
+  const imageUrl = element.style.backgroundImage.match(/url\((['"]?)(.*?)\1\)/);
+  if (!imageUrl || !imageUrl[2]) return;
+
+  const probe = new Image();
+  probe.onload = () => {};
+  probe.onerror = () => {
+    element.style.backgroundImage =
+      "linear-gradient(135deg, rgba(10,11,13,0.92), rgba(25,28,36,0.92)), url('" + fallbackImageDataUrl + "')";
+    element.style.backgroundSize = "cover, cover";
+    element.style.backgroundPosition = "center, center";
+  };
+  probe.src = imageUrl[2];
+}
+
+function applyImageFallbacks() {
+  document.querySelectorAll('img').forEach(img => {
+    img.addEventListener('error', () => {
+      if (img.classList.contains('nav-logo-img')) {
+        img.style.display = 'none';
+        return;
+      }
+      if (img.dataset.fallbackApplied === '1') return;
+      img.dataset.fallbackApplied = '1';
+      img.src = fallbackImageDataUrl;
+    }, { once: true });
+
+    if (img.complete && img.naturalWidth === 0) {
+      if (img.classList.contains('nav-logo-img')) {
+        img.style.display = 'none';
+        return;
+      }
+      img.src = fallbackImageDataUrl;
+      img.dataset.fallbackApplied = '1';
     }
-    function initMagneticButtons(){
-      if(document.body.classList.contains('reduce-motion'))return;
-      document.querySelectorAll('.cta-btn,.cta-bottom-btn,.form-submit').forEach(function(btn){
-        btn.addEventListener('mousemove',function(e){
-          var r=btn.getBoundingClientRect();
-          var x=(e.clientX-r.left-r.width/2)/r.width;
-          var y=(e.clientY-r.top-r.height/2)/r.height;
-          btn.style.transform='translate('+(x*10).toFixed(2)+'px,'+(y*8).toFixed(2)+'px)';
-        });
-        btn.addEventListener('mouseleave',function(){btn.style.transform='translate(0,0)';});
+  });
+
+  setSafeBackground('.hero-bg');
+  setSafeBackground('.contact-banner-bg');
+}
+
+const services = [
+  { img: 'work11.jpg',
+    uk: { name: 'ЛБЗ 1.0', desc: 'Кампанія «Перший сектор» включає 15 оперативних завдань з нагородою у вигляді унікальної техніки та обладнання. Виконаємо всі завдання або вибіркові — на ваш вибір.' },
+    ru: { name: 'ЛБЗ 1.0', desc: 'Кампания «Первый сектор» включает 15 оперативных заданий с наградой в виде уникальной техники и оборудования. Выполним все задания или выборочные — на ваш выбор.' },
+    en: { name: 'LBZ 1.0', desc: 'Campaign "First Sector" includes 15 combat missions with rewards including unique tanks and equipment. We complete all missions or selective ones — your choice.' } },
+  { img: 'work22.jpg',
+    uk: { name: 'ЛБЗ 2.0', desc: 'Кампанія «Другий фронт» — складніший рівень з нагородою Об\'єкт 279 (р). Вимагає високого рівня гри. Наші бустери мають багатий досвід проходження.' },
+    ru: { name: 'ЛБЗ 2.0', desc: 'Кампания «Второй фронт» — более сложный уровень с наградой Объект 279 (р). Требует высокого уровня игры. Наши бустеры имеют большой опыт прохождения.' },
+    en: { name: 'LBZ 2.0', desc: 'Campaign "Second Front" — harder level with Object 279(r) as reward. Requires high skill. Our boosters have extensive experience completing it.' } },
+  { img: 'work33.jpg',
+    uk: { name: 'ЛБЗ 3.0', desc: 'Кампанія «Сектор 9» — найскладніша кампанія в World of Tanks з нагородою Black Rock XI рівня. Завдання надзвичайно важкі, але наші фахівці впораються.' },
+    ru: { name: 'ЛБЗ 3.0', desc: 'Кампания «Сектор 9» — самая сложная кампания в World of Tanks с наградой Black Rock XI уровня. Задания крайне сложные, но наши специалисты справятся.' },
+    en: { name: 'LBZ 3.0', desc: 'Campaign "Sector 9" — the hardest campaign in World of Tanks with Black Rock Tier XI as reward. Missions are extremely difficult, but our specialists will handle it.' } },
+  { img: 'work44.jpg',
+    uk: { name: 'Бої на урон', desc:
+      '<strong>Про послугу</strong><br>' +
+      'Топовий урон — це найбільш затребуваний показник статистики на даний момент. Тому такі замовлення робляться у взводі, коли взводні ведуть гру на ключовий аккаунт в бою. Головна перевага в тому, що кожен замовник може дивитись за виконанням свого замовлення на YouTube (видно трансляцію тільки замовнику).' +
+      '<br><br><strong>Умови для виконання</strong>' +
+      '<ul style="margin:12px 0 0 18px; color: rgba(232,232,232,0.74); line-height:1.7;">' +
+      '<li>Наявність срібла (50 боїв — від 1 млн срібла).</li>' +
+      '<li>Наявність 100 золота для зміни обладнання.</li>' +
+      '<li>У вас повинен бути активний преміум акаунт.</li>' +
+      '<li>Можливість перенавчити екіпаж.</li>' +
+      '<li>Танк повинен бути в повній комплектації.</li>' +
+      '<li>Під час виконання послуги ви не граєте на замовленій техніці.</li>' +
+      '</ul>' },
+    ru: { name: 'Бои на урон', desc:
+      '<strong>Про услугу</strong><br>' +
+      'Топовый урон — один из самых востребованных показателей статистики. Поэтому такие заказы выполняются во взводе: взводные ведут игру на ключевой аккаунт. Главное преимущество — заказчик может наблюдать за выполнением на YouTube (трансляция видна только заказчику).' +
+      '<br><br><strong>Условия выполнения</strong>' +
+      '<ul style="margin:12px 0 0 18px; color: rgba(232,232,232,0.74); line-height:1.7;">' +
+      '<li>Наличие серебра (50 боёв — от 1 млн серебра).</li>' +
+      '<li>Наличие 100 золота для смены оборудования.</li>' +
+      '<li>Активный премиум-аккаунт.</li>' +
+      '<li>Возможность переобучить экипаж.</li>' +
+      '<li>Танк должен быть в полной комплектации.</li>' +
+      '<li>Во время выполнения услуги вы не играете на заказанной технике.</li>' +
+      '</ul>' },
+    en: { name: 'Damage Battles', desc:
+      '<strong>About the service</strong><br>' +
+      'High damage performance is one of the most requested stats. These orders are completed in a platoon, where teammates support the main account in battle. Key benefit: you can watch progress via a private YouTube stream (visible only to the client).' +
+      '<br><br><strong>Requirements</strong>' +
+      '<ul style="margin:12px 0 0 18px; color: rgba(232,232,232,0.74); line-height:1.7;">' +
+      '<li>Enough credits (50 battles — from 1M credits).</li>' +
+      '<li>100 gold to change equipment.</li>' +
+      '<li>Active premium account.</li>' +
+      '<li>Ability to retrain the crew.</li>' +
+      '<li>The tank must be fully equipped.</li>' +
+      '<li>You don’t play the ordered vehicle during the service.</li>' +
+      '</ul>' } },
+  { img: 'work55.png',
+    uk: { name: 'Відмітки', desc: 'Відмітки на стволі — престижний показник майстерності. Вибий 1, 2 або 3 відмітки на будь-якій техніці. Швидко та ефективно.' },
+    ru: { name: 'Отметки', desc: 'Отметки на стволе — престижный показатель мастерства. Получи 1, 2 или 3 отметки на любой технике. Быстро и эффективно.' },
+    en: { name: 'Marks of Excellence', desc: 'Barrel marks are a prestigious mastery indicator. Get 1, 2 or 3 marks on any tank. Fast and efficient.' } },
+  { img: 'work66.jpg',
+    uk: { name: 'Майстер', desc: 'Знак класності «Майстер» — найвища нагорода за бій. Присуджується гравцям, які набрали найбільше досвіду за бій серед усіх на даній техніці.' },
+    ru: { name: 'Мастер', desc: 'Знак классности «Мастер» — высшая награда за бой. Присуждается игрокам, набравшим наибольший опыт за бой среди всех на данной технике.' },
+    en: { name: 'Ace Tanker', desc: 'Ace Tanker mastery badge — the highest battle award. Awarded to players who earned the most XP in a battle among all players on that tank.' } }
+];
+
+let currentModal = -1;
+
+function openModal(idx) {
+  currentModal = idx;
+  const s = services[idx];
+  const lang = currentLang;
+  const modalImg = document.getElementById('modal-img');
+  modalImg.classList.add('loading');
+  modalImg.onload = () => modalImg.classList.remove('loading');
+  modalImg.onerror = () => modalImg.classList.remove('loading');
+  modalImg.src = s.img;
+  document.getElementById('modal-tag').textContent = (lang === 'en' ? 'Service' : lang === 'ru' ? 'Услуга' : 'Послуга');
+  document.getElementById('modal-title').textContent = s[lang].name;
+  document.getElementById('modal-desc').innerHTML = s[lang].desc;
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(e) {
+  if (e && e.target !== document.getElementById('modal')) return;
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow = '';
+  currentModal = -1;
+}
+
+function closeModalDirect() {
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow = '';
+  currentModal = -1;
+}
+
+function updateModalLang() {
+  if (currentModal >= 0 && document.getElementById('modal').classList.contains('open')) {
+    openModal(currentModal);
+  }
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalDirect(); });
+
+const io = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+      io.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+function updateScrollProgress() {
+  const h = document.documentElement;
+  const max = (h.scrollHeight - h.clientHeight) || 1;
+  const pct = Math.min(100, Math.max(0, (window.scrollY / max) * 100));
+  document.getElementById('scrollProgress').style.width = pct + '%';
+}
+const navbar = document.getElementById('navbar');
+const backToTop = document.getElementById('backToTop');
+let scrollTicking = false;
+
+function handleScroll() {
+  const y = window.scrollY;
+  if (y > 20) navbar.classList.add('nav-scrolled');
+  else navbar.classList.remove('nav-scrolled');
+
+  if (y > 600) backToTop.classList.add('show');
+  else backToTop.classList.remove('show');
+
+  updateScrollProgress();
+  scrollTicking = false;
+}
+
+window.addEventListener('scroll', () => {
+  if (scrollTicking) return;
+  scrollTicking = true;
+  requestAnimationFrame(handleScroll);
+}, { passive: true });
+backToTop.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+const enableHeavyEffects =
+  !window.matchMedia('(pointer: coarse)').matches &&
+  !window.matchMedia('(prefers-reduced-motion: reduce)').matches &&
+  (navigator.hardwareConcurrency || 4) >= 6;
+
+if (enableHeavyEffects) {
+  document.querySelectorAll('.btn-primary, .btn-secondary, .contact-link').forEach(btn => {
+    btn.addEventListener('mousemove', e => {
+      const r = btn.getBoundingClientRect();
+      const x = (e.clientX - r.left - r.width/2) / r.width;
+      const y = (e.clientY - r.top - r.height/2) / r.height;
+      btn.style.transform = 'translate(' + (x*8).toFixed(2) + 'px, ' + (y*6).toFixed(2) + 'px)';
+    });
+    btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+  });
+
+  document.querySelectorAll('.service-card').forEach(card => {
+    let raf = 0;
+    card.addEventListener('mousemove', e => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        const r = card.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width;
+        const py = (e.clientY - r.top) / r.height;
+        const rx = (0.5 - py) * 5.4;
+        const ry = (px - 0.5) * 8.2;
+        card.style.transform = 'translateY(-4px) rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg)';
+        card.style.filter = 'saturate(1.03)';
+        const tx = ((px - 0.5) * 10).toFixed(2) + 'px';
+        const ty = ((py - 0.5) * 7).toFixed(2) + 'px';
+        card.style.setProperty('--par-x', tx);
+        card.style.setProperty('--par-y', ty);
       });
-    }
-    function shouldReduceMotion(){
-      var prefersReduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      var coarsePointer=window.matchMedia&&window.matchMedia('(pointer: coarse)').matches;
-      var lowRam=navigator.deviceMemory&&navigator.deviceMemory<=4;
-      var lowCpu=navigator.hardwareConcurrency&&navigator.hardwareConcurrency<=4;
-      return !!(prefersReduced||coarsePointer||lowRam||lowCpu);
-    }
-    function hidePreloader(){
-      var pre=document.getElementById('preloader');
-      if(!pre||pre.classList.contains('hide'))return;
-      pre.classList.add('hide');
-      document.body.classList.add('hero-cine-ready');
-    }
-    // Fallback: force-hide preloader after 1.8s no matter what
-    setTimeout(hidePreloader,1800);
-    document.addEventListener('DOMContentLoaded',function(){
-      if(shouldReduceMotion())document.body.classList.add('reduce-motion');
-      initMagneticButtons();
-      window.addEventListener('scroll',updateScrollProgress,{passive:true});
-      refreshReveals();
     });
-    window.addEventListener('load',function(){
-      hidePreloader();
-      refreshReveals();
+    card.addEventListener('mouseleave', () => {
+      if (raf) cancelAnimationFrame(raf);
+      raf = 0;
+      card.style.transform = '';
+      card.style.filter = '';
+      card.style.removeProperty('--par-x');
+      card.style.removeProperty('--par-y');
     });
-  </script>
+  });
+}
+
+updateScrollProgress();
+applyImageFallbacks();
+
+// Пауза heroZoom когда hero не виден — экономия CPU
+const heroBg = document.querySelector('.hero-bg');
+if (heroBg && 'IntersectionObserver' in window) {
+  const heroObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      heroBg.style.animationPlayState = entry.isIntersecting ? 'running' : 'paused';
+    });
+  }, { threshold: 0.01 });
+  heroObs.observe(document.querySelector('.hero'));
+}
+
+// Service Worker отключён для стабильной работы в процессе разработки
+</script>
+<!-- Schema.org — замените URL на ваш реальный домен -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "WOT BOOSTED",
+  "description": "Профессиональный буст World of Tanks. ЛБЗ, Отметки, Мастер, бои на урон.",
+  "url": "https://wotboosted.com/",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer service",
+    "url": "https://t.me/wot_boosted_news"
+  },
+  "offers": [
+    { "@type": "Offer", "name": "ЛБЗ 1.0" },
+    { "@type": "Offer", "name": "ЛБЗ 2.0" },
+    { "@type": "Offer", "name": "ЛБЗ 3.0" },
+    { "@type": "Offer", "name": "Бої на урон" },
+    { "@type": "Offer", "name": "Відмітки" },
+    { "@type": "Offer", "name": "Майстер" }
+  ]
+}
+</script>
 </body>
 </html>
