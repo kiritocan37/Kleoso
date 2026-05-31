@@ -209,14 +209,34 @@
     .cta-bottom-email a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(240,235,225,.25);transition:color .25s,border-color .25s;padding-bottom:2px}
     .cta-bottom-email a:hover{color:var(--accent2);border-color:var(--accent2)}
     .cta-bottom-btn{border:1px solid rgba(240,235,225,.35);background:none;color:var(--bg);padding:1rem 2rem;font-size:.84rem;text-transform:uppercase;letter-spacing:.1em;cursor:pointer}
-    footer{border-top:1px solid var(--border);padding:1.3rem var(--pad)}
-    .footer-inner{display:flex;justify-content:space-between;align-items:flex-start;gap:1.5rem;flex-wrap:wrap;width:100%}
-    .footer-brand{display:flex;flex-direction:column;gap:.35rem}
-    .footer-logo{font-family:var(--ff-en);letter-spacing:.15em;cursor:pointer}
-    .footer-copy{font-size:.74rem;color:var(--muted);max-width:520px}
-    .footer-nav{display:flex;gap:1rem;align-items:center}
-    .footer-link{font-size:.74rem;color:var(--muted);text-decoration:none;letter-spacing:.06em;text-transform:uppercase;font-weight:600;border-bottom:1px solid transparent;transition:color .2s,border-color .2s}
-    .footer-link:hover{color:var(--accent);border-color:var(--accent)}
+    footer{border-top:1px solid var(--border);background:var(--bg2);padding:0}
+    .footer-main{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:2.5rem;padding:4rem var(--pad) 3rem;border-bottom:1px solid var(--border)}
+    @media(max-width:900px){.footer-main{grid-template-columns:1fr 1fr;gap:2rem}}
+    @media(max-width:560px){.footer-main{grid-template-columns:1fr;gap:1.6rem;padding:3rem var(--pad) 2rem}}
+    .footer-col{display:flex;flex-direction:column;gap:.85rem}
+    .footer-logo{font-family:var(--ff-en);font-size:2rem;letter-spacing:.15em;cursor:pointer;line-height:1}
+    .footer-tagline{font-size:.88rem;line-height:1.75;color:var(--muted);max-width:280px}
+    .footer-col-title{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:.15rem}
+    .footer-links{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+    .footer-links a,.footer-links button{background:none;border:none;padding:0;font:inherit;color:var(--dark2);text-decoration:none;font-size:.88rem;cursor:pointer;text-align:left;transition:color .2s}
+    .footer-links a:hover,.footer-links button:hover{color:var(--accent)}
+    .footer-contact-item{font-size:.88rem;color:var(--dark2);line-height:1.6}
+    .footer-contact-item a{color:inherit;text-decoration:none;border-bottom:1px solid var(--border);transition:color .2s,border-color .2s}
+    .footer-contact-item a:hover{color:var(--accent);border-color:var(--accent)}
+    .footer-legal-text{font-size:.82rem;line-height:1.75;color:var(--muted)}
+    .footer-privacy-link{display:inline-flex;align-items:center;gap:.35rem;margin-top:.25rem;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--dark);text-decoration:none;border-bottom:1px solid var(--accent);padding-bottom:2px;width:fit-content;transition:color .2s,gap .2s}
+    .footer-privacy-link:hover{color:var(--accent);gap:.55rem}
+    .footer-socials{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.25rem}
+    .footer-socials a{display:inline-flex;border:1px solid var(--border);color:var(--muted);padding:.45rem .8rem;font-size:.68rem;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;font-weight:700;transition:all .2s;background:var(--bg)}
+    .footer-socials a:hover{color:var(--accent);border-color:var(--accent)}
+    .footer-bottom{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;padding:1.1rem var(--pad);background:var(--dark);color:rgba(240,235,225,.72)}
+    .footer-bottom-copy{font-size:.72rem;letter-spacing:.04em;line-height:1.5;max-width:640px}
+    .footer-bottom-copy strong{color:var(--bg);font-weight:600}
+    .footer-bottom-nav{display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap}
+    .footer-bottom-link{font-size:.72rem;color:rgba(240,235,225,.72);text-decoration:none;letter-spacing:.06em;text-transform:uppercase;font-weight:600;border-bottom:1px solid rgba(240,235,225,.22);padding-bottom:2px;transition:color .2s,border-color .2s}
+    .footer-bottom-link:hover{color:var(--accent2);border-color:var(--accent2)}
+    .footer-bottom-sep{width:1px;height:14px;background:rgba(240,235,225,.22)}
+    @media(max-width:560px){.footer-bottom{flex-direction:column;align-items:flex-start;gap:.85rem}}
     /* a11y: keyboard-only focus ring */
     :focus{outline:none}
     :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
@@ -465,13 +485,42 @@
   <div class="lightbox" id="lightbox" onclick="closeLightbox()" role="dialog" aria-modal="true" aria-label="Image preview"><button type="button" class="lightbox-close" onclick="closeLightbox()" aria-label="Close image preview">&times;</button><img class="lightbox-img" id="lightbox-img" src="" alt=""></div>
 
   <footer class="site-footer">
-    <div class="footer-inner">
-      <div class="footer-brand">
+    <div class="footer-main">
+      <div class="footer-col">
         <div class="footer-logo" onclick="showPage('home')" role="button" tabindex="0" aria-label="Kleoso home">KLEOSO</div>
-        <p class="footer-copy" data-i="footer_copy">&copy; 2026 Kleoso Agency &mdash; Based in Poland, moving to Georgia soon</p>
+        <p class="footer-tagline" data-i="footer_tagline">Marketing agency for brands that want clarity, craft, and measurable growth. Based in Poland, moving to Georgia soon.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/kleoso_agency/" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a href="https://t.me/Kleoso" target="_blank" rel="noopener noreferrer">Telegram</a>
+        </div>
       </div>
-      <nav class="footer-nav" aria-label="Footer">
-        <a class="footer-link" href="privacy.html" data-i="footer_privacy">Privacy Policy</a>
+      <div class="footer-col">
+        <h3 class="footer-col-title" data-i="footer_nav_title">Explore</h3>
+        <ul class="footer-links">
+          <li><button type="button" onclick="showPage('home')" data-i="nav_services">Services</button></li>
+          <li><button type="button" onclick="showPage('portfolio')" data-i="nav_portfolio">Portfolio</button></li>
+          <li><button type="button" onclick="showPage('how')" data-i="nav_how">How it works</button></li>
+          <li><button type="button" onclick="showPage('contact')" data-i="nav_contact">Contact</button></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3 class="footer-col-title" data-i="footer_contact_title">Get in touch</h3>
+        <p class="footer-contact-item"><a href="mailto:Kleoso.agency@proton.me">Kleoso.agency@proton.me</a></p>
+        <p class="footer-contact-item" data-i="footer_location">Poland &mdash; moving to Georgia soon</p>
+        <p class="footer-contact-item" data-i="footer_langs">EN / RU / GE / UA / PL</p>
+      </div>
+      <div class="footer-col">
+        <h3 class="footer-col-title" data-i="footer_legal_title">Privacy &amp; data</h3>
+        <p class="footer-legal-text" data-i="footer_legal_text">We only collect data you submit via our contact form. Your information is used to respond to inquiries and is never sold. Processed in accordance with GDPR.</p>
+        <a class="footer-privacy-link" href="privacy.html" data-i="footer_privacy_link">Read full Privacy Policy &#8599;</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-bottom-copy" data-i="footer_bottom_copy"><strong>&copy; 2026 Kleoso Agency.</strong> All rights reserved. Remote-first studio based in Poland.</p>
+      <nav class="footer-bottom-nav" aria-label="Legal">
+        <a class="footer-bottom-link" href="privacy.html" data-i="footer_privacy">Privacy Policy</a>
+        <span class="footer-bottom-sep" aria-hidden="true"></span>
+        <a class="footer-bottom-link" href="mailto:Kleoso.agency@proton.me" data-i="footer_email_link">Email us</a>
       </nav>
     </div>
   </footer>

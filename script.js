@@ -130,7 +130,13 @@ var i18n={
     con_lbl_email:'Email',con_lbl_loc:'Location',con_location:'Poland (moving to Georgia soon)',con_lbl_lang:'Languages',con_lbl_social:'Social media',
     form_name:'Your name',form_email:'Email',form_service:'Service',form_service_ph:'Select a service...',form_msg:'Message',form_send:'Send message &#8599;',
     success_title:'Message sent!',success_desc:'We will get back to you within 24 hours.',success_btn:'Back to home',
-    skip_link:'Skip to main content',sticky_cta:'Contact us',footer_privacy:'Privacy Policy',
+    skip_link:'Skip to main content',sticky_cta:'Contact us',
+    footer_tagline:'Marketing agency for brands that want clarity, craft, and measurable growth. Based in Poland, moving to Georgia soon.',
+    footer_nav_title:'Explore',footer_contact_title:'Get in touch',footer_location:'Poland &mdash; moving to Georgia soon',footer_langs:'EN / RU / GE / UA / PL',
+    footer_legal_title:'Privacy &amp; data',
+    footer_legal_text:'We only collect data you submit via our contact form. Your information is used to respond to inquiries and is never sold. Processed in accordance with GDPR.',
+    footer_privacy_link:'Read full Privacy Policy &#8599;',footer_privacy:'Privacy Policy',footer_email_link:'Email us',
+    footer_bottom_copy:'<strong>&copy; 2026 Kleoso Agency.</strong> All rights reserved. Remote-first studio based in Poland.',
     footer_copy:'&copy; 2026 Kleoso Agency &mdash; Based in Poland, moving to Georgia soon'
   },
   ru:{
@@ -197,7 +203,13 @@ var i18n={
     con_lbl_email:'Email',con_lbl_loc:'Локация',con_location:'Польша (скоро переезд в Грузию)',con_lbl_lang:'Языки',con_lbl_social:'Соцсети',
     form_name:'Ваше имя',form_email:'Email',form_service:'Услуга',form_service_ph:'Выберите услугу...',form_msg:'Сообщение',form_send:'Отправить &#8599;',
     success_title:'Сообщение отправлено!',success_desc:'Мы ответим в течение 24 часов.',success_btn:'На главную',
-    skip_link:'Перейти к основному содержанию',sticky_cta:'Связаться',footer_privacy:'Политика конфиденциальности',
+    skip_link:'Перейти к основному содержанию',sticky_cta:'Связаться',
+    footer_tagline:'Маркетинговое агентство для брендов, которым нужны ясность, качество и измеримый рост. База в Польше, скоро переезд в Грузию.',
+    footer_nav_title:'Разделы',footer_contact_title:'Связаться',footer_location:'Польша &mdash; скоро переезд в Грузию',footer_langs:'EN / RU / GE / UA / PL',
+    footer_legal_title:'Конфиденциальность',
+    footer_legal_text:'Мы собираем только данные, которые вы отправляете через форму. Информация используется для ответа на запросы и никогда не продаётся. Обработка в соответствии с GDPR.',
+    footer_privacy_link:'Полная политика конфиденциальности &#8599;',footer_privacy:'Политика конфиденциальности',footer_email_link:'Написать нам',
+    footer_bottom_copy:'<strong>&copy; 2026 Kleoso Agency.</strong> Все права защищены. Удалённая студия, база в Польше.',
     footer_copy:'&copy; 2026 Kleoso Agency &mdash; База в Польше, скоро переезд в Грузию'
   },
   ge:{
@@ -264,7 +276,13 @@ var i18n={
     con_lbl_email:'Email',con_lbl_loc:'მდებარეობა',con_location:'პოლონეთი (მალე გადმოსვლა საქართველოში)',con_lbl_lang:'ენები',con_lbl_social:'სოციალური ქსელები',
     form_name:'თქვენი სახელი',form_email:'Email',form_service:'სერვისი',form_service_ph:'აირჩიეთ სერვისი...',form_msg:'შეტყობინება',form_send:'გაგზავნა &#8599;',
     success_title:'შეტყობინება გაიგზავნა!',success_desc:'დაგიკავშირდებით 24 საათში.',success_btn:'მთავარზე დაბრუნება',
-    skip_link:'ძირითად შიგთავსზე გადასვლა',sticky_cta:'დაკავშირება',footer_privacy:'კონფიდენციალურობის პოლიტიკა',
+    skip_link:'ძირითად შიგთავსზე გადასვლა',sticky_cta:'დაკავშირება',
+    footer_tagline:'მარკეტინგული სააგენტო ბრენდებისთვის, რომლებსაც სჭირდებათ გამჭვირვალობა, ხარისხი და ზომვადი ზრდა. ბაზა პოლონეთში, მალე გადმოსვლა საქართველოში.',
+    footer_nav_title:'ნავიგაცია',footer_contact_title:'კონტაქტი',footer_location:'პოლონეთი &mdash; მალე გადმოსვლა საქართველოში',footer_langs:'EN / RU / GE / UA / PL',
+    footer_legal_title:'კონფიდენციალურობა',
+    footer_legal_text:'ჩვენ ვაგროვებთ მხოლოდ იმ მონაცემებს, რაც კონტაქტის ფორმით გვიზიარებთ. ინფორმაცია გამოიყენება პასუხისთვის და არასოდეს იყიდება. დამუშავება GDPR-ის შესაბამისად.',
+    footer_privacy_link:'სრული კონფიდენციალურობის პოლიტიკა &#8599;',footer_privacy:'კონფიდენციალურობა',footer_email_link:'მოგვწერეთ',
+    footer_bottom_copy:'<strong>&copy; 2026 Kleoso Agency.</strong> ყველა უფლება დაცულია. Remote-first სტუდია, ბაზა პოლონეთში.',
     footer_copy:'&copy; 2026 Kleoso Agency &mdash; ბაზა პოლონეთში, მალე გადმოსვლა საქართველოში'
   },
   ua:{
@@ -331,7 +349,13 @@ var i18n={
     con_lbl_email:'Email',con_lbl_loc:'Локація',con_location:'Польща (скоро переїзд до Грузії)',con_lbl_lang:'Мови',con_lbl_social:'Соцмережі',
     form_name:'Ваше імʼя',form_email:'Email',form_service:'Послуга',form_service_ph:'Оберіть послугу...',form_msg:'Повідомлення',form_send:'Надіслати &#8599;',
     success_title:'Повідомлення надіслано!',success_desc:'Відповімо протягом 24 годин.',success_btn:'На головну',
-    skip_link:'Перейти до основного вмісту',sticky_cta:'Звʼязатись',footer_privacy:'Політика конфіденційності',
+    skip_link:'Перейти до основного вмісту',sticky_cta:'Звʼязатись',
+    footer_tagline:'Маркетингова агенція для брендів, яким потрібні ясність, якість і вимірюване зростання. База в Польщі, скоро переїзд до Грузії.',
+    footer_nav_title:'Розділи',footer_contact_title:'Контакт',footer_location:'Польща &mdash; скоро переїзд до Грузії',footer_langs:'EN / RU / GE / UA / PL',
+    footer_legal_title:'Конфіденційність',
+    footer_legal_text:'Ми збираємо лише дані, які ви надсилаєте через форму. Інформація використовується для відповіді на запити і ніколи не продається. Обробка відповідно до GDPR.',
+    footer_privacy_link:'Повна політика конфіденційності &#8599;',footer_privacy:'Політика конфіденційності',footer_email_link:'Написати нам',
+    footer_bottom_copy:'<strong>&copy; 2026 Kleoso Agency.</strong> Усі права захищені. Remote-first студія, база в Польщі.',
     footer_copy:'&copy; 2026 Kleoso Agency &mdash; База в Польщі, скоро переїзд до Грузії'
   },
   pl:{
@@ -398,7 +422,13 @@ var i18n={
     con_lbl_email:'Email',con_lbl_loc:'Lokalizacja',con_location:'Polska (wkrotce przeprowadzka do Gruzji)',con_lbl_lang:'Jezyki',con_lbl_social:'Social media',
     form_name:'Twoje imie',form_email:'Email',form_service:'Usluga',form_service_ph:'Wybierz usluge...',form_msg:'Wiadomosc',form_send:'Wyslij wiadomosc &#8599;',
     success_title:'Wiadomosc wyslana!',success_desc:'Odezwiemy sie w ciagu 24 godzin.',success_btn:'Powrot na glowna',
-    skip_link:'Przejdz do glownej tresci',sticky_cta:'Kontakt',footer_privacy:'Polityka prywatnosci',
+    skip_link:'Przejdz do glownej tresci',sticky_cta:'Kontakt',
+    footer_tagline:'Agencja marketingowa dla marek, ktore oczekuja przejrzystosci, jakosci i mierzalnego wzrostu. Siedziba w Polsce, wkrotce przeprowadzka do Gruzji.',
+    footer_nav_title:'Nawigacja',footer_contact_title:'Kontakt',footer_location:'Polska &mdash; wkrotce przeprowadzka do Gruzji',footer_langs:'EN / RU / GE / UA / PL',
+    footer_legal_title:'Prywatnosc i dane',
+    footer_legal_text:'Zbieramy tylko dane przeslane przez formularz kontaktowy. Informacje sluza do odpowiedzi na zapytania i nigdy nie sa sprzedawane. Przetwarzanie zgodnie z RODO.',
+    footer_privacy_link:'Pelna polityka prywatnosci &#8599;',footer_privacy:'Polityka prywatnosci',footer_email_link:'Napisz do nas',
+    footer_bottom_copy:'<strong>&copy; 2026 Kleoso Agency.</strong> Wszelkie prawa zastrzezone. Studio remote-first z siedziba w Polsce.',
     footer_copy:'&copy; 2026 Kleoso Agency &mdash; Siedziba w Polsce, wkrotce przeprowadzka do Gruzji'
   }
 };
