@@ -4,5 +4,9 @@
     <loc>https://www.kleoso.com/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+  <url>
+    <loc>https://www.kleoso.com/privacy.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
   </url>
 </urlset>

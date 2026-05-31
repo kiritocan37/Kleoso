@@ -30,8 +30,29 @@ function syncActiveNav(page){
   if(target)target.classList.add('active-link');
 }
 function toggleFaq(el){el.classList.toggle('open')}
-function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
-function closeMenu(){document.getElementById('mobileMenu').classList.remove('open')}
+function toggleMenu(){
+  var menu=document.getElementById('mobileMenu');
+  var burger=document.getElementById('burgerBtn');
+  if(!menu)return;
+  var open=!menu.classList.contains('open');
+  menu.classList.toggle('open',open);
+  menu.hidden=!open;
+  if(burger){
+    burger.setAttribute('aria-expanded',open?'true':'false');
+    burger.setAttribute('aria-label',open?'Close navigation menu':'Open navigation menu');
+  }
+}
+function closeMenu(){
+  var menu=document.getElementById('mobileMenu');
+  var burger=document.getElementById('burgerBtn');
+  if(!menu)return;
+  menu.classList.remove('open');
+  menu.hidden=true;
+  if(burger){
+    burger.setAttribute('aria-expanded','false');
+    burger.setAttribute('aria-label','Open navigation menu');
+  }
+}
 function handleSubmit(e){
   e.preventDefault();
   var form=e.target;
@@ -109,6 +130,7 @@ var i18n={
     con_lbl_email:'Email',con_lbl_loc:'Location',con_location:'Poland (moving to Georgia soon)',con_lbl_lang:'Languages',con_lbl_social:'Social media',
     form_name:'Your name',form_email:'Email',form_service:'Service',form_service_ph:'Select a service...',form_msg:'Message',form_send:'Send message &#8599;',
     success_title:'Message sent!',success_desc:'We will get back to you within 24 hours.',success_btn:'Back to home',
+    skip_link:'Skip to main content',sticky_cta:'Contact us',footer_privacy:'Privacy Policy',
     footer_copy:'&copy; 2026 Kleoso Agency &mdash; Based in Poland, moving to Georgia soon'
   },
   ru:{
@@ -175,6 +197,7 @@ var i18n={
     con_lbl_email:'Email',con_lbl_loc:'Локация',con_location:'Польша (скоро переезд в Грузию)',con_lbl_lang:'Языки',con_lbl_social:'Соцсети',
     form_name:'Ваше имя',form_email:'Email',form_service:'Услуга',form_service_ph:'Выберите услугу...',form_msg:'Сообщение',form_send:'Отправить &#8599;',
     success_title:'Сообщение отправлено!',success_desc:'Мы ответим в течение 24 часов.',success_btn:'На главную',
+    skip_link:'Перейти к основному содержанию',sticky_cta:'Связаться',footer_privacy:'Политика конфиденциальности',
     footer_copy:'&copy; 2026 Kleoso Agency &mdash; База в Польше, скоро переезд в Грузию'
   },
   ge:{
@@ -241,6 +264,7 @@ var i18n={
     con_lbl_email:'Email',con_lbl_loc:'მდებარეობა',con_location:'პოლონეთი (მალე გადმოსვლა საქართველოში)',con_lbl_lang:'ენები',con_lbl_social:'სოციალური ქსელები',
     form_name:'თქვენი სახელი',form_email:'Email',form_service:'სერვისი',form_service_ph:'აირჩიეთ სერვისი...',form_msg:'შეტყობინება',form_send:'გაგზავნა &#8599;',
     success_title:'შეტყობინება გაიგზავნა!',success_desc:'დაგიკავშირდებით 24 საათში.',success_btn:'მთავარზე დაბრუნება',
+    skip_link:'ძირითად შიგთავსზე გადასვლა',sticky_cta:'დაკავშირება',footer_privacy:'კონფიდენციალურობის პოლიტიკა',
     footer_copy:'&copy; 2026 Kleoso Agency &mdash; ბაზა პოლონეთში, მალე გადმოსვლა საქართველოში'
   },
   ua:{
@@ -307,6 +331,7 @@ var i18n={
     con_lbl_email:'Email',con_lbl_loc:'Локація',con_location:'Польща (скоро переїзд до Грузії)',con_lbl_lang:'Мови',con_lbl_social:'Соцмережі',
     form_name:'Ваше імʼя',form_email:'Email',form_service:'Послуга',form_service_ph:'Оберіть послугу...',form_msg:'Повідомлення',form_send:'Надіслати &#8599;',
     success_title:'Повідомлення надіслано!',success_desc:'Відповімо протягом 24 годин.',success_btn:'На головну',
+    skip_link:'Перейти до основного вмісту',sticky_cta:'Звʼязатись',footer_privacy:'Політика конфіденційності',
     footer_copy:'&copy; 2026 Kleoso Agency &mdash; База в Польщі, скоро переїзд до Грузії'
   },
   pl:{
@@ -373,15 +398,56 @@ var i18n={
     con_lbl_email:'Email',con_lbl_loc:'Lokalizacja',con_location:'Polska (wkrotce przeprowadzka do Gruzji)',con_lbl_lang:'Jezyki',con_lbl_social:'Social media',
     form_name:'Twoje imie',form_email:'Email',form_service:'Usluga',form_service_ph:'Wybierz usluge...',form_msg:'Wiadomosc',form_send:'Wyslij wiadomosc &#8599;',
     success_title:'Wiadomosc wyslana!',success_desc:'Odezwiemy sie w ciagu 24 godzin.',success_btn:'Powrot na glowna',
+    skip_link:'Przejdz do glownej tresci',sticky_cta:'Kontakt',footer_privacy:'Polityka prywatnosci',
     footer_copy:'&copy; 2026 Kleoso Agency &mdash; Siedziba w Polsce, wkrotce przeprowadzka do Gruzji'
   }
 };
+
+/* ── i18n helpers: document lang, external links, a11y bootstrap ── */
+
+/** Maps internal lang keys to ISO 639-1 codes for <html lang>. */
+var LANG_HTML_MAP={en:'en',ru:'ru',ge:'ka',ua:'uk',pl:'pl'};
+
+/** Sync <html lang> for screen readers, SEO, and hyphenation. */
+function updateDocumentLang(langKey){
+  var iso=LANG_HTML_MAP[langKey]||'en';
+  document.documentElement.setAttribute('lang',iso);
+  document.documentElement.setAttribute('data-lang',langKey);
+}
+
+/**
+ * Ensures external links open safely in a new tab.
+ * Appends rel="noopener noreferrer" to any off-origin http(s) anchor.
+ */
+function hardenExternalLinks(root){
+  var scope=root||document;
+  var origin=location.origin;
+  scope.querySelectorAll('a[href^="http"]').forEach(function(a){
+    try{
+      if(new URL(a.href).origin===origin)return;
+    }catch(e){return;}
+    var rel=(a.getAttribute('rel')||'').split(/\s+/).filter(Boolean);
+    ['noopener','noreferrer'].forEach(function(token){
+      if(rel.indexOf(token)===-1)rel.push(token);
+    });
+    a.setAttribute('rel',rel.join(' '));
+    if(!a.getAttribute('target'))a.setAttribute('target','_blank');
+  });
+}
+
+/** One-time accessibility + security bootstrap on DOM ready. */
+function initSiteFoundation(){
+  hardenExternalLinks();
+  var menu=document.getElementById('mobileMenu');
+  if(menu&&!menu.classList.contains('open'))menu.hidden=true;
+}
 
 function setLang(l){
   if(!i18n[l])l='en';
   document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.remove('active')});
   document.querySelectorAll('.lang-btn[onclick*="setLang(\''+l+'\')"]').forEach(function(b){b.classList.add('active')});
-  document.body.className='lang-'+l;
+  document.body.className='lang-'+l+' has-sticky-cta';
+  updateDocumentLang(l);
   var t=i18n[l];
   document.querySelectorAll('[data-i]').forEach(function(el){
     var k=el.getAttribute('data-i');
@@ -409,3 +475,4 @@ function applyFormTranslations(l){
 
 setLang('en');
 syncActiveNav('home');
+document.addEventListener('DOMContentLoaded',initSiteFoundation);
