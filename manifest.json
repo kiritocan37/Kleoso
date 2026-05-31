@@ -1,20 +1,26 @@
 {
-  "name": "WOT BOOSTED",
-  "short_name": "WOT BOOSTED",
-  "description": "Професійний буст World of Tanks. ЛБЗ, Відмітки, Майстер, бої на урон.",
+  "name": "Kleoso",
+  "short_name": "Kleoso",
+  "description": "Marketing agency. Web design, branding, strategy, paid ads. Based in Poland, moving to Georgia soon.",
   "start_url": "/",
   "id": "/",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#0a0910",
-  "theme_color": "#e12d3c",
-  "lang": "uk",
+  "background_color": "#f0ebe1",
+  "theme_color": "#b85c2a",
+  "lang": "en",
   "dir": "ltr",
-  "categories": ["games", "entertainment"],
+  "categories": ["business", "marketing"],
   "icons": [
     {
-      "src": "logo.png",
-      "sizes": "552x452",
+      "src": "favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "favicon.png",
+      "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     }
