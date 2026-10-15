@@ -67,7 +67,7 @@ function handleSubmit(e){
 
 var i18n={
   en:{
-    nav_services:'Services',nav_how:'How it works',nav_portfolio:'Portfolio',nav_reviews:'Reviews',nav_soon:'Soon',nav_contact:'Contact',
+    nav_services:'Services',nav_how:'How it works',nav_portfolio:'Portfolio',nav_reviews:'Reviews',nav_contact:'Contact',
     hero_tag:'Marketing Agency &mdash; Based in Poland, moving to Georgia soon',
     hero_subtag:'Based in Poland &mdash; working remote with clients worldwide, moving to Georgia soon',
     hero_title:'We build<br><em>brands</em><br>that matter',
@@ -93,7 +93,7 @@ var i18n={
     founder_p1:'Direct communication without middle layers',founder_p2:'Clear scope and transparent process',
     founder_p3:'Fast iterations with weekly updates',founder_p4:'Focus on quality over empty promises',
     free_num:'Launch offer',free_title:'First service is free',
-    free_spots:'Only 1 spot left in June',
+    free_spots:'Only 1 spot left in October',
     free_desc:'For first partners, one selected service is free within a starter scope so you can test our process before scaling.',
     free_h1:'Who',free_t1:'New partners who are ready to collaborate and give quick feedback.',
     free_h2:'What',free_t2:'One service: landing draft, design concept, mini-branding set, or audit.',
@@ -140,7 +140,7 @@ var i18n={
     footer_copy:'&copy; 2026 Kleoso Agency &mdash; Based in Poland, moving to Georgia soon'
   },
   ru:{
-    nav_services:'Услуги',nav_how:'Как мы работаем',nav_portfolio:'Портфолио',nav_reviews:'Отзывы',nav_soon:'Скоро',nav_contact:'Контакт',
+    nav_services:'Услуги',nav_how:'Как мы работаем',nav_portfolio:'Портфолио',nav_reviews:'Отзывы',nav_contact:'Контакт',
     hero_tag:'Маркетинговое агентство &mdash; база в Польше, скоро переезд в Грузию',
     hero_subtag:'База в Польше &mdash; работаем удалённо с клиентами по всему миру, скоро переезд в Грузию',
     hero_title:'Создаём<br><em>бренды</em><br>которые важны',
@@ -166,7 +166,7 @@ var i18n={
     founder_p1:'Прямая коммуникация без посредников',founder_p2:'Чёткие рамки и прозрачный процесс',
     founder_p3:'Быстрые итерации с еженедельными отчётами',founder_p4:'Качество важнее пустых обещаний',
     free_num:'Стартовое предложение',free_title:'Первая услуга бесплатно',
-    free_spots:'Осталось только 1 место в июне',
+    free_spots:'Осталось только 1 место в октябре',
     free_desc:'Для первых партнёров одна выбранная услуга бесплатна в рамках стартового объёма &mdash; так вы можете протестировать наш процесс до масштабирования.',
     free_h1:'Кто',free_t1:'Новые партнёры, готовые к сотрудничеству и быстрой обратной связи.',
     free_h2:'Что',free_t2:'Одна услуга: черновик лендинга, концепт дизайна, мини-брендинг или аудит.',
@@ -213,7 +213,7 @@ var i18n={
     footer_copy:'&copy; 2026 Kleoso Agency &mdash; База в Польше, скоро переезд в Грузию'
   },
   ge:{
-    nav_services:'სერვისები',nav_how:'როგორ ვმუშაობთ',nav_portfolio:'პორტფოლიო',nav_reviews:'შეფასებები',nav_soon:'მალე',nav_contact:'კონტაქტი',
+    nav_services:'სერვისები',nav_how:'როგორ ვმუშაობთ',nav_portfolio:'პორტფოლიო',nav_reviews:'შეფასებები',nav_contact:'კონტაქტი',
     hero_tag:'მარკეტინგული სააგენტო &mdash; ბაზა პოლონეთში, მალე გადმოსვლა საქართველოში',
     hero_subtag:'ბაზა პოლონეთში &mdash; დისტანციური მუშაობა მსოფლიოს კლიენტებთან, მალე გადმოსვლა საქართველოში',
     hero_title:'ვქმნით<br><em>ბრენდებს</em><br>რომლებიც მნიშვნელოვანია',
@@ -239,7 +239,7 @@ var i18n={
     founder_p1:'პირდაპირი კომუნიკაცია შუამავლების გარეშე',founder_p2:'მკაფიო ფარგლები და გამჭვირვალე პროცესი',
     founder_p3:'სწრაფი ციკლები ყოველკვირეული განახლებებით',founder_p4:'ხარისხი ცარიელი დაპირებების ნაცვლად',
     free_num:'სასტარტო შეთავაზება',free_title:'პირველი სერვისი უფასოა',
-    free_spots:'ივნისში მხოლოდ 1 ადგილი დარჩა',
+    free_spots:'ოქტომბერში მხოლოდ 1 ადგილი დარჩა',
     free_desc:'პირველი პარტნიორებისთვის ერთი სერვისი უფასოა სასტარტო ფარგლებში &mdash; ასე შეგიძლიათ შეამოწმოთ ჩვენი პროცესი მასშტაბირებამდე.',
     free_h1:'ვინ',free_t1:'ახალი პარტნიორები, რომლებიც მზად არიან თანამშრომლობისთვის და სწრაფი უკუკავშირისთვის.',
     free_h2:'რა',free_t2:'ერთი სერვისი: ლენდინგის დრაფტი, დიზაინის კონცეპტი, მინი-ბრენდინგი ან აუდიტი.',
@@ -286,7 +286,7 @@ var i18n={
     footer_copy:'&copy; 2026 Kleoso Agency &mdash; ბაზა პოლონეთში, მალე გადმოსვლა საქართველოში'
   },
   ua:{
-    nav_services:'Послуги',nav_how:'Як ми працюємо',nav_portfolio:'Портфоліо',nav_reviews:'Відгуки',nav_soon:'Скоро',nav_contact:'Контакт',
+    nav_services:'Послуги',nav_how:'Як ми працюємо',nav_portfolio:'Портфоліо',nav_reviews:'Відгуки',nav_contact:'Контакт',
     hero_tag:'Маркетингова агенція &mdash; базуємось у Польщі, скоро переїжджаємо до Грузії',
     hero_subtag:'База в Польщі &mdash; працюємо віддалено з клієнтами по всьому світу, скоро переїзд до Грузії',
     hero_title:'Створюємо<br><em>бренди</em><br>що мають значення',
@@ -312,7 +312,7 @@ var i18n={
     founder_p1:'Пряма комунікація без посередників',founder_p2:'Чіткі рамки та прозорий процес',
     founder_p3:'Швидкі ітерації зі щотижневими звітами',founder_p4:'Якість важливіша за порожні обіцянки',
     free_num:'Стартова пропозиція',free_title:'Перша послуга безкоштовно',
-    free_spots:'Лише 1 місце залишилось у червні',
+    free_spots:'Лише 1 місце залишилось у жовтні',
     free_desc:'Для перших партнерів одна обрана послуга безкоштовна в межах стартового обсягу &mdash; так ви можете протестувати наш процес до масштабування.',
     free_h1:'Хто',free_t1:'Нові партнери, готові до співпраці й швидкого зворотного звʼязку.',
     free_h2:'Що',free_t2:'Одна послуга: чернетка лендингу, концепт дизайну, міні-брендинг або аудит.',
@@ -359,7 +359,7 @@ var i18n={
     footer_copy:'&copy; 2026 Kleoso Agency &mdash; База в Польщі, скоро переїзд до Грузії'
   },
   pl:{
-    nav_services:'Uslugi',nav_how:'Jak pracujemy',nav_portfolio:'Portfolio',nav_reviews:'Opinie',nav_soon:'Wkrotce',nav_contact:'Kontakt',
+    nav_services:'Uslugi',nav_how:'Jak pracujemy',nav_portfolio:'Portfolio',nav_reviews:'Opinie',nav_contact:'Kontakt',
     hero_tag:'Agencja marketingowa &mdash; z siedziba w Polsce, wkrotce przenosimy sie do Gruzji',
     hero_subtag:'Siedziba w Polsce &mdash; pracujemy zdalnie z klientami na calym swiecie, wkrotce przeprowadzka do Gruzji',
     hero_title:'Budujemy<br><em>marki</em><br>ktore maja znaczenie',
@@ -385,7 +385,7 @@ var i18n={
     founder_p1:'Bezposrednia komunikacja bez posrednikow',founder_p2:'Jasny zakres i przejrzysty proces',
     founder_p3:'Szybkie iteracje i cotygodniowe aktualizacje',founder_p4:'Jakosc ponad puste obietnice',
     free_num:'Oferta startowa',free_title:'Pierwsza usluga za darmo',
-    free_spots:'Zostal tylko 1 wolny slot w czerwcu',
+    free_spots:'Zostal tylko 1 wolny slot w pazdzierniku',
     free_desc:'Dla pierwszych partnerow jedna wybrana usluga jest darmowa w zakresie startowym, aby przetestowac nasz proces przed skalowaniem.',
     free_h1:'Dla kogo',free_t1:'Nowi partnerzy gotowi do wspolpracy i szybkiego feedbacku.',
     free_h2:'Co',free_t2:'Jedna usluga: szkic landing page, koncept designu, mini-branding albo audyt.',

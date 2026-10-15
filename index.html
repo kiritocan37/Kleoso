@@ -50,7 +50,7 @@
   <script src="script.js" defer></script>
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
-    :root{--bg:#f0ebe1;--bg2:#e8e1d4;--dark:#1c1812;--dark2:#3d342a;--accent:#b85c2a;--accent2:#d4712f;--muted:#6b6355;--border:rgba(28,24,18,.12);--ff-en:"Bebas Neue",sans-serif;--ff-body:"Manrope",sans-serif;--pad:4rem}
+    :root{--bg:#f0ebe1;--bg2:#e8e1d4;--dark:#1c1812;--dark2:#3d342a;--accent:#b85c2a;--accent2:#d4712f;--muted:#6b6355;--border:rgba(28,24,18,.12);--ff-en:"Bebas Neue",sans-serif;--ff-body:"Manrope",sans-serif;--pad:4rem;--wrap:1440px}
     @media(max-width:768px){:root{--pad:1.5rem}}
     html{scroll-behavior:smooth}
     body{background:var(--bg);color:var(--dark);font-family:var(--ff-body);overflow-x:hidden}
@@ -277,6 +277,9 @@
       .reveal{opacity:1!important;transform:none!important}
       .preloader{display:none!important}
     }
+    /* Wide screens: keep all content in the same 1440px column as the nav */
+    section,.hero,.footer-main,.footer-bottom,.cta-bottom{padding-left:max(var(--pad),calc((100% - var(--wrap)) / 2 + var(--pad)));padding-right:max(var(--pad),calc((100% - var(--wrap)) / 2 + var(--pad)))}
+    @media(min-width:1600px){.hero{min-height:min(100vh,1000px)}.principles{padding-left:calc((100% - var(--wrap)) / 2 + var(--pad));padding-right:calc((100% - var(--wrap)) / 2 + var(--pad));background:var(--dark);gap:0}.principle-item+.principle-item{border-left:1px solid rgba(240,235,225,.12)}}
     @keyframes heroRise{to{opacity:1;transform:none}}
   </style>
 </head>
@@ -291,7 +294,6 @@
         <li><a onclick="showPage('how')" data-page="how" data-i="nav_how">How it works</a></li>
         <li><a onclick="showPage('portfolio')" data-page="portfolio" data-i="nav_portfolio">Portfolio</a></li>
         <li><a onclick="showPage('reviews')" data-page="reviews" data-i="nav_reviews">Reviews</a></li>
-        <li><a onclick="showPage('soon')" data-page="soon" data-i="nav_soon">Soon</a></li>
         <li><a onclick="showPage('contact')" data-page="contact" data-i="nav_contact">Contact</a></li>
       </ul>
       <div class="nav-lang" role="group" aria-label="Language selection">
@@ -314,7 +316,6 @@
       <a onclick="showPage('how');closeMenu()" data-i="nav_how">How it works</a>
       <a onclick="showPage('portfolio');closeMenu()" data-i="nav_portfolio">Portfolio</a>
       <a onclick="showPage('reviews');closeMenu()" data-i="nav_reviews">Reviews</a>
-      <a onclick="showPage('soon');closeMenu()" data-i="nav_soon">Soon</a>
       <a onclick="showPage('contact');closeMenu()" data-i="nav_contact">Contact</a>
       <div class="mobile-lang" role="group" aria-label="Language selection">
         <div class="lang-switch">
@@ -388,7 +389,7 @@
     <section class="free-offer">
       <div class="section-header reveal"><span class="section-num" data-i="free_num">Launch offer</span><h2 class="section-title" data-i="free_title">First service is free</h2></div>
       <div class="free-card reveal">
-        <div class="free-spots" data-i="free_spots">Only 1 spot left in June</div>
+        <div class="free-spots" data-i="free_spots">Only 1 spot left in October</div>
         <p class="free-desc" data-i="free_desc">For first partners, one selected service is free within a starter scope so you can test our process before scaling.</p>
         <div class="free-grid">
           <div class="free-item"><h4 data-i="free_h1">Who</h4><p data-i="free_t1">New partners who are ready to collaborate and provide quick feedback.</p></div>
@@ -432,13 +433,6 @@
     <section class="rev-page">
       <div class="section-header"><span class="section-num" data-i="rev_num">Reviews</span><h2 class="section-title" data-i="rev_title">Early partners</h2></div>
       <div class="review-cta-box"><h3 class="review-cta-title" data-i="rev_cta_title">Looking for first partners</h3><p class="review-cta-desc" data-i="rev_cta_desc"></p><button class="cta-btn" onclick="showPage('contact')"><span data-i="rev_cta_btn">Get your free first service</span> &#8599;</button></div>
-    </section>
-  </div>
-
-  <div class="page" id="page-soon">
-    <section class="rev-page">
-      <div class="section-header"><span class="section-num" data-i="soon_num">Soon</span><h2 class="section-title" data-i="soon_title">What is coming next</h2></div>
-      <div class="review-cta-box"><h3 class="review-cta-title" data-i="soon_cta_title">New case studies and client reviews are coming soon</h3><p class="review-cta-desc" data-i="soon_cta_desc">We are actively shipping projects and preparing fresh portfolio updates. Stay tuned for new launches from Poland and our move to Georgia.</p><button class="cta-btn" onclick="showPage('contact')"><span data-i="soon_cta_btn">Get notified first</span> &#8599;</button></div>
     </section>
   </div>
 
